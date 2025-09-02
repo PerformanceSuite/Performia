@@ -23,3 +23,14 @@ claude-flow
 claude-flow.bat
 claude-flow.ps1
 hive-mind-prompt-*.txt
+
+# Claude Flow Runtime (not for repo)
+.hive-mind/sessions/
+.swarm/*.db
+.sessions/*
+.current-session
+memory/sessions/
+.claude-flow/metrics/
+node_modules/
+.state/
+.cache/

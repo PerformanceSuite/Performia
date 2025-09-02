@@ -1,0 +1,1 @@
+Avatar control panel.  Avatar for each agent
