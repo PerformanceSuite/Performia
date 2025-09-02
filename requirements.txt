@@ -1,0 +1,15 @@
+# Core
+python-osc==1.8.0
+numpy==1.24.0
+scipy==1.10.0
+
+# Audio
+soundfile==0.12.1
+pyaudio==0.2.11
+
+# IPC
+posix-ipc==1.0.5
+
+# Utils
+pyyaml==6.0
+python-dotenv==1.0.0
