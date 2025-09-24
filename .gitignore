@@ -1,3 +1,8 @@
 .DS_Store
 Thumbs.db
 *.log
+
+# DevAssist Session Management
+.sessions/*.log
+.sessions/*.tmp
+.sessions/terminal_sessions/
