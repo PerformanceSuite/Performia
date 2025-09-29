@@ -1,0 +1,402 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS styles remain here */
+:root {
+    --base-font-size: 3.0rem; 
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #111111;
+    color: #F0F0F0;
+    overflow: hidden;
+}
+
+.performia-cyan { color: #00FFFF; }
+.performia-magenta { color: #FF00FF; }
+
+main {
+    font-size: var(--base-font-size);
+}
+
+.lyric-line {
+    position: relative;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-in-out;
+    padding: 0 5rem; 
+    min-height: 180px;
+}
+
+.syllables-wrapper {
+    display: flex;
+    align-items: flex-end;
+}
+
+.syllable-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 0.5ch;
+    padding-bottom: 0.75rem; 
+    cursor: pointer;
+}
+
+.chord {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    transition: color 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f59e0b; /* amber-500 */
+}
+
+.chord-name {
+    font-weight: 700;
+    font-size: calc(var(--base-font-size) * 0.75);
+    margin-bottom: 0.5rem;
+}
+
+.chord-diagram-wrapper {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.chord-diagram-label {
+    font-weight: 700;
+    font-size: calc(var(--base-font-size) * 0.5);
+}
+
+.app-container.show-diagrams .chord-name { display: none; }
+.app-container.show-diagrams .chord-diagram-wrapper { display: flex; }
+.syllable-container.show-diagram .chord-name { display: none; }
+.syllable-container.show-diagram .chord-diagram-wrapper { display: flex; }
+
+.app-container.hide-chords .chord { display: none; }
+
+.active-line .chord { color: #F0F0F0; } /* white */
+.active-word .chord { color: #22d3ee; } /* cyan-400 */
+
+.syllable {
+    position: relative;
+    display: inline-block;
+    color: #6b7280; /* gray-500 */
+    transition: color 0.2s ease-in-out;
+}
+
+.syllable.sung {
+    color: #F0F0F0;
+}
+
+.active-word .syllable {
+     color: #F0F0F0;
+}
+
+.syllable-wipe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #22d3ee; /* cyan-400 */
+}
+
+.syllable-progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.active-word .syllable-progress-container {
+    opacity: 1;
+}
+
+.syllable-progress-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #FF00FF;
+}
+
+.soundwave { display: flex; align-items: center; justify-content: center; height: 24px; }
+.soundwave div {
+    width: 3px; height: 100%; background-color: #00FFFF; margin: 0 2px;
+    animation: sound 1.2s infinite ease-in-out;
+}
+
+@keyframes sound { 
+    0%, 40%, 100% { transform: scaleY(0.4); } 
+    20% { transform: scaleY(1.0); } 
+}
+
+#settings-panel { 
+    transition: transform 0.3s ease-in-out;
+}
+
+.listening-icon { box-shadow: 0 0 15px #00FFFF; }
+
+/* Performance-Optimized Settings Panel */
+.settings-tab { 
+    border-bottom: 3px solid transparent; 
+    transition: all 0.2s ease-in-out;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 18px 24px;
+    position: relative;
+}
+
+.settings-tab:hover:not(.active) { 
+    color: #e5e7eb;
+    background-color: rgba(55, 65, 81, 0.3);
+}
+
+.settings-tab.active { 
+    color: #ffffff; 
+    border-bottom-color: #00FFFF; 
+    font-weight: 700;
+    background-color: rgba(0, 255, 255, 0.08);
+}
+
+/* Performance-Ready Segmented Control */
+.segmented-control { 
+    background-color: #111827;
+    border-radius: 10px;
+    padding: 3px;
+    border: 2px solid #374151;
+}
+
+.segmented-control button { 
+    background-color: transparent; 
+    transition: all 0.15s ease-in-out;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: #d1d5db;
+    min-width: 80px;
+}
+
+.segmented-control button:hover:not(.active) {
+    background-color: #374151;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.segmented-control button.active { 
+    background-color: #00FFFF; 
+    color: #000000; 
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Performance-Focused Section Styling */
+.settings-section {
+    background-color: #111827;
+    border: 2px solid #374151;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.settings-section:hover {
+    border-color: #4b5563;
+}
+
+.settings-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.settings-section-title.primary {
+    color: #00FFFF;
+}
+
+.settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    min-height: 48px;
+}
+
+.settings-row:last-child {
+    margin-bottom: 0;
+}
+
+.settings-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f3f4f6;
+}
+
+.settings-label.primary {
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* Performance-Ready Button Styling */
+.settings-button {
+    background-color: #374151;
+    border: 2px solid #4b5563;
+    transition: all 0.15s ease-in-out;
+    font-weight: 600;
+    font-size: 18px;
+    color: #ffffff;
+    min-width: 52px;
+    min-height: 52px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-button:hover {
+    background-color: #4b5563;
+    border-color: #6b7280;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.settings-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.settings-value-display {
+    background-color: #1f2937;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    min-width: 100px;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px 16px;
+    border: 2px solid #374151;
+}
+
+.settings-value-display.primary {
+    background-color: #0f172a;
+    border-color: #00FFFF;
+    color: #00FFFF;
+    font-weight: 700;
+}
+
+/* Blueprint View Styles */
+.blueprint-view {
+    padding: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #9ca3af;
+}
+
+.blueprint-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.blueprint-header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f3f4f6;
+}
+
+.blueprint-header h2 {
+    font-size: 1.2rem;
+}
+
+.blueprint-section-header {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #00FFFF;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.blueprint-line {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    align-items: flex-end;
+}
+
+.blueprint-syllable {
+   display: inline-flex;
+   flex-direction: column;
+   margin-right: 0.5ch;
+   margin-bottom: 0.5rem;
+   text-align: center;
+}
+
+.blueprint-syllable .chord {
+    font-weight: bold;
+    color: #f59e0b;
+    margin-bottom: 0.25rem;
+    min-height: 1.5em; /* Reserve space */
+    position: static;
+    transform: none;
+}
+
+.blueprint-syllable .lyric {
+    color: #d1d5db;
+}
+
+[contenteditable]:focus {
+    outline: 1px solid #00FFFF;
+    background-color: rgba(0,255,255,0.1);
+    border-radius: 2px;
+}
+
+.settings-overlay {
+    transition: opacity 0.3s ease-in-out;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    background: transparent;
+    width: 100%;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background: #00FFFF;
+    cursor: pointer;
+    margin-top: -12px;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #374151;
+    border-radius: 4px;
+    border: 1px solid #4b5563;
+}

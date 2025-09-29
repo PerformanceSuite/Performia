@@ -1,0 +1,2 @@
+Use developer__text_editor to create file "goose-test-$(date +%s).txt" with content "Goose created this"
+Then use developer__shell to run: ls -la goose-test*.txt

@@ -1,0 +1,4 @@
+Create directories:
+Use developer__shell: mkdir -p frontend backend shared
+Use developer__shell: echo "Directories created"
+Use developer__shell: ls -la | grep -E "frontend|backend|shared"

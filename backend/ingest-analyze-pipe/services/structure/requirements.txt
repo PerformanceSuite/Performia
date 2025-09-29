@@ -1,0 +1,2 @@
+# Runtime dependencies for the stub implementation.
+soundfile==0.13.1
