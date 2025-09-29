@@ -1,0 +1,74 @@
+# Performia Project Context for Goose
+
+## Project Overview
+Performia is a revolutionary music creation and performance application that replaces traditional DAWs with an AI-powered system.
+
+## Core Technology
+- **AI Conductor**: Real-time audio analysis engine that follows live performance
+- **Song Map**: Proprietary format with precise syllable-level timing (startTime + duration)
+- **Living Chart**: Teleprompter with 3-state lyric coloring (gray → cyan wipe → white)
+- **Low-latency requirement**: Sub-10ms audio processing (critical!)
+
+## Product Tiers
+1. **Charts** (Freemium): Standalone living chart app
+2. **Studio**: Full creator workflow with AI band
+3. **Live**: Professional performance rig with visual show
+
+## Tech Stack
+- **Frontend**: React 19, TypeScript, Vite, Tailwind CSS
+- **Backend**: Python, JUCE (C++ audio framework)
+- **Audio**: Real-time processing, MIDI input, low-latency I/O
+- **AI**: Gemini API for song analysis and generation
+
+## Key Files & Locations
+- PRD: `Performia UI PRD.md`
+- Frontend UI: `frontend/` (formerly performia---living-chart)
+- Audio Engine: `backend/JuceLibraryCode/`
+- Python Backend: `backend/src/`
+
+## Critical Requirements
+1. **Audio latency < 10ms** - Non-negotiable for live performance
+2. **Precise timing** - All animations driven by Song Map microsecond-level data
+3. **Natural cadence** - Must feel human and musical, not robotic
+4. **Direct editing** - All text (chords, lyrics, titles) must be click-to-edit
+
+## Development Patterns
+- Use Song Map as single source of truth
+- All timing calculations from startTime/duration, never computed
+- Chord diagrams persist inline, never as popups
+- Three-mode chord display: Off / Names / Diagrams
+
+## Common Tasks
+- Editing Song Map structure → Update types.ts first
+- UI changes → Maintain 3-state lyric system
+- Audio work → Test latency with Presonus Quantum 2626
+- New features → Consider upgrade path from Charts → Studio → Live
+
+## Testing Priorities
+1. Audio latency measurement
+2. Timing accuracy (syllable sync)
+3. Smooth scrolling performance
+4. Chord diagram rendering
+5. Song Map editing persistence
+
+## Avoid These Mistakes
+- Never compute timing on the fly (use Song Map data)
+- Don't use generic scroll libraries (custom smooth scroll required)
+- No placeholder implementations for audio (must be production-ready)
+- Don't break the 3-state lyric coloring system
+
+## Agentic Workflow Notes
+- This is a unified monorepo (frontend + backend + audio engine)
+- Use MCP servers: filesystem, github, memory
+- Always test audio changes with actual hardware
+- Document all timing-sensitive code thoroughly
+
+## Voice Input Context
+- Users SING and PLAY instruments into the app
+- Voice/audio is CORE PRODUCT FUNCTIONALITY, not just a development tool
+- AI Conductor listens in real-time and follows the performer
+- Microphone input must be ultra-low latency
+
+## Current Phase
+MIGRATION: Consolidating two repositories into one unified codebase.
+See MIGRATION_PLAN.md for detailed steps.

@@ -1,0 +1,22 @@
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+
+# Node/Build
+node_modules/
+dist/
+
+# OS
+.DS_Store
+
+# Local artifacts
+tmp/
+*.log
+*.wav
+*.mp3
+*.flac
+*.zip

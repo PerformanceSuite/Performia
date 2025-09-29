@@ -1,92 +1,87 @@
-# 🎨 Performia - AI-Powered Music Performance System
+# Performia - Agentic Performance Management System
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/PerformanceSuite/Performia)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![UI](https://img.shields.io/badge/UI-JUCE-orange.svg)](../../tree/ui-clean)
-[![Backend](https://img.shields.io/badge/Backend-Python-blue.svg)](../../tree/backend-core)
+## Quick Start
 
-## Overview
-
-Performia is a professional audio interface for AI-powered music performance, featuring intelligent agents that collaborate with human musicians in real-time.
-
-## 🌳 Repository Structure
-
-### Active Branches
-
-#### [`ui-clean`](../../tree/ui-clean) - Modern User Interface
-- JUCE-based professional audio interface
-- 6 operational modes (Studio, Live, Settings, Library, Display, Room)
-- Dark theme with cyan accent colors
-- Multi-model AI integration for development
-
-#### [`backend-core`](../../tree/backend-core) - Core Backend System
-- High-performance audio engine (<10ms latency)
-- 4 AI music agents (Bass, Drums, Keys, Melody)
-- OSC communication protocol (port 7772)
-- SuperCollider synthesis engine
-
-## 🚀 Quick Start
-
-### Prerequisites
-- JUCE 7.x Framework
-- Python 3.9+
-- SuperCollider 3.12+
-- Node.js 18+ (for development tools)
-
-### Installation
-
-1. **Clone and select branch:**
+### 1. Set up environment variables
 ```bash
-git clone https://github.com/PerformanceSuite/Performia.git
-cd Performia
+cp .env.template .env
+# Edit .env with your actual tokens
 ```
 
-2. **For UI development:**
+### 2. Install voice control
 ```bash
-git checkout ui-clean
-# Follow UI setup instructions in branch README
+./setup_voice.sh
 ```
 
-3. **For backend development:**
+### 3. Launch the agent
 ```bash
-git checkout backend-core
-# Follow backend setup instructions in branch README
+./launch_agent.sh
 ```
 
-### Running the Complete System
-
+### 4. Start 24/7 orchestrator
 ```bash
-# Terminal 1: Start backend
-git checkout backend-core
-python scripts/start_backend.py
-
-# Terminal 2: Start UI
-git checkout ui-clean
-./build/Performia
+./launch_orchestrator.sh
 ```
 
-## 📚 Documentation
+## Voice Commands
 
-- [UI Documentation](../../tree/ui-clean/docs)
-- [Backend API](../../tree/backend-core/docs)
-- [Wiki](../../wiki)
+With voice control active, you can say:
 
-## 🤝 Contributing
+- "Analyze performance trends for the engineering team"
+- "Generate weekly performance report"
+- "Schedule performance review for next Tuesday"
+- "Create development plan for Sarah Johnson"
+- "Show me productivity metrics for last month"
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+## Architecture
 
-## 📄 License
+```
+┌─────────────────┐     ┌─────────────────┐
+│  Voice Control  │────▶│   Orchestrator  │
+└─────────────────┘     └─────────────────┘
+                               │
+        ┌──────────────────────┼──────────────────────┐
+        ▼                      ▼                      ▼
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│ Data Agent   │     │ Analysis     │     │ Feedback     │
+│              │────▶│ Agent        │────▶│ Agent        │
+└──────────────┘     └──────────────┘     └──────────────┘
+        │                      │                      │
+        └──────────────────────┼──────────────────────┘
+                               ▼
+                        ┌──────────────┐
+                        │   Reports    │
+                        └──────────────┘
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## MCP Servers Active
 
-## 🙏 Acknowledgments
+- GitHub: Code metrics and PR analysis
+- Filesystem: Document management
+- Memory: Persistent agent memory
+- PostgreSQL: Performance data storage
+- Slack: Team communication metrics
+- Playwright: Web automation for dashboards
 
-- JUCE Framework by ROLI
-- SuperCollider Community
-- Claude Flow by rUv (development tool)
+## Continuous Operation
 
----
+The orchestrator runs 24/7 and automatically:
+- Collects performance data every 5 minutes
+- Runs daily analysis at 9 AM
+- Generates weekly reports on Mondays at 10 AM
+- Creates monthly summaries on the 1st at 11 AM
+- Monitors for anomalies in real-time
 
-**Project Status**: Active Development
+## Development
 
-**Latest Release**: v2.0.0-alpha
+To add new agents:
+1. Create a new agent class in `orchestrator.py`
+2. Register it with the orchestrator
+3. Define workflow patterns
+4. Test with voice commands
+
+## Troubleshooting
+
+- Check logs: `tail -f ~/.local/state/goose/logs/server/*/*`
+- Verify MCP servers: `goose --list-servers`
+- Test voice: Press hotkey and say "Test voice input"

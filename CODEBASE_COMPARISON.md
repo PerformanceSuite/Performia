@@ -1,169 +1,312 @@
-# Performia Codebase Comparison Report
-
-**Generated:** September 29, 2025  
-**Purpose:** Migration Phase 1 - Repository Analysis & Backup
-
-## Executive Summary
-
-Two repositories need consolidation:
-1. **Performia** - Backend-focused with Python, C++ audio engine, and older frontend
-2. **Performia-front** - Modern React frontend with better UI implementation
-
-## Repository Status
-
-### Performia Repository
-- **Location:** `/Users/danielconnolly/Projects/Performia`
-- **Git Status:** Multiple uncommitted files (migration scripts, configs, agents)
-- **Primary Focus:** Backend infrastructure, audio processing, ML/AI components
-
-### Performia-front Repository  
-- **Location:** `/Users/danielconnolly/Projects/Performia-front`
-- **Git Status:** Some uncommitted files (node_modules, scripts)
-- **Primary Focus:** Modern React frontend with Living Chart visualization
+# Codebase Comparison: Performia vs Performia-front
 
 ## Directory Structure Comparison
 
-### Performia (Backend-Heavy)
+### Main Repository (Performia)
 ```
-Performia/
-├── performia---living-chart/     # Older frontend (less developed)
-├── JuceLibraryCode/             # C++ audio processing engine
-├── src/                         # Backend source code
-├── sc/                          # SuperCollider audio files
-├── ingest-analyze-pipe/         # Data ingestion pipeline
-├── resources/                   # Assets and configurations
-├── tests/                       # Test suites
-├── config/                      # Configuration files
-├── memory/                      # Session/state management
-├── Custom_MCP/                  # MCP server configurations
-├── scripts/                     # Utility scripts
-└── docs/                        # Documentation
+.
+├── Custom_MCP/                    # Custom MCP Integration
+│   ├── DevAssist/                # Development assistance tools
+│   │   ├── config/
+│   │   ├── data/
+│   │   ├── docs/
+│   │   ├── examples/
+│   │   ├── gui-client/
+│   │   ├── gui-server/
+│   │   ├── masks/
+│   │   ├── src/
+│   │   ├── templates/
+│   │   └── ui-module/
+│   ├── Prjctzr/                  # Project management
+│   └── ui-evolution-mcp/         # UI evolution tools
+├── docs/                         # Documentation
+│   ├── api/                      # API documentation
+│   └── guides/                   # User guides
+├── ingest-analyze-pipe/          # Audio processing pipeline
+│   ├── api/                      # Pipeline API
+│   ├── services/                 # Microservices
+│   │   ├── asr/                 # Speech recognition
+│   │   ├── beats_key/           # Beat detection
+│   │   ├── chords/              # Chord analysis
+│   │   ├── melody_bass/         # Melody extraction
+│   │   └── packager/            # Final packaging
+│   └── tmp/                      # Temporary processing files
+├── performia---living-chart/     # UI Component
+│   ├── components/
+│   │   └── icons/
+│   ├── data/
+│   ├── hooks/
+│   └── utils/
+├── src/                          # Core application
+│   ├── components/              # UI components
+│   │   ├── basic/
+│   │   ├── compound/
+│   │   └── specialized/
+│   ├── core/                    # Core functionality
+│   ├── layouts/                 # Layout components
+│   ├── modes/                   # Application modes
+│   ├── osc/                     # OSC communication
+│   ├── utils/                   # Utilities
+│   └── voice_engine/            # Voice processing
+└── tests/                        # Test suites
+    ├── components/              # Component tests
+    ├── integration/             # Integration tests
+    ├── ui/                      # UI tests
+    └── unit/                    # Unit tests
+
+### Frontend Repository (Performia-front)
+```
+.
+├── ai-assistant/                 # AI assistance tools
+│   └── solutions/               # AI solutions
+├── attached_assets/             # Static assets
+└── performia---living-chart/    # Enhanced UI Component
+    ├── components/
+    │   └── icons/
+    ├── data/
+    ├── hooks/
+    ├── services/               # Additional services
+    ├── src/                    # Source code
+    └── utils/
 ```
 
-### Performia-front (Frontend-Focused)
+Key Structural Differences:
+
+1. Scope
+   - Main repo: Full application (UI, backend, processing)
+   - Frontend repo: Focused on UI with AI assistance
+
+2. Component Organization
+   - Main repo: Distributed components across src/
+   - Frontend repo: Centralized in performia---living-chart/
+
+3. Testing Structure
+   - Main repo: Comprehensive test suite structure
+   - Frontend repo: Testing integrated with components
+
+4. Additional Tools
+   - Main repo: Custom MCP, pipeline tools
+   - Frontend repo: AI assistant, enhanced UI services
+
+5. Documentation
+   - Main repo: Structured docs/ directory
+   - Frontend repo: Documentation within components
+
+## Overview
+
+This document compares two related codebases:
+1. Main Repository (`/Users/danielconnolly/Projects/Performia`)
+2. Frontend Repository (`/Users/danielconnolly/Projects/Performia-front`)
+
+## Repository Statistics
+
+### Main Repository (Performia)
+- Total Lines: 29,582
+- Functions: 203
+- Classes: 374
+- Language Distribution:
+  - Markdown: 37%
+  - JSON: 19%
+  - JavaScript: 15%
+  - Python: 13%
+  - Bash: 11%
+
+### Frontend Repository (Performia-front)
+- Total Lines: 25,056
+- Functions: 92
+- Classes: 69
+- Language Distribution:
+  - Markdown: 40%
+  - JSON: 25%
+  - JavaScript: 16%
+  - TypeScript: 10%
+  - Python: 4%
+
+## Component Analysis
+
+### 1. Living Chart UI Component
+
+#### Frontend Version (43,561 lines)
 ```
-Performia-front/
-└── performia---living-chart/     # Modern React frontend
-    ├── src/                     # React source code
-    ├── components/              # React components
-    ├── services/                # API services (Library service)
-    ├── hooks/                   # React hooks
-    ├── utils/                   # Utility functions
-    └── data/                    # Static data files
+performia---living-chart/
+├── services/
+│   └── libraryService.ts (196 lines)
+├── hooks/
+│   ├── useLibrary.ts (96 lines)
+│   └── useSongPlayer.ts (74 lines)
+├── src/
+│   └── index.css (402 lines)
+├── types.ts (44 lines)
+├── tailwind.config.js
+└── postcss.config.js
 ```
+
+#### Main Repo Version (497 lines)
+```
+performia---living-chart/
+├── hooks/
+│   └── useSongPlayer.ts (74 lines)
+├── types.ts (25 lines)
+└── vite.config.ts
+```
+
+Key Differences:
+- Frontend version includes library management
+- Enhanced styling with Tailwind CSS
+- More comprehensive type definitions
+- Additional development tooling
+
+### 2. Core Components
+
+#### Main Repository Only
+```
+src/voice_engine/ (821 lines)
+├── core.py (183 lines, 12 functions)
+└── command_processor.py (210 lines, 10 functions)
+
+ingest-analyze-pipe/ (1,843 lines)
+├── services/
+│   ├── asr/
+│   ├── beats_key/
+│   ├── chords/
+│   ├── melody_bass/
+│   └── packager/
+└── schemas/
+    └── song_map.schema.json
+```
+
+#### Frontend Repository Only
+```
+ai-assistant/ (1,064 lines)
+├── direct-assist.py (741 lines)
+└── vizitrtr-bridge.py (323 lines)
+```
+
+## Dependency Analysis
+
+### Frontend Dependencies (Performia-front)
+- React 18/19
+- TypeScript
+- Tailwind CSS
+- PostCSS
+- Vite
+- Development tools
+
+### Main Repository Dependencies
+- Python requirements
+- JUCE framework
+- Basic frontend dependencies
+- CI/CD requirements
+
+## File-by-File Comparison of Living Chart
+
+| File | Frontend Version | Main Version | Difference |
+|------|-----------------|--------------|------------|
+| types.ts | 44 lines | 25 lines | +19 lines |
+| useSongPlayer.ts | 74 lines | 74 lines | Same |
+| index.html | 17 lines | 248 lines | Different structure |
+| package.json | 26 lines | 22 lines | Additional deps |
+| vite.config.ts | 26 lines | 23 lines | Similar |
+
+## Integration Points
+
+### Main Repository
+1. Voice Engine → Pipeline Integration
+   - Command processor interface
+   - Real-time audio processing
+
+2. Pipeline → UI Integration
+   - song_map.json schema
+   - API endpoints
+
+### Frontend Repository
+1. Library → UI Integration
+   - libraryService.ts
+   - useLibrary hook
+
+2. AI Assistant Integration
+   - direct-assist.py
+   - vizitrtr-bridge.py
+
+## Development Tooling
+
+### Frontend Repository
+- Advanced TypeScript configuration
+- Tailwind CSS setup
+- PostCSS processing
+- Vite development server
+- AI assistance tools
+
+### Main Repository
+- Python development environment
+- JUCE build system
+- Pipeline orchestration
+- Kubernetes deployment
+- CI/CD workflow
+
+## Migration Considerations
+
+### Priority Components to Migrate
+1. Library Management:
+   - libraryService.ts
+   - useLibrary.ts
+   - Enhanced types
+
+2. Styling System:
+   - Tailwind configuration
+   - PostCSS setup
+   - index.css
+
+3. Development Tools:
+   - TypeScript configuration
+   - Build pipeline
+   - Development utilities
+
+### Integration Challenges
+1. Voice Engine Integration
+2. Pipeline Data Flow
+3. Real-time Updates
+4. State Management
+5. Build System Consolidation
 
 ## Technology Stack Comparison
 
-### Performia Backend Stack
-- **Languages:** Python, C++, SuperCollider
-- **Audio:** JUCE Framework (C++)
-- **ML/AI:** Custom agents (performia_agent.py, orchestrator.py)
-- **Data Pipeline:** ingest-analyze-pipe with schemas
-- **Infrastructure:** MCP servers, Goose integration
+See [TECH_STACK_COMPARISON.md](./TECH_STACK_COMPARISON.md) for a detailed analysis of:
+- Core technologies in each repository
+- Integration points and data flow
+- Performance considerations
+- Development experience
+- Migration strategy and recommendations
 
-### Performia-front Frontend Stack
-- **Framework:** React 19.1.1 with TypeScript
-- **Build Tool:** Vite 6.2.0
-- **Styling:** Tailwind CSS 4.1.13
-- **State Management:** Immer 10.1.3
-- **Dev Tools:** PostCSS, Autoprefixer
+## Configuration Comparison
 
-### Common Frontend Dependencies
-Both `performia---living-chart` directories have similar package.json, but Performia-front has:
-- ✅ Tailwind CSS (missing in Performia)
-- ✅ PostCSS and Autoprefixer
-- ✅ More complete TypeScript configuration
+See [CONFIG_COMPARISON.md](./CONFIG_COMPARISON.md) for a detailed analysis of:
+- Python dependencies (requirements.txt)
+- JavaScript/TypeScript dependencies (package.json)
+- Build configuration differences
+- Development environment setup
+- Integration points and consolidation recommendations
 
-## Unique Files Analysis
+## File Uniqueness Analysis
 
-### Unique to Performia (Backend)
-- **Audio Processing:**
-  - JuceLibraryCode/* (C++ audio engine)
-  - sc/synthdefs/* (SuperCollider definitions)
-  
-- **ML/AI Infrastructure:**
-  - performia_agent.py
-  - orchestrator.py
-  - Custom_MCP/* (MCP server configs)
-  
-- **Data Pipeline:**
-  - ingest-analyze-pipe/* (data ingestion)
-  
-- **Documentation:**
-  - Performia UI PRD.md
-  - CONTRIBUTING.md
-  - LICENSE
+See [UNIQUE_FILES.md](./UNIQUE_FILES.md) for a detailed breakdown of:
+- Files unique to each repository
+- Common files with differences
+- Statistical analysis of file distribution
 
-### Unique to Performia-front
-- **Modern Frontend Structure:**
-  - components/icons/* (icon components)
-  - hooks/* (React hooks)
-  - services/* (API integration)
-  - utils/* (utility functions)
-  
-- **Configuration:**
-  - .env.local (environment variables)
-  - tailwind.config.js
-  - postcss.config.js
-  - vite.config.ts (more complete)
+## Next Steps
 
-## Configuration Differences
+1. Code Migration:
+   - Merge frontend enhancements into main repo
+   - Consolidate development tools
+   - Unify build systems
 
-### Package.json Comparison
-| Feature | Performia | Performia-front |
-|---------|-----------|-----------------|
-| React Version | 19.1.1 | 19.1.1 |
-| TypeScript | 5.8.2 | 5.8.2 |
-| Vite | 6.2.0 | 6.2.0 |
-| Tailwind CSS | ❌ | ✅ 4.1.13 |
-| PostCSS | ❌ | ✅ 8.5.6 |
-| Autoprefixer | ❌ | ✅ 10.4.21 |
+2. Documentation:
+   - Update technical specifications
+   - Merge documentation
+   - Create unified API documentation
 
-### Environment Variables
-- **Performia:** Has .env.template (new, for migration)
-- **Performia-front:** Has .env.local (active configuration)
-
-## Migration Recommendations
-
-### Phase 2 Actions Required
-1. **Use Performia-front's frontend** as the base (better UI, Tailwind configured)
-2. **Preserve all Performia backend** infrastructure
-3. **Merge environment configurations** (.env.local + .env.template)
-4. **Update import paths** in frontend to connect to backend
-
-### Critical Files to Preserve
-From **Performia**:
-- All JuceLibraryCode/* (audio engine)
-- All src/* (backend logic)
-- performia_agent.py and orchestrator.py
-- ingest-analyze-pipe/*
-- All test suites
-
-From **Performia-front**:
-- All components/*, hooks/*, services/*, utils/*
-- Tailwind and PostCSS configurations
-- TypeScript configurations
-
-### Potential Conflicts
-1. **package.json** - Need to merge dependencies
-2. **tsconfig.json** - May have different compiler options
-3. **vite.config.ts** - Different build configurations
-4. **.gitignore** - Need to combine exclusion rules
-
-## Next Steps (Phase 2)
-
-1. Create unified directory structure in Performia/
-2. Move Performia-front/performia---living-chart/* → Performia/frontend/
-3. Move Performia backend files → Performia/backend/
-4. Merge configuration files
-5. Update import paths and dependencies
-6. Test integration between frontend and backend
-
-## Backup Status
-
-✅ Both repositories have local copies
-⚠️ Uncommitted changes in both repos - need to commit or stash before major changes
-📝 This comparison document serves as restoration reference
-
----
-*End of Phase 1 Analysis Report*
+3. Testing:
+   - Consolidate test suites
+   - Add integration tests
+   - Verify all features post-migration

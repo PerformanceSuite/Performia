@@ -1,5 +1,7 @@
 # Contributing to Performia
 
+Please review the [Repository Guidelines](AGENTS.md) alongside this document before starting work.
+
 ## Branch Strategy
 
 - `main` - Documentation only
