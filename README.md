@@ -1,87 +1,172 @@
-# Performia - Agentic Performance Management System
+# Performia - Unified Platform
 
-## Quick Start
+**Interactive Performance Management Platform with Living Chart Visualization**
 
-### 1. Set up environment variables
+## 🎯 Overview
+
+Performia is a comprehensive performance management platform that combines:
+- **Modern React Frontend** - Interactive Living Chart visualization with Tailwind CSS
+- **Powerful Python Backend** - Audio processing, ML/AI agents, and data pipeline
+- **C++ Audio Engine** - JUCE-based low-latency audio processing
+- **24/7 Autonomous Agents** - Compute-maxing with Goose and custom MCP servers
+
+## 📁 Project Structure
+
+```
+Performia/
+├── frontend/                  # React + TypeScript + Vite frontend
+│   ├── src/                  # React source code
+│   ├── components/           # UI components
+│   ├── services/             # API services
+│   └── package.json          # Frontend dependencies
+│
+├── backend/                   # Python + C++ backend
+│   ├── src/                  # Python source code
+│   ├── JuceLibraryCode/      # C++ audio engine
+│   ├── ingest-analyze-pipe/  # Data pipeline
+│   ├── performia_agent.py    # AI agent
+│   ├── orchestrator.py       # 24/7 orchestrator
+│   └── requirements.txt      # Python dependencies
+│
+├── shared/                    # Shared configurations
+│   └── .env.template         # Environment variables template
+│
+├── scripts/                   # Utility scripts
+├── docs/                      # Documentation
+└── .github/                   # GitHub Actions workflows
+```
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 20+
+- Python 3.12+
+- Git
+- GitHub CLI (`gh`)
+
+### Installation
+
+1. **Clone the repository:**
 ```bash
-cp .env.template .env
-# Edit .env with your actual tokens
+git clone https://github.com/PerformanceSuite/Performia.git
+cd Performia
 ```
 
-### 2. Install voice control
+2. **Install all dependencies:**
 ```bash
-./setup_voice.sh
+npm run install:all
 ```
 
-### 3. Launch the agent
+3. **Set up environment variables:**
 ```bash
-./launch_agent.sh
+cp shared/.env.template .env
+# Edit .env with your API keys
 ```
 
-### 4. Start 24/7 orchestrator
+4. **Start development servers:**
+
+Frontend:
 ```bash
-./launch_orchestrator.sh
+npm run dev:frontend
 ```
 
-## Voice Commands
-
-With voice control active, you can say:
-
-- "Analyze performance trends for the engineering team"
-- "Generate weekly performance report"
-- "Schedule performance review for next Tuesday"
-- "Create development plan for Sarah Johnson"
-- "Show me productivity metrics for last month"
-
-## Architecture
-
-```
-┌─────────────────┐     ┌─────────────────┐
-│  Voice Control  │────▶│   Orchestrator  │
-└─────────────────┘     └─────────────────┘
-                               │
-        ┌──────────────────────┼──────────────────────┐
-        ▼                      ▼                      ▼
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│ Data Agent   │     │ Analysis     │     │ Feedback     │
-│              │────▶│ Agent        │────▶│ Agent        │
-└──────────────┘     └──────────────┘     └──────────────┘
-        │                      │                      │
-        └──────────────────────┼──────────────────────┘
-                               ▼
-                        ┌──────────────┐
-                        │   Reports    │
-                        └──────────────┘
+Backend:
+```bash
+npm run dev:backend
 ```
 
-## MCP Servers Active
+## 🤖 Agentic Workflow
 
-- GitHub: Code metrics and PR analysis
-- Filesystem: Document management
-- Memory: Persistent agent memory
-- PostgreSQL: Performance data storage
-- Slack: Team communication metrics
-- Playwright: Web automation for dashboards
+This project follows the **Agentic Engineering** paradigm:
 
-## Continuous Operation
+### Using Goose
+```bash
+goose session
+# In Goose: Read MIGRATION_PLAN.md for current tasks
+```
 
-The orchestrator runs 24/7 and automatically:
-- Collects performance data every 5 minutes
-- Runs daily analysis at 9 AM
-- Generates weekly reports on Mondays at 10 AM
-- Creates monthly summaries on the 1st at 11 AM
-- Monitors for anomalies in real-time
+### 24/7 Autonomous Agents
+```bash
+./backend/launch_orchestrator.sh
+```
 
-## Development
+## 🛠️ Technology Stack
 
-To add new agents:
-1. Create a new agent class in `orchestrator.py`
-2. Register it with the orchestrator
-3. Define workflow patterns
-4. Test with voice commands
+### Frontend
+- React 19.1.1
+- TypeScript 5.8.2
+- Vite 6.2.0
+- Tailwind CSS 4.1.13
+- Immer (state management)
 
-## Troubleshooting
+### Backend
+- Python 3.12
+- JUCE (C++ audio)
+- SuperCollider
+- TensorFlow/PyTorch (ML)
+- FastAPI
 
-- Check logs: `tail -f ~/.local/state/goose/logs/server/*/*`
-- Verify MCP servers: `goose --list-servers`
-- Test voice: Press hotkey and say "Test voice input"
+### Infrastructure
+- Google Cloud Platform
+- GitHub Actions CI/CD
+- MCP Servers (filesystem, GitHub, memory)
+- Goose CLI for autonomous development
+
+## 📊 Features
+
+- **Living Chart** - Real-time interactive performance visualization
+- **Library Service** - Comprehensive music library management
+- **Audio Processing** - Low-latency C++ audio engine
+- **AI Agents** - Autonomous performance analysis
+- **Data Pipeline** - Ingestion and analysis pipeline
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+npm test
+
+# Frontend only
+npm run test:frontend
+
+# Backend only
+npm run test:backend
+```
+
+## 📝 Documentation
+
+- [Migration Plan](./MIGRATION_PLAN.md) - Current migration status
+- [Architecture](./docs/ARCHITECTURE.md) - System architecture
+- [API Documentation](./backend/api/openapi.yaml)
+- [Contributing](./CONTRIBUTING.md) - How to contribute
+
+## 🔄 Migration Status
+
+✅ **Phase 1**: Repository Analysis & Backup - Complete
+✅ **Phase 2**: Create Unified Structure - Complete
+⏳ **Phase 3**: Dependency Consolidation - Next
+⏳ **Phase 4**: Configuration Merge
+⏳ **Phase 5**: Git & GitHub Migration
+⏳ **Phase 6**: GCP Consolidation
+⏳ **Phase 7**: Testing & Validation
+⏳ **Phase 8**: Compute Maxing Setup
+⏳ **Phase 9**: Documentation
+⏳ **Phase 10**: Cleanup
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
+
+## 📄 License
+
+MIT License - see [LICENSE](./LICENSE) for details.
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/PerformanceSuite/Performia)
+- [Documentation](./docs/)
+- [Issue Tracker](https://github.com/PerformanceSuite/Performia/issues)
+
+---
+
+*Built with 🤖 Agentic Engineering - "What if your codebase could ship itself?"*
