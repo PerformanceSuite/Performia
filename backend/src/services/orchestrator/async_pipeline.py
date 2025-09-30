@@ -173,41 +173,41 @@ class AsyncPipeline:
             Complete pipeline results
         """
         if services_config is None:
-            # Default pipeline configuration
+            # Default pipeline configuration (paths relative to backend root)
             services_config = [
                 {
                     "name": "separation",
-                    "script_path": "backend/src/services/separation/main.py",
+                    "script_path": "src/services/separation/main.py",
                     "dependencies": []
                 },
                 {
                     "name": "asr",
-                    "script_path": "backend/src/services/asr/main.py",
+                    "script_path": "src/services/asr/main.py",
                     "dependencies": ["separation"]
                 },
                 {
                     "name": "beats_key",
-                    "script_path": "backend/src/services/beats_key/main.py",
+                    "script_path": "src/services/beats_key/main.py",
                     "dependencies": []
                 },
                 {
                     "name": "chords",
-                    "script_path": "backend/src/services/chords/main.py",
+                    "script_path": "src/services/chords/main.py",
                     "dependencies": ["separation"]
                 },
                 {
                     "name": "melody_bass",
-                    "script_path": "backend/src/services/melody_bass/main.py",
+                    "script_path": "src/services/melody_bass/main.py",
                     "dependencies": ["separation"]
                 },
                 {
                     "name": "structure",
-                    "script_path": "backend/src/services/structure/main.py",
+                    "script_path": "src/services/structure/main.py",
                     "dependencies": ["beats_key", "chords"]
                 },
                 {
                     "name": "packager",
-                    "script_path": "backend/src/services/packager/main.py",
+                    "script_path": "src/services/packager/main.py",
                     "dependencies": ["asr", "beats_key", "chords", "melody_bass", "structure"]
                 }
             ]
