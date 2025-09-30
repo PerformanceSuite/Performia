@@ -101,7 +101,41 @@ Performia/
 5. Verify Song Map pipeline
 6. Test end-to-end workflow
 
-## Voice Integration (Future)
-- Whisper API for voice commands
+## Available Agents
+
+Performia uses specialized agents for different development tasks. To invoke an agent:
+
+```
+"Act as the [agent-name] agent and [task description]"
+```
+
+### Core Development Agents
+
+1. **frontend-dev** - Frontend Development Agent
+   - Living Chart and Blueprint View optimization
+   - React/TypeScript development
+   - Performance optimization (60fps target)
+   - WebSocket real-time updates
+
+2. **audio-pipeline-dev** - Audio Pipeline Agent
+   - Song Map generation and optimization
+   - Audio analysis services (ASR, beat detection, chords)
+   - Python/Librosa audio processing
+   - Pipeline performance (<30s per song target)
+
+3. **voice-control** - Voice Control Agent
+   - Whisper API integration
+   - Voice commands for development and editing
+   - Live performance voice control
+   - Natural language command parsing
+
+### Legacy Agents
+
+- **migration-specialist** - Codebase unification (COMPLETE)
+- **ui-ux-developer** - UI/UX improvements
+
+## Voice Integration
+- OpenAI Whisper API for speech recognition
 - Voice control for development workflow
 - Voice input for Song Map editing
+- Live performance voice commands
