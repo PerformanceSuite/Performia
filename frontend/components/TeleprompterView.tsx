@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo, useCallback } from 'react';
 import { SongMap, ChordDisplayMode } from '../types';
 import { useSongPlayer } from '../hooks/useSongPlayer';
 import { transposeChord } from '../utils/musicUtils';
@@ -13,7 +13,7 @@ interface TeleprompterViewProps {
     onToggleDiagram: (key: string) => void;
 }
 
-const TeleprompterView: React.FC<TeleprompterViewProps> = ({ songMap, transpose, capo, diagramVisibility, onToggleDiagram }) => {
+const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap, transpose, capo, diagramVisibility, onToggleDiagram }) => {
     const { activeLineIndex, activeSyllableIndex, elapsed, isPlaying } = useSongPlayer(songMap);
     const lyricsContainerRef = useRef<HTMLDivElement>(null);
     const lineRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -37,7 +37,29 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = ({ songMap, transpose,
         }
     }, [activeLineIndex]);
 
-    const allLines = songMap.sections.flatMap(s => s.lines);
+    // Optimization 2: Memoize allLines calculation
+    const allLines = useMemo(() =>
+        songMap.sections.flatMap(s => s.lines),
+        [songMap]
+    );
+
+    // Optimization 4: Pre-calculate all transposed chords once
+    const transposedChords = useMemo(() => {
+        const chords: Record<string, string> = {};
+        allLines.forEach(line =>
+            line.syllables.forEach(syl => {
+                if (syl.chord && !chords[syl.chord]) {
+                    chords[syl.chord] = transposeChord(syl.chord, transpose - capo);
+                }
+            })
+        );
+        return chords;
+    }, [allLines, transpose, capo]);
+
+    // Optimization 3: Memoize ref callback creator
+    const setLineRef = useCallback((index: number) => (el: HTMLDivElement | null) => {
+        lineRefs.current[index] = el;
+    }, []);
 
     return (
         <main id="teleprompter-view" className="flex-grow flex items-center justify-center text-center overflow-hidden">
@@ -48,7 +70,7 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = ({ songMap, transpose,
                 {allLines.map((line, lineIndex) => (
                     <div
                         key={lineIndex}
-                        ref={el => lineRefs.current[lineIndex] = el}
+                        ref={setLineRef(lineIndex)}
                         className={`lyric-line ${activeLineIndex === lineIndex ? 'active-line' : ''} ${lineIndex < activeLineIndex ? 'opacity-30' : ''}`}
                     >
                         <div className="syllables-wrapper">
@@ -57,7 +79,7 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = ({ songMap, transpose,
                                 const isActive = activeLineIndex === lineIndex && activeSyllableIndex === syllableIndex;
                                 const isSung = syllable.startTime < elapsed;
                                 const progress = isActive ? Math.min(1, (elapsed - syllable.startTime) / syllable.duration) : (isSung ? 1 : 0);
-                                const displayedChord = transposeChord(syllable.chord, transpose - capo);
+                                const displayedChord = syllable.chord ? transposedChords[syllable.chord] : null;
 
                                 return (
                                     <span
@@ -91,6 +113,6 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = ({ songMap, transpose,
             </div>
         </main>
     );
-};
+});
 
 export default TeleprompterView;
