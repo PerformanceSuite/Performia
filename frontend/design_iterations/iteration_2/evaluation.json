@@ -1,0 +1,218 @@
+{
+  "screenshot_path": "/Users/danielconnolly/Projects/Performia/frontend/design_iterations/iteration_2/after.png",
+  "composite_score": 6.135294117647058,
+  "target_score": 8.5,
+  "target_reached": false,
+  "scores": {
+    "visual_hierarchy": 6.5,
+    "typography": 6.0,
+    "color_contrast": 7.0,
+    "spacing_layout": 5.5,
+    "component_design": 6.5,
+    "animation_interaction": 7.0,
+    "accessibility": 5.0,
+    "overall_aesthetic": 6.0
+  },
+  "weighted_scores": {
+    "visual_hierarchy": 7.8,
+    "typography": 6.0,
+    "color_contrast": 7.0,
+    "spacing_layout": 6.050000000000001,
+    "component_design": 6.5,
+    "animation_interaction": 6.3,
+    "accessibility": 6.5,
+    "overall_aesthetic": 6.0
+  },
+  "dimensions": {
+    "visual_hierarchy": {
+      "score": 6.5,
+      "weight": 1.2,
+      "criteria": [
+        "Clear primary/secondary/tertiary elements",
+        "Appropriate size scaling and differentiation",
+        "Effective use of contrast to establish priority",
+        "Logical flow and grouping of related elements",
+        "Natural eye flow through the interface"
+      ],
+      "assessment": "Fair",
+      "recommendations": [
+        "Increase size difference between primary and secondary elements",
+        "Use color contrast to establish clear hierarchy",
+        "Group related elements with consistent spacing",
+        "Create clear visual flow from top to bottom"
+      ]
+    },
+    "typography": {
+      "score": 6.0,
+      "weight": 1.0,
+      "criteria": [
+        "Readable font sizes (16px+ for body, 14px+ mobile)",
+        "Consistent type scale with clear hierarchy",
+        "Appropriate line height (1.5-1.8 for body text)",
+        "Font weight hierarchy (3-4 weights maximum)",
+        "Sufficient text contrast for readability",
+        "Appropriate letter spacing"
+      ],
+      "assessment": "Fair",
+      "recommendations": [
+        "Increase body text to 16px minimum",
+        "Establish consistent type scale (e.g., 1.25 ratio)",
+        "Set line height to 1.5-1.8 for body text",
+        "Use 3-4 font weights maximum for clear hierarchy"
+      ]
+    },
+    "color_contrast": {
+      "score": 7.0,
+      "weight": 1.0,
+      "criteria": [
+        "WCAG 2.1 AA compliance (4.5:1 normal, 3:1 large text)",
+        "Color harmony and balance throughout",
+        "Brand consistency (Performia blue/purple gradient)",
+        "Semantic color usage (success/error/warning)",
+        "60-30-10 color distribution rule"
+      ],
+      "assessment": "Good",
+      "recommendations": [
+        "Ensure 4.5:1 contrast ratio for normal text",
+        "Ensure 3:1 contrast ratio for large text",
+        "Use color consistently for semantic meaning",
+        "Maintain brand color harmony"
+      ]
+    },
+    "spacing_layout": {
+      "score": 5.5,
+      "weight": 1.1,
+      "criteria": [
+        "Consistent spacing scale (8px grid system)",
+        "Adequate breathing room around elements",
+        "Elements properly aligned to grid",
+        "Responsive padding appropriate for screen size",
+        "Logical grouping of related elements"
+      ],
+      "assessment": "Needs Improvement",
+      "recommendations": [
+        "Implement 8px grid spacing system",
+        "Increase padding for better breathing room",
+        "Align elements to consistent grid",
+        "Use responsive spacing values"
+      ]
+    },
+    "component_design": {
+      "score": 6.5,
+      "weight": 1.0,
+      "criteria": [
+        "Button hierarchy clear (primary, secondary, tertiary)",
+        "Interactive states defined (hover, active, focus, disabled)",
+        "Touch targets adequate (44x44px minimum)",
+        "Border radius consistent across components",
+        "Shadow system coherent and purposeful",
+        "Components feel modern and polished"
+      ],
+      "assessment": "Fair",
+      "recommendations": [
+        "Define clear button hierarchy (primary, secondary, tertiary)",
+        "Add hover, active, and focus states",
+        "Ensure 44x44px minimum touch targets",
+        "Maintain consistent border radius and shadows"
+      ]
+    },
+    "animation_interaction": {
+      "score": 7.0,
+      "weight": 0.9,
+      "criteria": [
+        "Transitions smooth and performant (60fps)",
+        "Appropriate durations (200-300ms common)",
+        "Natural easing functions (ease-out, ease-in-out)",
+        "Motion serves clear purpose",
+        "Micro-interactions are delightful",
+        "Loading states well-designed"
+      ],
+      "assessment": "Good",
+      "recommendations": [
+        "Add smooth transitions (200-300ms)",
+        "Use ease-out easing for natural feel",
+        "Implement loading state animations",
+        "Ensure 60fps performance"
+      ]
+    },
+    "accessibility": {
+      "score": 5.0,
+      "weight": 1.3,
+      "criteria": [
+        "WCAG 2.1 AA compliance (minimum)",
+        "Full keyboard navigation support",
+        "Visible focus indicators on all interactive elements",
+        "Screen reader compatible with proper ARIA labels",
+        "Touch targets adequate (44x44px minimum)",
+        "Color not sole differentiator of information"
+      ],
+      "assessment": "Needs Improvement",
+      "recommendations": [
+        "Ensure WCAG 2.1 AA compliance",
+        "Add visible focus indicators",
+        "Implement keyboard navigation",
+        "Add ARIA labels where needed"
+      ]
+    },
+    "overall_aesthetic": {
+      "score": 6.0,
+      "weight": 1.0,
+      "criteria": [
+        "Professional, credible appearance",
+        "Modern, contemporary feel",
+        "Cohesive design language throughout",
+        "Strong brand alignment",
+        "Visual confidence and polish",
+        "Attention to detail evident"
+      ],
+      "assessment": "Fair",
+      "recommendations": [
+        "Refine visual details for polish",
+        "Ensure consistent design language",
+        "Add subtle micro-interactions",
+        "Maintain professional appearance"
+      ]
+    }
+  },
+  "summary": "Overall design quality: Fair (6.1/10)\n\nStrong areas: color_contrast, animation_interaction\n\nAreas needing improvement: spacing_layout, accessibility\n\nGap to target: 2.4 points\n",
+  "priority_improvements": [
+    {
+      "dimension": "accessibility",
+      "current_score": 5.0,
+      "potential_gain": 4.55,
+      "priority": "Critical"
+    },
+    {
+      "dimension": "spacing_layout",
+      "current_score": 5.5,
+      "potential_gain": 3.3000000000000003,
+      "priority": "Critical"
+    },
+    {
+      "dimension": "typography",
+      "current_score": 6.0,
+      "potential_gain": 2.5,
+      "priority": "Important"
+    },
+    {
+      "dimension": "overall_aesthetic",
+      "current_score": 6.0,
+      "potential_gain": 2.5,
+      "priority": "Important"
+    },
+    {
+      "dimension": "visual_hierarchy",
+      "current_score": 6.5,
+      "potential_gain": 2.4,
+      "priority": "Important"
+    }
+  ],
+  "strengths": [
+    "Color Contrast: 7.0/10",
+    "Animation Interaction: 7.0/10"
+  ],
+  "weaknesses": [
+    "Spacing Layout: 5.5/10",
+    "Accessibility: 5.0/10"
+  ]
+}

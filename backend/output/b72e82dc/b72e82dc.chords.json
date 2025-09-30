@@ -1,0 +1,37 @@
+{
+  "id": "b72e82dc",
+  "service": "chords",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/b72e82dc.wav",
+  "chords": [
+    {
+      "start": 0.0,
+      "end": 0.5,
+      "label": "D:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 0.5,
+      "end": 1.0,
+      "label": "F:maj",
+      "conf": 0.58
+    },
+    {
+      "start": 1.0,
+      "end": 4.5,
+      "label": "D:maj",
+      "conf": 0.58
+    },
+    {
+      "start": 4.5,
+      "end": 5.0,
+      "label": "F:maj",
+      "conf": 0.58
+    },
+    {
+      "start": 5.0,
+      "end": 5.0,
+      "label": "D:maj",
+      "conf": 0.61
+    }
+  ]
+}

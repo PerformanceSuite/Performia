@@ -1,0 +1,31 @@
+{
+  "id": "b72e82dc",
+  "service": "structure",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/b72e82dc.wav",
+  "sections": [
+    {
+      "start": 0.0,
+      "end": 0.5,
+      "label": "intro",
+      "confidence": 0.85
+    },
+    {
+      "start": 0.5,
+      "end": 1.0,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 1.0,
+      "end": 4.5,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 4.5,
+      "end": 5.0,
+      "label": "outro",
+      "confidence": 0.85
+    }
+  ]
+}
