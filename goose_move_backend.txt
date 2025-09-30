@@ -1,8 +1,0 @@
-Move backend components:
-Use developer__shell: mv JuceLibraryCode backend/ 2>/dev/null || echo "JuceLibraryCode already moved or doesn't exist"
-Use developer__shell: mv src backend/ 2>/dev/null || echo "src already moved or doesn't exist"  
-Use developer__shell: mv sc backend/ 2>/dev/null || echo "sc already moved or doesn't exist"
-Use developer__shell: mv ingest-analyze-pipe backend/ 2>/dev/null || echo "ingest-analyze-pipe already moved"
-Use developer__shell: mv performia_agent.py orchestrator.py backend/ 2>/dev/null || echo "Python files already moved"
-Use developer__shell: ls -la backend/ | head -10
-Report what was moved

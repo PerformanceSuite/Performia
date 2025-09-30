@@ -1,8 +1,0 @@
-platform__search_available_extensions query=filesystem
-platform__manage_extensions action=enable extension_name=filesystem
-platform__search_available_extensions query=github  
-platform__manage_extensions action=enable extension_name=github
-platform__search_available_extensions query=memory
-platform__manage_extensions action=enable extension_name=memory
-list available tools
-exit

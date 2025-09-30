@@ -1,4 +1,0 @@
-Copy frontend files from Performia-front:
-Use developer__shell: cp -r /Users/danielconnolly/Projects/Performia-front/performia---living-chart/* ./frontend/
-Use developer__shell: ls -la frontend/ | head -10
-Report what was copied
