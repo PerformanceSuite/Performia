@@ -5,7 +5,7 @@ interface ChordDiagramProps {
     chordName: string;
 }
 
-const ChordDiagram: React.FC<ChordDiagramProps> = ({ chordName }) => {
+const ChordDiagram: React.FC<ChordDiagramProps> = React.memo(({ chordName }) => {
     const svgString = chordSVGs[chordName];
 
     if (!svgString) {
@@ -15,6 +15,6 @@ const ChordDiagram: React.FC<ChordDiagramProps> = ({ chordName }) => {
     return (
         <div dangerouslySetInnerHTML={{ __html: svgString }} />
     );
-};
+});
 
 export default ChordDiagram;

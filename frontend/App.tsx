@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { produce } from 'immer';
 import { SongMap, ChordDisplayMode } from './types';
 import { initialSongMap } from './data/mockSong';
@@ -55,15 +55,16 @@ const App: React.FC = () => {
         }));
     };
 
-    const getAppContainerClasses = () => {
+    // Optimization 5: Memoize class name calculation
+    const appContainerClasses = useMemo(() => {
         let classes = 'flex flex-col h-screen';
         if (chordDisplay === 'diagrams') classes += ' show-diagrams';
         if (chordDisplay === 'off') classes += ' hide-chords';
         return classes;
-    }
+    }, [chordDisplay]);
 
     return (
-        <div className={getAppContainerClasses()}>
+        <div className={appContainerClasses}>
             <Header 
                 songTitle={songMap.title}
                 artistName={songMap.artist}
