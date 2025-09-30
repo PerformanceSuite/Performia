@@ -1,0 +1,14 @@
+{
+  "id": "3a9da0db",
+  "service": "separation",
+  "note": "Using full mix - separation not implemented. All stems point to original audio.",
+  "stems": {
+    "mix": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/3a9da0db/mix.wav",
+    "vocals": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/3a9da0db/mix.wav",
+    "drums": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/3a9da0db/mix.wav",
+    "bass": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/3a9da0db/mix.wav",
+    "other": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/3a9da0db/mix.wav"
+  },
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/3a9da0db.wav",
+  "processing_time_seconds": 0.0009
+}

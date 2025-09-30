@@ -1,0 +1,19 @@
+{
+  "id": "3a9da0db",
+  "service": "chords",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/3a9da0db.wav",
+  "chords": [
+    {
+      "start": 0.0,
+      "end": 8.0,
+      "label": "A:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 8.0,
+      "end": 8.0,
+      "label": "F:maj",
+      "conf": 0.63
+    }
+  ]
+}

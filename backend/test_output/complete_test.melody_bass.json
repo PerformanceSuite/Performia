@@ -1,0 +1,26 @@
+{
+  "id": "complete_test",
+  "service": "melody_bass",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_music.wav",
+  "performance": {
+    "melody": [
+      {
+        "time": 0.096,
+        "midi": 69,
+        "velocity": 107,
+        "duration": 7.936,
+        "confidence": 0.931
+      }
+    ],
+    "bass": [
+      {
+        "time": 0.064,
+        "midi": 50,
+        "velocity": 107,
+        "duration": 7.808,
+        "confidence": 0.926
+      }
+    ]
+  },
+  "duration_sec": 8.0
+}

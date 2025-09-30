@@ -1,0 +1,51 @@
+{
+  "id": "3a9da0db",
+  "service": "beats_key",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/3a9da0db.wav",
+  "tempo": {
+    "bpm_global": 117.45383522727273,
+    "curve": [
+      [
+        0.0,
+        117.45383522727273
+      ],
+      [
+        8.0,
+        117.45383522727273
+      ]
+    ],
+    "confidence": 0.8
+  },
+  "beats": [
+    0.534,
+    1.045,
+    1.533,
+    2.043,
+    2.531,
+    3.042,
+    3.529,
+    4.04,
+    4.528,
+    5.039,
+    5.55,
+    6.037,
+    6.548,
+    7.036,
+    7.546
+  ],
+  "downbeats": [
+    0.534,
+    2.531,
+    4.528,
+    6.548
+  ],
+  "key": [
+    {
+      "start": 0.0,
+      "end": 8.0,
+      "tonic": "D#",
+      "mode": "minor",
+      "conf": 0.78
+    }
+  ]
+}

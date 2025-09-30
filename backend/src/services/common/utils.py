@@ -14,7 +14,7 @@ def write_partial(output_dir: str, job_id: str, service_name: str, payload: Dict
         service_name: Name of service
         payload: Data to write
     """
-    out_path = Path(output_dir) / f"{job_id}_{service_name}.json"
+    out_path = Path(output_dir) / f"{job_id}.{service_name}.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(out_path, 'w') as f:

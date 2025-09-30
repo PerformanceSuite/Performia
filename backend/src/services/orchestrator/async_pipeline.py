@@ -47,14 +47,24 @@ class AsyncPipeline:
         start_time = time.time()
         self.logger.info(f"Starting {service_name}...")
 
-        # Build command
-        cmd = [
-            "python3",
-            script_path,
-            "--id", job_id,
-            "--infile", input_file,
-            "--out", str(self.output_dir)
-        ]
+        # Build command - packager needs special arguments
+        if service_name == "packager":
+            cmd = [
+                "python3",
+                script_path,
+                "--id", job_id,
+                "--partials", str(self.output_dir),
+                "--raw", input_file,
+                "--out", str(self.output_dir)
+            ]
+        else:
+            cmd = [
+                "python3",
+                script_path,
+                "--id", job_id,
+                "--infile", input_file,
+                "--out", str(self.output_dir)
+            ]
 
         # Set PYTHONPATH to include src directory
         import os
