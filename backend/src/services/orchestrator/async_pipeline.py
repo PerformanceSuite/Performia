@@ -56,11 +56,18 @@ class AsyncPipeline:
             "--out", str(self.output_dir)
         ]
 
+        # Set PYTHONPATH to include src directory
+        import os
+        env = os.environ.copy()
+        backend_root = Path(__file__).parent.parent.parent.parent
+        env['PYTHONPATH'] = str(backend_root / 'src')
+
         # Run subprocess
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE
+            stderr=asyncio.subprocess.PIPE,
+            env=env
         )
 
         stdout, stderr = await process.communicate()
