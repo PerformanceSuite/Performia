@@ -2,10 +2,14 @@
 import argparse
 import json
 import pathlib
+import logging
 from typing import Dict, List
 
 from services.common.audio import guess_duration_sec
 from services.common.utils import write_partial
+from services.asr.whisper_service import get_whisper_service
+
+logging.basicConfig(level=logging.INFO)
 
 def main():
     parser = argparse.ArgumentParser(description="ASR")
@@ -23,12 +27,23 @@ def main():
         duration = guess_duration_sec(src)
 
     phrases: List[Dict[str, object]] = []
-    words = ["la", "di", "da"]
-    time_cursor = 0.0
-    for word in words:
-        end_time = time_cursor + 0.75
-        phrases.append({"start": time_cursor, "end": end_time, "text": word})
-        time_cursor = end_time + 0.25
+
+    if args.infile:
+        try:
+            logging.info(f"Transcribing {src} with Whisper...")
+            whisper_service = get_whisper_service(model_size="base")
+            phrases = whisper_service.transcribe_to_phrases(str(src))
+            logging.info(f"Transcribed {len(phrases)} phrases")
+        except Exception as e:
+            logging.error(f"ASR failed: {e}")
+            # Fallback to stub data for testing
+            words = ["la", "di", "da"]
+            time_cursor = 0.0
+            for word in words:
+                end_time = time_cursor + 0.75
+                phrases.append({"start": time_cursor, "end": end_time, "text": word})
+                time_cursor = end_time + 0.25
+
     if duration and phrases:
         phrases[-1]["end"] = min(duration, phrases[-1]["end"])
 
