@@ -14,26 +14,62 @@ Performia is a comprehensive performance management platform that combines:
 
 ```
 Performia/
-├── frontend/                  # React + TypeScript + Vite frontend
-│   ├── src/                  # React source code
-│   ├── components/           # UI components
-│   ├── services/             # API services
+├── frontend/                  # React + TypeScript + Vite
+│   ├── src/                  # React components & services
+│   ├── components/           # Living Chart, Blueprint View
+│   ├── services/             # Library service, WebSocket
 │   └── package.json          # Frontend dependencies
 │
 ├── backend/                   # Python + C++ backend
-│   ├── src/                  # Python source code
-│   ├── JuceLibraryCode/      # C++ audio engine
-│   ├── ingest-analyze-pipe/  # Data pipeline
-│   ├── performia_agent.py    # AI agent
-│   ├── orchestrator.py       # 24/7 orchestrator
+│   ├── src/
+│   │   ├── services/         # Audio analysis services
+│   │   │   ├── asr/          # Speech recognition
+│   │   │   ├── beats_key/    # Beat & key detection
+│   │   │   ├── chords/       # Chord analysis
+│   │   │   ├── melody_bass/  # Melody extraction
+│   │   │   ├── packager/     # Song Map generator
+│   │   │   └── orchestrator/ # AI orchestration
+│   │   ├── audio_engine/     # Audio processing utilities
+│   │   ├── models/           # ML models
+│   │   └── utils/            # Shared utilities
+│   ├── JuceLibraryCode/      # C++ JUCE audio engine
+│   ├── scripts/              # Backend scripts
+│   ├── tests/                # Backend tests
 │   └── requirements.txt      # Python dependencies
 │
-├── shared/                    # Shared configurations
-│   └── .env.template         # Environment variables template
+├── shared/                    # Shared types & configs
+│   ├── types/                # TypeScript/Python types
+│   ├── config/               # Shared configuration
+│   ├── utils/                # Cross-platform utilities
+│   └── assets/               # Shared assets
 │
-├── scripts/                   # Utility scripts
+├── tests/                     # Integration tests
+│   ├── e2e/                  # End-to-end tests
+│   ├── integration/          # Integration tests
+│   └── performance/          # Performance benchmarks
+│
+├── scripts/                   # Build & deploy scripts
+│   ├── build/                # Build scripts
+│   ├── deploy/               # Deployment scripts
+│   └── dev/                  # Development utilities
+│
+├── config/                    # Environment configs
+│   ├── development/          # Dev configuration
+│   ├── production/           # Prod configuration
+│   └── kubernetes/           # K8s manifests
+│
 ├── docs/                      # Documentation
-└── .github/                   # GitHub Actions workflows
+│   ├── api/                  # API documentation
+│   ├── architecture/         # Architecture docs
+│   ├── deployment/           # Deployment guides
+│   └── development/          # Development guides
+│
+└── .claude/                   # Agent SDK configuration
+    ├── agents/               # Agent definitions
+    ├── commands/             # Custom commands
+    ├── CLAUDE.md             # Project context
+    ├── memory.md             # Project memory
+    └── settings.json         # Agent settings
 ```
 
 ## 🚀 Quick Start
@@ -75,20 +111,23 @@ Backend:
 npm run dev:backend
 ```
 
-## 🤖 Agentic Workflow
+## 🤖 Agent-Driven Development
 
-This project follows the **Agentic Engineering** paradigm:
+This project uses the **Claude Agent SDK** for autonomous development:
 
-### Using Goose
+### Working with Agents
 ```bash
-goose session
-# In Goose: Read MIGRATION_PLAN.md for current tasks
+# Start Claude Code
+claude
+
+# Invoke an agent
+"Act as the frontend development agent and improve Living Chart performance"
+
+# View available agents
+ls .claude/agents/
 ```
 
-### 24/7 Autonomous Agents
-```bash
-./backend/launch_orchestrator.sh
-```
+See [AGENT_ROADMAP.md](./AGENT_ROADMAP.md) for the complete agent ecosystem plan.
 
 ## 🛠️ Technology Stack
 
@@ -135,23 +174,23 @@ npm run test:backend
 
 ## 📝 Documentation
 
-- [Migration Plan](./MIGRATION_PLAN.md) - Current migration status
+- [Agent Roadmap](./AGENT_ROADMAP.md) - Agent development plan
+- [Agent Status](./AGENT_STATUS.md) - Current agent status
+- [Project Context](./.claude/CLAUDE.md) - Project context for agents
 - [Architecture](./docs/ARCHITECTURE.md) - System architecture
-- [API Documentation](./backend/api/openapi.yaml)
-- [Contributing](./CONTRIBUTING.md) - How to contribute
 
-## 🔄 Migration Status
+## 🔄 Development Status
 
-✅ **Phase 1**: Repository Analysis & Backup - Complete
-✅ **Phase 2**: Create Unified Structure - Complete
-⏳ **Phase 3**: Dependency Consolidation - Next
-⏳ **Phase 4**: Configuration Merge
-⏳ **Phase 5**: Git & GitHub Migration
-⏳ **Phase 6**: GCP Consolidation
-⏳ **Phase 7**: Testing & Validation
-⏳ **Phase 8**: Compute Maxing Setup
-⏳ **Phase 9**: Documentation
-⏳ **Phase 10**: Cleanup
+✅ **Phase 1 & 2**: Infrastructure & Migration - Complete
+✅ **Codebase Cleanup**: Unified structure established (Sep 30, 2024)
+🎯 **Phase 3**: Core Development Agents - **IN PROGRESS**
+
+### Next Steps
+1. Create Frontend Development Agent
+2. Build Audio Pipeline Agent
+3. Integrate Voice Control (Whisper API)
+
+See [AGENT_ROADMAP.md](./AGENT_ROADMAP.md) for detailed agent development plan.
 
 ## 🤝 Contributing
 

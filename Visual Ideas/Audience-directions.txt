@@ -1,2 +1,0 @@
-A display that shows the audience when to play certain percussion instruments.  Should display icons of each instrument 
-and show the timing with pulsing light or movement (like a tamborine in double time or something)
