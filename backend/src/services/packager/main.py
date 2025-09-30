@@ -3,7 +3,7 @@ import argparse, os, json, pathlib, time
 from typing import Dict, Any
 
 from services.common.audio import guess_duration_sec
-from services.common.utils import write_json
+from services.common.utils import write_partial
 
 def build_minimal_song_map(job_id: str, raw_path: str) -> Dict[str, Any]:
     dur = guess_duration_sec(raw_path) if raw_path and os.path.exists(raw_path) else 0.0
@@ -65,8 +65,9 @@ def main():
                 print(f"[warn] failed to merge {shard}: {e}")
 
     out_path = os.path.join(args.out, f"{args.id}.song_map.json")
-    write_json(out_path, song_map)
-    print(f"[packager] wrote {out_path}")
+    with open(out_path, 'w') as f:
+        json.dump(song_map, f, indent=2)
+    print(json.dumps(song_map))
 
 if __name__ == "__main__":
     main()
