@@ -23,6 +23,7 @@ sys.path.insert(0, str(backend_root / 'src'))
 
 from services.api.job_manager import JobManager, JobStatus
 from services.orchestrator.async_pipeline import AsyncPipeline
+from services.api import performance
 
 # Configure logging
 logging.basicConfig(
@@ -46,6 +47,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include performance router
+app.include_router(performance.router)
 
 # Configure directories
 BASE_DIR = Path(__file__).parent.parent.parent.parent
