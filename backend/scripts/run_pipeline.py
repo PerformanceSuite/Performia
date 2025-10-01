@@ -17,7 +17,8 @@ DEFAULT_STEMS = ROOT / "tmp" / "stems"
 
 def ensure_pythonpath(env: dict[str, str]) -> dict[str, str]:
     existing = env.get("PYTHONPATH", "")
-    env["PYTHONPATH"] = os.pathsep.join(filter(None, (str(ROOT), existing)))
+    src_path = ROOT / "src"
+    env["PYTHONPATH"] = os.pathsep.join(filter(None, (str(src_path), existing)))
     return env
 
 

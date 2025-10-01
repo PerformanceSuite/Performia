@@ -1,0 +1,20 @@
+{
+  "id": "pipeline_integration_test",
+  "service": "separation",
+  "model": "htdemucs",
+  "status": "success",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_audio.wav",
+  "device": "mps",
+  "load_time_seconds": 0.0305,
+  "separation_time_seconds": 20.754,
+  "save_time_seconds": 0.009,
+  "stems": {
+    "mix": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/pipeline_integration_test/mix.wav",
+    "drums": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/pipeline_integration_test/drums.wav",
+    "bass": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/pipeline_integration_test/bass.wav",
+    "other": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/pipeline_integration_test/other.wav",
+    "vocals": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/pipeline_integration_test/vocals.wav"
+  },
+  "sample_rate": 22050,
+  "processing_time_seconds": 20.8045
+}

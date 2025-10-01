@@ -1,0 +1,30 @@
+{
+  "id": "integration_test",
+  "service": "beats_key",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_audio.wav",
+  "tempo": {
+    "bpm_global": 0.0,
+    "curve": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        5.0,
+        0.0
+      ]
+    ],
+    "confidence": 0.8
+  },
+  "beats": [],
+  "downbeats": [],
+  "key": [
+    {
+      "start": 0.0,
+      "end": 5.0,
+      "tonic": "D#",
+      "mode": "minor",
+      "conf": 0.84
+    }
+  ]
+}

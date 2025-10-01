@@ -14,8 +14,11 @@ def write_partial(output_dir: str, job_id: str, service_name: str, payload: Dict
         service_name: Name of service
         payload: Data to write
     """
-    out_path = Path(output_dir) / f"{job_id}.{service_name}.json"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
+    # Write partials to job-specific subdirectory: output_dir/job_id/job_id.service_name.json
+    job_dir = Path(output_dir) / job_id
+    job_dir.mkdir(parents=True, exist_ok=True)
+
+    out_path = job_dir / f"{job_id}.{service_name}.json"
 
     with open(out_path, 'w') as f:
         json.dump(payload, f, indent=2)

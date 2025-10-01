@@ -31,19 +31,20 @@ def build_minimal_song_map(job_id: str, raw_path: str) -> Dict[str, Any]:
 def main():
     ap = argparse.ArgumentParser(description="Packager - merge partials into canonical Song Map")
     ap.add_argument("--id", required=True, help="Job ID (e.g., yt_xxx)")
-    ap.add_argument("--partials", default="tmp/partials", help="Folder with per-stage JSON shards")
-    ap.add_argument("--raw", help="Path to raw WAV for duration (optional)")
-    ap.add_argument("--out", default="tmp/final", help="Output folder")
+    ap.add_argument("--infile", help="Path to original audio file for duration (optional)")
+    ap.add_argument("--out", required=True, help="Output folder")
     args = ap.parse_args()
 
     pathlib.Path(args.out).mkdir(parents=True, exist_ok=True)
 
-    song_map = build_minimal_song_map(args.id, args.raw)
+    # Infer partials directory from output directory and job ID
+    partials_dir = pathlib.Path(args.out) / args.id
+
+    song_map = build_minimal_song_map(args.id, args.infile)
 
     # Merge any existing partials (drop-in JSONs named <id>.<stage>.json)
-    parts_dir = pathlib.Path(args.partials)
-    if parts_dir.exists():
-        for shard in parts_dir.glob(f"{args.id}.*.json"):
+    if partials_dir.exists():
+        for shard in partials_dir.glob(f"{args.id}.*.json"):
             try:
                 with open(shard, "r", encoding="utf-8") as f:
                     data = json.load(f)
