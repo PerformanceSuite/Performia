@@ -125,9 +125,11 @@ async def root():
 @app.get("/health")
 async def health_check():
     """Health check endpoint."""
+    jobs = await job_manager.list_all_jobs()
     return {
         "status": "healthy",
-        "jobs_count": len(job_manager.jobs)
+        "jobs_count": len(jobs),
+        "database": job_manager.db_path
     }
 
 
@@ -251,18 +253,17 @@ async def get_song_map(job_id: str) -> Dict:
 @app.get("/api/jobs")
 async def list_jobs() -> Dict:
     """
-    List all jobs (useful for debugging).
+    List all jobs from database.
 
     Returns:
         List of all jobs with their status
     """
-    jobs = []
-    for job_id, job in job_manager.jobs.items():
-        jobs.append(job.to_dict())
+    jobs = await job_manager.list_all_jobs()
+    jobs_dict = [job.to_dict() for job in jobs]
 
     return {
-        "count": len(jobs),
-        "jobs": jobs
+        "count": len(jobs_dict),
+        "jobs": jobs_dict
     }
 
 
@@ -283,13 +284,31 @@ async def delete_job(job_id: str) -> Dict:
         raise HTTPException(status_code=404, detail=f"Job {job_id} not found")
 
     await job_manager.cleanup_job(job_id)
-
-    async with job_manager.lock:
-        del job_manager.jobs[job_id]
+    await job_manager.delete_job(job_id)
 
     return {
         "message": f"Job {job_id} deleted",
         "job_id": job_id
+    }
+
+
+@app.delete("/api/jobs/cleanup")
+async def cleanup_old_jobs(days: int = 7) -> Dict:
+    """
+    Delete jobs older than N days from database.
+
+    Args:
+        days: Number of days to keep jobs (default: 7)
+
+    Returns:
+        Cleanup summary
+    """
+    count = await job_manager.cleanup_old_jobs(days)
+
+    return {
+        "message": f"Cleaned up {count} jobs older than {days} days",
+        "deleted_count": count,
+        "retention_days": days
     }
 
 

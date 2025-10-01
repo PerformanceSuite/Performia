@@ -1,0 +1,26 @@
+{
+  "id": "test_with_stems",
+  "service": "melody_bass",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mono/vocals.wav",
+  "performance": {
+    "melody": [
+      {
+        "time": 0.0,
+        "midi": 69,
+        "velocity": 109,
+        "duration": 29.984,
+        "confidence": 0.982
+      }
+    ],
+    "bass": [
+      {
+        "time": 0.096,
+        "midi": 50,
+        "velocity": 99,
+        "duration": 29.888,
+        "confidence": 0.659
+      }
+    ]
+  },
+  "duration_sec": 30.0
+}

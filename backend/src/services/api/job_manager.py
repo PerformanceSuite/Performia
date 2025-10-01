@@ -2,12 +2,13 @@
 import asyncio
 import json
 import logging
+import sqlite3
 import time
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
 from typing import Dict, Optional
-from datetime import datetime
+from datetime import datetime, timedelta
 
 logger = logging.getLogger(__name__)
 
@@ -69,30 +70,82 @@ class JobInfo:
 
 
 class JobManager:
-    """Manages Song Map generation jobs."""
+    """Manages Song Map generation jobs with SQLite persistence."""
 
-    def __init__(self, output_dir: Path, upload_dir: Path):
+    def __init__(self, output_dir: Path, upload_dir: Path, db_path: Optional[str] = None):
         """
         Initialize job manager.
 
         Args:
             output_dir: Directory for pipeline outputs
             upload_dir: Directory for uploaded audio files
+            db_path: Path to SQLite database (default: output_dir/jobs.db)
         """
         self.output_dir = output_dir
         self.upload_dir = upload_dir
-        self.jobs: Dict[str, JobInfo] = {}
+        self.db_path = db_path or str(output_dir / "jobs.db")
         self.lock = asyncio.Lock()
 
         # Ensure directories exist
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.upload_dir.mkdir(parents=True, exist_ok=True)
 
-        logger.info(f"JobManager initialized: output={output_dir}, upload={upload_dir}")
+        # Initialize database
+        self._init_db()
+
+        logger.info(f"JobManager initialized: output={output_dir}, upload={upload_dir}, db={self.db_path}")
+
+    def _init_db(self):
+        """Initialize SQLite database with jobs table."""
+        conn = sqlite3.connect(self.db_path)
+        conn.execute('''
+            CREATE TABLE IF NOT EXISTS jobs (
+                job_id TEXT PRIMARY KEY,
+                status TEXT NOT NULL,
+                created_at REAL NOT NULL,
+                started_at REAL,
+                completed_at REAL,
+                progress REAL DEFAULT 0.0,
+                error_message TEXT,
+                song_map_path TEXT,
+                input_file TEXT
+            )
+        ''')
+        conn.commit()
+        conn.close()
+        logger.info(f"Database initialized at {self.db_path}")
+
+    def _serialize_job(self, job: JobInfo) -> tuple:
+        """Serialize JobInfo to database row."""
+        return (
+            job.job_id,
+            job.status.value,
+            job.created_at,
+            job.started_at,
+            job.completed_at,
+            job.progress,
+            job.error_message,
+            job.song_map_path,
+            job.input_file
+        )
+
+    def _deserialize_job(self, row: tuple) -> JobInfo:
+        """Deserialize database row to JobInfo."""
+        return JobInfo(
+            job_id=row[0],
+            status=JobStatus(row[1]),
+            created_at=row[2],
+            started_at=row[3],
+            completed_at=row[4],
+            progress=row[5],
+            error_message=row[6],
+            song_map_path=row[7],
+            input_file=row[8]
+        )
 
     async def create_job(self, job_id: str, input_file: str) -> JobInfo:
         """
-        Create a new job.
+        Create a new job and persist to database.
 
         Args:
             job_id: Unique job identifier
@@ -102,21 +155,37 @@ class JobManager:
             JobInfo object
         """
         async with self.lock:
-            if job_id in self.jobs:
+            # Check if job already exists in DB
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.execute("SELECT job_id FROM jobs WHERE job_id = ?", (job_id,))
+            if cursor.fetchone():
+                conn.close()
                 raise ValueError(f"Job {job_id} already exists")
 
+            # Create job object
             job = JobInfo(
                 job_id=job_id,
                 status=JobStatus.PENDING,
                 input_file=input_file
             )
-            self.jobs[job_id] = job
-            logger.info(f"Created job {job_id}")
+
+            # Persist to database
+            conn.execute(
+                """INSERT INTO jobs
+                   (job_id, status, created_at, started_at, completed_at,
+                    progress, error_message, song_map_path, input_file)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                self._serialize_job(job)
+            )
+            conn.commit()
+            conn.close()
+
+            logger.info(f"Created job {job_id} (persisted to DB)")
             return job
 
     async def get_job(self, job_id: str) -> Optional[JobInfo]:
         """
-        Get job information.
+        Get job information from database.
 
         Args:
             job_id: Job identifier
@@ -125,7 +194,15 @@ class JobManager:
             JobInfo or None if not found
         """
         async with self.lock:
-            return self.jobs.get(job_id)
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.execute("SELECT * FROM jobs WHERE job_id = ?", (job_id,))
+            row = cursor.fetchone()
+            conn.close()
+
+            if not row:
+                return None
+
+            return self._deserialize_job(row)
 
     async def update_job_status(
         self,
@@ -136,7 +213,7 @@ class JobManager:
         song_map_path: Optional[str] = None
     ):
         """
-        Update job status.
+        Update job status in database.
 
         Args:
             job_id: Job identifier
@@ -146,10 +223,18 @@ class JobManager:
             song_map_path: Path to generated Song Map
         """
         async with self.lock:
-            job = self.jobs.get(job_id)
-            if not job:
+            # Get current job from DB
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.execute("SELECT * FROM jobs WHERE job_id = ?", (job_id,))
+            row = cursor.fetchone()
+
+            if not row:
+                conn.close()
                 raise ValueError(f"Job {job_id} not found")
 
+            job = self._deserialize_job(row)
+
+            # Update job fields
             job.status = status
 
             if progress is not None:
@@ -167,6 +252,18 @@ class JobManager:
             if status == JobStatus.ERROR:
                 job.completed_at = time.time()
                 job.error_message = error_message
+
+            # Persist to database
+            conn.execute(
+                """UPDATE jobs SET
+                   status = ?, started_at = ?, completed_at = ?,
+                   progress = ?, error_message = ?, song_map_path = ?
+                   WHERE job_id = ?""",
+                (job.status.value, job.started_at, job.completed_at,
+                 job.progress, job.error_message, job.song_map_path, job_id)
+            )
+            conn.commit()
+            conn.close()
 
             logger.info(f"Updated job {job_id}: status={status.value}, progress={progress}")
 
@@ -209,10 +306,59 @@ class JobManager:
             job_id: Job identifier
         """
         async with self.lock:
-            job = self.jobs.get(job_id)
-            if not job:
-                return
-
             # Optionally delete uploaded audio and intermediate files
             # This could be called after Song Map is downloaded
             logger.info(f"Cleanup job {job_id} (not implemented)")
+
+    async def delete_job(self, job_id: str):
+        """
+        Delete job from database.
+
+        Args:
+            job_id: Job identifier
+        """
+        async with self.lock:
+            conn = sqlite3.connect(self.db_path)
+            conn.execute("DELETE FROM jobs WHERE job_id = ?", (job_id,))
+            conn.commit()
+            conn.close()
+            logger.info(f"Deleted job {job_id} from database")
+
+    async def list_all_jobs(self) -> list[JobInfo]:
+        """
+        List all jobs from database.
+
+        Returns:
+            List of all JobInfo objects
+        """
+        async with self.lock:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.execute("SELECT * FROM jobs ORDER BY created_at DESC")
+            rows = cursor.fetchall()
+            conn.close()
+
+            return [self._deserialize_job(row) for row in rows]
+
+    async def cleanup_old_jobs(self, days: int = 7):
+        """
+        Delete jobs older than N days from database.
+
+        Args:
+            days: Number of days to keep jobs (default: 7)
+
+        Returns:
+            Number of jobs deleted
+        """
+        async with self.lock:
+            cutoff_time = time.time() - (days * 24 * 60 * 60)
+
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.execute("SELECT COUNT(*) FROM jobs WHERE created_at < ?", (cutoff_time,))
+            count = cursor.fetchone()[0]
+
+            conn.execute("DELETE FROM jobs WHERE created_at < ?", (cutoff_time,))
+            conn.commit()
+            conn.close()
+
+            logger.info(f"Cleaned up {count} jobs older than {days} days")
+            return count

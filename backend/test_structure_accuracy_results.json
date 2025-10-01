@@ -1,0 +1,51 @@
+{
+  "summary": {
+    "avg_boundary_f1": 0.28571428571428575,
+    "avg_label_accuracy": 0.6875,
+    "avg_processing_time": 0.7283371686935425,
+    "boundary_pass_rate": 0.0,
+    "label_pass_rate": 0.5,
+    "performance_pass_rate": 1.0,
+    "overall_pass": false
+  },
+  "detailed_results": [
+    {
+      "file": "/Users/danielconnolly/Projects/Performia/backend/test_music.wav",
+      "elapsed": 1.0488150119781494,
+      "boundary_precision": 0.0,
+      "boundary_recall": 0.0,
+      "boundary_f1": 0.0,
+      "label_accuracy": 1.0,
+      "detected_sections": 3,
+      "gt_sections": 1,
+      "boundary_pass": false,
+      "label_pass": true,
+      "performance_pass": true
+    },
+    {
+      "file": "/Users/danielconnolly/Projects/Performia/backend/test_3min.wav",
+      "elapsed": 0.40785932540893555,
+      "boundary_precision": 0.6666666666666666,
+      "boundary_recall": 0.5,
+      "boundary_f1": 0.5714285714285715,
+      "label_accuracy": 0.375,
+      "detected_sections": 7,
+      "gt_sections": 8,
+      "boundary_pass": false,
+      "label_pass": false,
+      "performance_pass": true
+    }
+  ],
+  "edge_cases": [
+    {
+      "name": "Short file",
+      "passed": true,
+      "info": "3"
+    },
+    {
+      "name": "Invalid file",
+      "passed": true,
+      "info": "FileNotFoundError"
+    }
+  ]
+}

@@ -7,8 +7,8 @@ import numpy as np
 import librosa
 from typing import Dict, List, Optional, Tuple
 
-from services.common.audio import guess_duration_sec
-from services.common.utils import write_partial
+from src.services.common.audio import guess_duration_sec
+from src.services.common.utils import write_partial
 
 
 def hz_to_midi(frequency: float) -> int:
