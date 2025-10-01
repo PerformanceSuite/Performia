@@ -1,0 +1,162 @@
+==============================================================================
+DEMUCS INTEGRATION ARCHITECTURE
+==============================================================================
+
+AUDIO PIPELINE WITH SOURCE SEPARATION
+--------------------------------------
+
+INPUT: song.wav (full mix)
+  ↓
+┌─────────────────────────────────────────────────────────────────────┐
+│ SEPARATION SERVICE                                                   │
+│ (Demucs htdemucs)                                                   │
+│                                                                      │
+│ Device: Auto-detect (CUDA > MPS > CPU)                             │
+│ Time: ~7s for 3-min song (MPS)                                     │
+└─────────────────────────────────────────────────────────────────────┘
+  ↓
+STEMS OUTPUT:
+  ├─ vocals.wav    (isolated vocals)
+  ├─ drums.wav     (percussion only)
+  ├─ bass.wav      (low-frequency harmonics)
+  ├─ other.wav     (remaining instruments)
+  └─ mix.wav       (original for reference)
+  
+  ↓                    ↓                    ↓
+┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│ ASR SERVICE  │  │ CHORD SVC    │  │ MELODY SVC   │
+│              │  │              │  │              │
+│ Uses:        │  │ Uses:        │  │ Uses:        │
+│ vocals.wav ✓ │  │ bass.wav ✓   │  │ vocals.wav ✓ │
+│              │  │              │  │ bass.wav ✓   │
+│ Output:      │  │ Output:      │  │ Output:      │
+│ - lyrics     │  │ - chords     │  │ - melody     │
+│ - timing     │  │ - harmony    │  │ - bass line  │
+└──────────────┘  └──────────────┘  └──────────────┘
+  ↓                    ↓                    ↓
+┌─────────────────────────────────────────────────────────────────────┐
+│ PACKAGER SERVICE                                                     │
+│                                                                      │
+│ Combines: ASR + Chords + Melody + Beat + Structure                 │
+│ Output: song_map.json (complete performance map)                    │
+└─────────────────────────────────────────────────────────────────────┘
+
+
+ORCHESTRATOR DEPENDENCY GRAPH
+------------------------------
+
+separation (no deps) ─────┬─────────────────┬─────────────┐
+                          ↓                 ↓             ↓
+                        asr           chords        melody_bass
+                          │                 │             │
+beats_key (no deps) ──────┼─────────────────┤             │
+                          │                 │             │
+                          ↓                 ↓             ↓
+                      structure ←───────────┴─────────────┘
+                          │
+                          ↓
+                      packager (combines all)
+
+
+AUTO-DETECTION LOGIC
+--------------------
+
+Each downstream service checks for separation output:
+
+1. Check: {output_dir}/{job_id}/{job_id}.separation.json
+2. If exists AND status == "success":
+   └─ Read stems paths from JSON
+   └─ Use appropriate stem for analysis
+3. Else:
+   └─ Fall back to original mix
+
+Example (Chord Service):
+  if separation_exists():
+      audio_source = bass.wav  # cleaner harmonic content
+  else:
+      audio_source = original_mix.wav
+
+
+STEM PATHS
+----------
+
+Default stems directory: tmp/stems/{job_id}/
+  ├─ vocals.wav
+  ├─ drums.wav
+  ├─ bass.wav
+  ├─ other.wav
+  └─ mix.wav
+
+Configurable via: --stems-dir argument
+
+
+DATA FLOW EXAMPLE
+-----------------
+
+1. User uploads: "song.mp3"
+2. Orchestrator assigns: job_id = "abc123"
+3. Separation runs:
+   - Loads htdemucs model (~2s)
+   - Separates audio (~7s)
+   - Saves 5 files to tmp/stems/abc123/
+   - Writes: output/abc123/abc123.separation.json
+
+4. Chord service runs:
+   - Reads: output/abc123/abc123.separation.json
+   - Finds: bass.wav path
+   - Analyzes: tmp/stems/abc123/bass.wav
+   - Writes: output/abc123/abc123.chords.json
+
+5. Melody service runs:
+   - Reads: output/abc123/abc123.separation.json
+   - Finds: vocals.wav and bass.wav
+   - Analyzes both stems
+   - Writes: output/abc123/abc123.melody_bass.json
+
+6. Packager combines all partials → song_map.json
+
+
+PERFORMANCE CHARACTERISTICS
+----------------------------
+
+Separation:
+  3-min:  7.4s   (MPS)
+  6-min:  13.2s  (MPS)
+  Scaling: O(n) linear
+
+Memory:
+  Model:  300MB
+  Peak:   1.5GB (6-min file)
+
+Storage:
+  Per song: 150MB (mix + 4 stems)
+
+
+ERROR HANDLING
+--------------
+
+1. Separation fails:
+   └─ Downstream services use original mix
+   └─ Pipeline continues (graceful degradation)
+
+2. Stem file missing:
+   └─ Service falls back to original mix
+   └─ Logs warning, continues processing
+
+3. GPU unavailable:
+   └─ Auto-falls back to CPU
+   └─ Slower but still functional
+
+
+ADVANTAGES OF SEPARATION
+-------------------------
+
+✓ Cleaner vocal transcription (ASR)
+✓ Better chord recognition (isolated harmonics)
+✓ More accurate melody extraction
+✓ Reduced instrument bleed
+✓ Higher quality Song Map output
+
+No changes needed to existing workflow - automatic enhancement!
+
+==============================================================================

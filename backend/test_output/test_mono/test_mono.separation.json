@@ -1,0 +1,20 @@
+{
+  "id": "test_mono",
+  "service": "separation",
+  "model": "htdemucs",
+  "status": "success",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_mono.wav",
+  "device": "mps",
+  "load_time_seconds": 0.024,
+  "separation_time_seconds": 1.9279,
+  "save_time_seconds": 0.0527,
+  "stems": {
+    "mix": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mono/mix.wav",
+    "drums": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mono/drums.wav",
+    "bass": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mono/bass.wav",
+    "other": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mono/other.wav",
+    "vocals": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mono/vocals.wav"
+  },
+  "sample_rate": 44100,
+  "processing_time_seconds": 2.0144
+}

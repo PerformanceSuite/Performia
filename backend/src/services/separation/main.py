@@ -19,6 +19,7 @@ import argparse
 import json
 import pathlib
 import shutil
+import sys
 import time
 import warnings
 from typing import Dict
@@ -32,6 +33,11 @@ from services.common.utils import write_partial
 # Suppress warnings for cleaner output
 warnings.filterwarnings("ignore")
 
+# Helper to print to stderr
+def log(msg: str):
+    """Print log message to stderr to avoid polluting stdout JSON."""
+    print(msg, file=sys.stderr)
+
 def detect_device() -> str:
     """
     Detect best available device for processing.
@@ -40,13 +46,13 @@ def detect_device() -> str:
     if torch.cuda.is_available():
         device = "cuda"
         device_name = torch.cuda.get_device_name(0)
-        print(f"Using CUDA GPU: {device_name}")
+        log(f"Using CUDA GPU: {device_name}")
     elif torch.backends.mps.is_available():
         device = "mps"
-        print("Using Apple Silicon GPU (MPS)")
+        log("Using Apple Silicon GPU (MPS)")
     else:
         device = "cpu"
-        print("Using CPU (consider GPU for faster processing)")
+        log("Using CPU (consider GPU for faster processing)")
 
     return device
 
@@ -55,22 +61,22 @@ def load_audio(audio_path: pathlib.Path, device: str) -> tuple:
     Load audio file and prepare for Demucs processing.
     Returns (audio_tensor, sample_rate)
     """
-    print(f"Loading audio from: {audio_path}")
+    log(f"Loading audio from: {audio_path}")
 
     # Load audio with torchaudio
     audio, sr = torchaudio.load(str(audio_path))
 
-    print(f"Audio loaded: {audio.shape[1]/sr:.2f}s, {sr}Hz, {audio.shape[0]} channels")
+    log(f"Audio loaded: {audio.shape[1]/sr:.2f}s, {sr}Hz, {audio.shape[0]} channels")
 
     # Ensure stereo (Demucs expects 2 channels)
     if audio.shape[0] == 1:
         # Mono to stereo
         audio = torch.cat([audio, audio], dim=0)
-        print("Converted mono to stereo")
+        log("Converted mono to stereo")
     elif audio.shape[0] > 2:
         # Take first 2 channels
         audio = audio[:2]
-        print(f"Reduced {audio.shape[0]} channels to stereo")
+        log(f"Reduced {audio.shape[0]} channels to stereo")
 
     # Move to device
     audio = audio.to(device)
@@ -82,7 +88,7 @@ def separate_sources(audio: torch.Tensor, device: str) -> torch.Tensor:
     Perform source separation using Demucs htdemucs model.
     Returns tensor of shape [4, 2, samples] for 4 stems (drums, bass, other, vocals)
     """
-    print("Loading Demucs htdemucs model...")
+    log("Loading Demucs htdemucs model...")
 
     # Import demucs here to catch import errors gracefully
     try:
@@ -99,7 +105,7 @@ def separate_sources(audio: torch.Tensor, device: str) -> torch.Tensor:
     model.to(device)
     model.eval()
 
-    print(f"Model loaded on {device}. Starting separation...")
+    log(f"Model loaded on {device}. Starting separation...")
 
     # Apply model
     # Input: [channels, samples]
@@ -114,7 +120,7 @@ def separate_sources(audio: torch.Tensor, device: str) -> torch.Tensor:
         # Remove batch dimension: [sources, channels, samples]
         stems = stems[0]
 
-    print("Separation complete!")
+    log("Separation complete!")
     return stems
 
 def save_stems(stems: torch.Tensor, sr: int, stems_dir: pathlib.Path,
@@ -127,13 +133,13 @@ def save_stems(stems: torch.Tensor, sr: int, stems_dir: pathlib.Path,
     stem_names = ["drums", "bass", "other", "vocals"]
     stem_paths = {}
 
-    print(f"Saving stems to: {stems_dir}")
+    log(f"Saving stems to: {stems_dir}")
 
     # Save original mix
     mix_path = stems_dir / "mix.wav"
     shutil.copyfile(original_path, mix_path)
     stem_paths["mix"] = str(mix_path)
-    print(f"  Saved: mix.wav")
+    log(f"  Saved: mix.wav")
 
     # Save each separated stem
     for idx, name in enumerate(stem_names):
@@ -152,7 +158,7 @@ def save_stems(stems: torch.Tensor, sr: int, stems_dir: pathlib.Path,
         )
 
         stem_paths[name] = str(stem_path)
-        print(f"  Saved: {name}.wav")
+        log(f"  Saved: {name}.wav")
 
     return stem_paths
 
@@ -220,9 +226,9 @@ def main():
     except Exception as e:
         payload["status"] = "error"
         payload["error"] = str(e)
-        print(f"ERROR: {e}")
+        log(f"ERROR: {e}")
         import traceback
-        traceback.print_exc()
+        traceback.print_exc(file=sys.stderr)
 
     elapsed_time = time.time() - start_time
     payload["processing_time_seconds"] = round(elapsed_time, 4)

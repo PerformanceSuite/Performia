@@ -259,12 +259,44 @@ def extract_melody_and_bass(audio_path: pathlib.Path,
     return melody_notes, bass_notes
 
 
+def get_separation_stems(job_id: str, output_dir: str) -> Optional[pathlib.Path]:
+    """
+    Check if separation was run and get stems directory.
+
+    Args:
+        job_id: Job identifier
+        output_dir: Output directory
+
+    Returns:
+        Path to stems directory if available, None otherwise
+    """
+    separation_json = pathlib.Path(output_dir) / job_id / f"{job_id}.separation.json"
+
+    if separation_json.exists():
+        try:
+            with open(separation_json) as f:
+                sep_data = json.load(f)
+
+            if sep_data.get("status") == "success" and "stems" in sep_data:
+                stems = sep_data["stems"]
+                # Get stems directory from vocals or bass path
+                for stem_name in ["vocals", "bass", "drums"]:
+                    if stem_name in stems:
+                        stem_path = pathlib.Path(stems[stem_name])
+                        if stem_path.exists():
+                            stems_dir = stem_path.parent
+                            print(f"Found separation stems: {stems_dir}", file=sys.stderr)
+                            return stems_dir
+        except Exception as e:
+            print(f"Failed to read separation output: {e}", file=sys.stderr)
+
+    return None
+
 def main():
     parser = argparse.ArgumentParser(description="Melody & Bass Extraction Service")
     parser.add_argument("--id", required=True, help="Job ID")
     parser.add_argument("--infile", help="Input file (local path)")
     parser.add_argument("--out", required=True, help="Output folder")
-    parser.add_argument("--partials", help="Partials folder (for reading separation stems)")
     args = parser.parse_args()
 
     payload: Dict[str, object] = {"id": args.id, "service": "melody_bass"}
@@ -279,19 +311,7 @@ def main():
         duration = guess_duration_sec(src)
 
         # Check for separation stems
-        stems_dir = None
-        if args.partials:
-            partials_path = pathlib.Path(args.partials).expanduser().resolve()
-            separation_file = partials_path / f"{args.id}.separation.json"
-
-            if separation_file.exists():
-                with open(separation_file, 'r') as f:
-                    separation_data = json.load(f)
-                    if "stems" in separation_data and "vocals" in separation_data["stems"]:
-                        # Get stems directory from vocals path
-                        vocals_path = pathlib.Path(separation_data["stems"]["vocals"])
-                        stems_dir = vocals_path.parent
-                        print(f"Found stems directory: {stems_dir}", file=sys.stderr)
+        stems_dir = get_separation_stems(args.id, args.out)
 
         # Extract melody and bass
         print(f"Processing audio file: {src}", file=sys.stderr)

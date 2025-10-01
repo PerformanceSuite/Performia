@@ -1,9 +1,33 @@
 #!/usr/bin/env python3
-import argparse, os, json, pathlib, time
-from typing import Dict, Any
+import argparse, os, json, pathlib, time, sys
+from typing import Dict, Any, Tuple, List
+import jsonschema
 
 from services.common.audio import guess_duration_sec
 from services.common.utils import write_partial
+
+# Load schema at module level
+SCHEMA_PATH = os.path.join(
+    os.path.dirname(__file__),
+    '../../../schemas/song_map.schema.json'
+)
+
+with open(SCHEMA_PATH) as f:
+    SONG_MAP_SCHEMA = json.load(f)
+
+def validate_song_map(song_map: dict) -> Tuple[bool, List[str]]:
+    """Validate Song Map against schema.
+
+    Returns:
+        (is_valid, error_messages)
+    """
+    try:
+        jsonschema.validate(song_map, SONG_MAP_SCHEMA)
+        return True, []
+    except jsonschema.ValidationError as e:
+        return False, [e.message]
+    except jsonschema.SchemaError as e:
+        return False, [f"Schema error: {e.message}"]
 
 def build_minimal_song_map(job_id: str, raw_path: str) -> Dict[str, Any]:
     dur = guess_duration_sec(raw_path) if raw_path and os.path.exists(raw_path) else 0.0
@@ -64,6 +88,12 @@ def main():
                     song_map["duration_sec"] = max(song_map["duration_sec"], data["duration_sec"])
             except Exception as e:
                 print(f"[warn] failed to merge {shard}: {e}")
+
+    # Validate song map before writing
+    is_valid, errors = validate_song_map(song_map)
+    if not is_valid:
+        print(f"ERROR: Invalid Song Map: {'; '.join(errors)}", file=sys.stderr)
+        sys.exit(1)
 
     out_path = os.path.join(args.out, f"{args.id}.song_map.json")
     with open(out_path, 'w') as f:

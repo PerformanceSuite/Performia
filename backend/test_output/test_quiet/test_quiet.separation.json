@@ -1,0 +1,20 @@
+{
+  "id": "test_quiet",
+  "service": "separation",
+  "model": "htdemucs",
+  "status": "success",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_quiet.wav",
+  "device": "mps",
+  "load_time_seconds": 0.0251,
+  "separation_time_seconds": 1.9228,
+  "save_time_seconds": 0.0547,
+  "stems": {
+    "mix": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_quiet/mix.wav",
+    "drums": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_quiet/drums.wav",
+    "bass": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_quiet/bass.wav",
+    "other": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_quiet/other.wav",
+    "vocals": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_quiet/vocals.wav"
+  },
+  "sample_rate": 44100,
+  "processing_time_seconds": 2.0126
+}

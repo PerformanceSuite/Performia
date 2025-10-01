@@ -1,0 +1,20 @@
+{
+  "id": "test_mp3",
+  "service": "separation",
+  "model": "htdemucs",
+  "status": "success",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_3min.mp3",
+  "device": "mps",
+  "load_time_seconds": 0.0936,
+  "separation_time_seconds": 6.6369,
+  "save_time_seconds": 0.3075,
+  "stems": {
+    "mix": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mp3/mix.wav",
+    "drums": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mp3/drums.wav",
+    "bass": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mp3/bass.wav",
+    "other": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mp3/other.wav",
+    "vocals": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_mp3/vocals.wav"
+  },
+  "sample_rate": 44100,
+  "processing_time_seconds": 7.0478
+}

@@ -11,6 +11,44 @@ from services.chords.chord_recognition import get_chord_service
 
 logging.basicConfig(level=logging.INFO)
 
+def get_harmonic_stem(job_id: str, output_dir: str, original_file: str) -> str:
+    """
+    Get the best audio source for chord analysis.
+    Priority: bass + other stems (if separated) > original mix
+
+    Args:
+        job_id: Job identifier
+        output_dir: Output directory
+        original_file: Original audio file path
+
+    Returns:
+        Path to audio file to use for chord analysis
+    """
+    # Check if separation was run
+    separation_json = pathlib.Path(output_dir) / job_id / f"{job_id}.separation.json"
+
+    if separation_json.exists():
+        logging.info("Separation output found, using bass + other stems for chord analysis")
+        try:
+            with open(separation_json) as f:
+                sep_data = json.load(f)
+
+            if sep_data.get("status") == "success" and "stems" in sep_data:
+                stems = sep_data["stems"]
+                # Use bass or other for harmonic content (better than full mix)
+                # Bass typically has clearest harmonic information
+                if "bass" in stems and pathlib.Path(stems["bass"]).exists():
+                    logging.info(f"Using bass stem: {stems['bass']}")
+                    return stems["bass"]
+                elif "other" in stems and pathlib.Path(stems["other"]).exists():
+                    logging.info(f"Using other stem: {stems['other']}")
+                    return stems["other"]
+        except Exception as e:
+            logging.warning(f"Failed to read separation output: {e}")
+
+    logging.info(f"Using original mix: {original_file}")
+    return original_file
+
 def main():
     parser = argparse.ArgumentParser(description="Chords")
     parser.add_argument("--id", required=True, help="Job ID")
@@ -25,10 +63,14 @@ def main():
         src = pathlib.Path(args.infile).expanduser().resolve()
         payload["source_path"] = str(src)
 
+        # Get best audio source for chord analysis (separated stems if available)
+        audio_file = get_harmonic_stem(args.id, args.out, str(src))
+        payload["analysis_source"] = audio_file
+
         try:
-            logging.info(f"Analyzing chords for {src}...")
+            logging.info(f"Analyzing chords for {audio_file}...")
             service = get_chord_service()
-            result = service.analyze_audio(str(src), hop_length=0.5)
+            result = service.analyze_audio(audio_file, hop_length=0.5)
 
             payload["chords"] = result["chords"]
             duration = result["duration"]

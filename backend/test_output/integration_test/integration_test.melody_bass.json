@@ -1,0 +1,67 @@
+{
+  "id": "integration_test",
+  "service": "melody_bass",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_3min.wav",
+  "performance": {
+    "melody": [],
+    "bass": [
+      {
+        "time": 0.064,
+        "midi": 31,
+        "velocity": 96,
+        "duration": 1.632,
+        "confidence": 0.56
+      },
+      {
+        "time": 1.952,
+        "midi": 31,
+        "velocity": 94,
+        "duration": 3.936,
+        "confidence": 0.491
+      },
+      {
+        "time": 13.12,
+        "midi": 31,
+        "velocity": 95,
+        "duration": 135.04,
+        "confidence": 0.529
+      },
+      {
+        "time": 148.864,
+        "midi": 31,
+        "velocity": 95,
+        "duration": 0.288,
+        "confidence": 0.521
+      },
+      {
+        "time": 149.888,
+        "midi": 31,
+        "velocity": 93,
+        "duration": 0.256,
+        "confidence": 0.464
+      },
+      {
+        "time": 153.376,
+        "midi": 31,
+        "velocity": 95,
+        "duration": 0.288,
+        "confidence": 0.513
+      },
+      {
+        "time": 154.176,
+        "midi": 31,
+        "velocity": 95,
+        "duration": 6.976,
+        "confidence": 0.524
+      },
+      {
+        "time": 161.44,
+        "midi": 31,
+        "velocity": 95,
+        "duration": 18.528,
+        "confidence": 0.528
+      }
+    ]
+  },
+  "duration_sec": 180.0
+}
