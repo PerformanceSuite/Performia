@@ -1,4 +1,5 @@
-import { LibrarySong, SongMap } from '../types';
+import { LibrarySong, SongMap, BackendSongMap, adaptBackendToFrontendSafe, isValidBackendSongMap } from '../types';
+import type { AdapterOptions } from '../types';
 
 class LibraryService {
     private songs: Map<string, LibrarySong> = new Map();
@@ -28,10 +29,11 @@ class LibraryService {
     addSong(songMap: SongMap, metadata?: Partial<LibrarySong>): LibrarySong {
         const id = this.generateId();
         const now = new Date();
-        
+
         const librarySong: LibrarySong = {
             id,
             songMap,
+            jobId: metadata?.jobId,
             createdAt: now,
             updatedAt: now,
             tags: metadata?.tags || [],
@@ -158,9 +160,10 @@ class LibraryService {
         return JSON.stringify(songs, null, 2);
     }
 
-    importSong(jsonData: string): LibrarySong | null {
+    importSong(jsonData: string, options?: AdapterOptions): LibrarySong | null {
         try {
             const data = JSON.parse(jsonData);
+
             // If it's a full LibrarySong
             if (data.songMap && data.id) {
                 return this.addSong(data.songMap, {
@@ -169,13 +172,52 @@ class LibraryService {
                     difficulty: data.difficulty,
                 });
             }
-            // If it's just a SongMap
+
+            // If it's a frontend SongMap
             if (data.title && data.artist && data.sections) {
                 return this.addSong(data);
             }
+
+            // If it's a backend Song Map, transform it
+            if (isValidBackendSongMap(data)) {
+                const result = adaptBackendToFrontendSafe(data, options);
+                if (result) {
+                    return this.addSong(result, {
+                        tags: ['backend-import'],
+                        genre: 'Unknown',
+                        difficulty: 'intermediate',
+                    });
+                } else {
+                    console.error('Failed to transform backend Song Map');
+                    return null;
+                }
+            }
+
             return null;
         } catch (error) {
             console.error('Failed to import song:', error);
+            return null;
+        }
+    }
+
+    /**
+     * Import a backend Song Map directly (bypassing JSON parsing)
+     */
+    importBackendSongMap(backendMap: BackendSongMap, options?: AdapterOptions): LibrarySong | null {
+        try {
+            const result = adaptBackendToFrontendSafe(backendMap, options);
+            if (result) {
+                return this.addSong(result, {
+                    tags: ['backend-import'],
+                    genre: 'Unknown',
+                    difficulty: 'intermediate',
+                });
+            } else {
+                console.error('Failed to transform backend Song Map');
+                return null;
+            }
+        } catch (error) {
+            console.error('Failed to import backend Song Map:', error);
             return null;
         }
     }

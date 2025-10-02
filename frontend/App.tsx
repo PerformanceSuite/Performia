@@ -6,19 +6,21 @@ import Header from './components/Header';
 import TeleprompterView from './components/TeleprompterView';
 import BlueprintView from './components/BlueprintView';
 import SettingsPanel from './components/SettingsPanel';
+import SongMapDemo from './components/SongMapDemo';
 import { SoundwaveIcon } from './components/icons/Icons';
 import { libraryService } from './services/libraryService';
 import { useSongMapUpload } from './hooks/useSongMapUpload';
 
 const App: React.FC = () => {
     const [songMap, setSongMap] = useState<SongMap>(initialSongMap);
-    const [view, setView] = useState<'teleprompter' | 'blueprint'>('teleprompter');
+    const [currentJobId, setCurrentJobId] = useState<string | undefined>(undefined);
+    const [view, setView] = useState<'teleprompter' | 'blueprint' | 'demo'>('teleprompter');
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [isLibraryInitialized, setIsLibraryInitialized] = useState(false);
     const [showUploadUI, setShowUploadUI] = useState(false);
 
     // Song Map upload hook
-    const { uploadSong, isUploading, progress, songMap: uploadedSongMap, error, reset } = useSongMapUpload();
+    const { uploadSong, isUploading, progress, songMap: uploadedSongMap, error, reset, jobId: uploadJobId } = useSongMapUpload();
     
     // Settings State
     const [chordDisplay, setChordDisplay] = useState<ChordDisplayMode>('names');
@@ -47,24 +49,27 @@ const App: React.FC = () => {
     useEffect(() => {
         if (uploadedSongMap && progress.status === 'complete') {
             setSongMap(uploadedSongMap);
+            setCurrentJobId(uploadJobId || undefined);
             setShowUploadUI(false);
             setView('teleprompter');
 
-            // Add to library
+            // Add to library with jobId for audio playback
             libraryService.addSong(uploadedSongMap, {
                 tags: ['uploaded'],
                 genre: 'Unknown',
-                difficulty: 'intermediate'
+                difficulty: 'intermediate',
+                jobId: uploadJobId || undefined
             });
         }
-    }, [uploadedSongMap, progress.status]);
+    }, [uploadedSongMap, progress.status, uploadJobId]);
     
     const handleSongMapChange = useCallback((newSongMap: SongMap) => {
         setSongMap(newSongMap);
     }, []);
     
-    const handleSongSelect = useCallback((newSongMap: SongMap) => {
+    const handleSongSelect = useCallback((newSongMap: SongMap, jobId?: string) => {
         setSongMap(newSongMap);
+        setCurrentJobId(jobId);
         setIsSettingsOpen(false);
         setView('teleprompter');
     }, []);
@@ -108,6 +113,7 @@ const App: React.FC = () => {
                 onTitleClick={() => setView('blueprint')}
                 onPlayClick={() => setView('teleprompter')}
                 onUploadClick={handleUploadClick}
+                onDemoClick={() => setView('demo')}
                 currentView={view}
             />
 
@@ -222,7 +228,10 @@ const App: React.FC = () => {
                     chordDisplay={chordDisplay}
                     diagramVisibility={diagramVisibility}
                     onToggleDiagram={handleToggleDiagram}
+                    jobId={currentJobId}
                 />
+            ) : view === 'demo' ? (
+                <SongMapDemo />
             ) : (
                 <BlueprintView
                     songMap={songMap}

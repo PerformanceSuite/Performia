@@ -1,84 +1,55 @@
-# Performia - Unified Platform
+# Performia
 
-**Interactive Performance Management Platform with Living Chart Visualization**
+**AI-Powered Music Performance System with Real-Time Analysis & Interactive Visualization**
 
-## 🎯 Overview
+## Overview
 
-Performia is a comprehensive performance management platform that combines:
-- **Modern React Frontend** - Interactive Living Chart visualization with Tailwind CSS
-- **Powerful Python Backend** - Audio processing, ML/AI agents, and data pipeline
-- **C++ Audio Engine** - JUCE-based low-latency audio processing
-- **24/7 Autonomous Agents** - Compute-maxing with Goose and custom MCP servers
+Performia is a revolutionary music performance platform that combines real-time audio analysis, AI-powered accompaniment, and an interactive "Living Chart" teleprompter interface. Musicians can perform songs while the system follows along in real-time, providing visual feedback and intelligent accompaniment.
 
-## 📁 Project Structure
+## Key Features
+
+- **Living Chart**: Real-time interactive performance visualization with syllable-level precision
+- **Audio Analysis Pipeline**: ASR, beat detection, chord analysis, and melody extraction
+- **Song Map Generation**: Precise timing maps with millisecond accuracy
+- **JUCE Audio Engine**: Low-latency C++ audio processing for live performance
+- **AI Orchestration**: Intelligent performance analysis and accompaniment
+- **Library Management**: Comprehensive song library with search, sort, and tagging
+
+## Project Structure
 
 ```
 Performia/
-├── frontend/                  # React + TypeScript + Vite
-│   ├── src/                  # React components & services
-│   ├── components/           # Living Chart, Blueprint View
-│   ├── services/             # Library service, WebSocket
-│   └── package.json          # Frontend dependencies
-│
-├── backend/                   # Python + C++ backend
+├── frontend/                   # React + TypeScript + Vite
 │   ├── src/
-│   │   ├── services/         # Audio analysis services
-│   │   │   ├── asr/          # Speech recognition
-│   │   │   ├── beats_key/    # Beat & key detection
-│   │   │   ├── chords/       # Chord analysis
-│   │   │   ├── melody_bass/  # Melody extraction
-│   │   │   ├── packager/     # Song Map generator
-│   │   │   └── orchestrator/ # AI orchestration
-│   │   ├── audio_engine/     # Audio processing utilities
-│   │   ├── models/           # ML models
-│   │   └── utils/            # Shared utilities
-│   ├── JuceLibraryCode/      # C++ JUCE audio engine
-│   ├── scripts/              # Backend scripts
-│   ├── tests/                # Backend tests
-│   └── requirements.txt      # Python dependencies
+│   ├── components/             # Living Chart, Blueprint View
+│   ├── services/               # Library service, WebSocket
+│   └── package.json
 │
-├── shared/                    # Shared types & configs
-│   ├── types/                # TypeScript/Python types
-│   ├── config/               # Shared configuration
-│   ├── utils/                # Cross-platform utilities
-│   └── assets/               # Shared assets
+├── backend/                    # Python + C++ backend
+│   ├── src/services/
+│   │   ├── asr/                # Automatic Speech Recognition
+│   │   ├── beats_key/          # Beat and key detection
+│   │   ├── chords/             # Chord analysis
+│   │   ├── melody_bass/        # Melody extraction
+│   │   ├── packager/           # Song Map generation
+│   │   └── orchestrator/       # AI orchestration
+│   ├── JuceLibraryCode/        # C++ JUCE audio engine
+│   └── requirements.txt
 │
-├── tests/                     # Integration tests
-│   ├── e2e/                  # End-to-end tests
-│   ├── integration/          # Integration tests
-│   └── performance/          # Performance benchmarks
-│
-├── scripts/                   # Build & deploy scripts
-│   ├── build/                # Build scripts
-│   ├── deploy/               # Deployment scripts
-│   └── dev/                  # Development utilities
-│
-├── config/                    # Environment configs
-│   ├── development/          # Dev configuration
-│   ├── production/           # Prod configuration
-│   └── kubernetes/           # K8s manifests
-│
-├── docs/                      # Documentation
-│   ├── api/                  # API documentation
-│   ├── architecture/         # Architecture docs
-│   ├── deployment/           # Deployment guides
-│   └── development/          # Development guides
-│
-└── .claude/                   # Agent SDK configuration
-    ├── agents/               # Agent definitions
-    ├── commands/             # Custom commands
-    ├── CLAUDE.md             # Project context
-    ├── memory.md             # Project memory
-    └── settings.json         # Agent settings
+├── shared/                     # Shared types & configuration
+├── docs/                       # Documentation
+├── scripts/                    # Build & deployment scripts
+├── config/                     # Environment configuration
+└── .claude/                    # Agent SDK configuration
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
+
 - Node.js 20+
 - Python 3.12+
 - Git
-- GitHub CLI (`gh`)
 
 ### Installation
 
@@ -88,14 +59,22 @@ git clone https://github.com/PerformanceSuite/Performia.git
 cd Performia
 ```
 
-2. **Install all dependencies:**
+2. **Install dependencies:**
 ```bash
-npm run install:all
+# Frontend
+cd frontend
+npm install
+
+# Backend
+cd ../backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
 3. **Set up environment variables:**
 ```bash
-cp shared/.env.template .env
+cp .env.template .env
 # Edit .env with your API keys
 ```
 
@@ -103,109 +82,130 @@ cp shared/.env.template .env
 
 Frontend:
 ```bash
-npm run dev:frontend
+cd frontend
+npm run dev
 ```
 
 Backend:
 ```bash
-npm run dev:backend
+cd backend
+python -m uvicorn main:app --reload
 ```
 
-## 🤖 Agent-Driven Development
-
-This project uses the **Claude Agent SDK** for autonomous development:
-
-### Working with Agents
-```bash
-# Start Claude Code
-claude
-
-# Invoke an agent
-"Act as the frontend development agent and improve Living Chart performance"
-
-# View available agents
-ls .claude/agents/
-```
-
-See [AGENT_ROADMAP.md](./AGENT_ROADMAP.md) for the complete agent ecosystem plan.
-
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Frontend
-- React 19.1.1
-- TypeScript 5.8.2
-- Vite 6.2.0
-- Tailwind CSS 4.1.13
+- React 19
+- TypeScript 5
+- Vite 6
+- Tailwind CSS 4
 - Immer (state management)
 
 ### Backend
 - Python 3.12
 - JUCE (C++ audio)
-- SuperCollider
-- TensorFlow/PyTorch (ML)
+- Librosa (audio analysis)
+- Whisper (ASR)
 - FastAPI
 
 ### Infrastructure
 - Google Cloud Platform
 - GitHub Actions CI/CD
-- MCP Servers (filesystem, GitHub, memory)
-- Goose CLI for autonomous development
+- Claude Agent SDK for autonomous development
 
-## 📊 Features
+## Core Concepts
 
-- **Living Chart** - Real-time interactive performance visualization
-- **Library Service** - Comprehensive music library management
-- **Audio Processing** - Low-latency C++ audio engine
-- **AI Agents** - Autonomous performance analysis
-- **Data Pipeline** - Ingestion and analysis pipeline
+### Song Map
+The Song Map is the central data structure that represents a song with precise timing information:
 
-## 🧪 Testing
-
-```bash
-# Run all tests
-npm test
-
-# Frontend only
-npm run test:frontend
-
-# Backend only
-npm run test:backend
+```json
+{
+  "title": "Song Title",
+  "artist": "Artist Name",
+  "sections": [
+    {
+      "name": "Verse 1",
+      "lines": [
+        {
+          "syllables": [
+            {
+              "text": "Hello",
+              "startTime": 0.5,
+              "duration": 0.3,
+              "chord": "C"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
 ```
 
-## 📝 Documentation
+### Audio Pipeline
+1. **Audio Input** → Analysis services (ASR, beats, chords, melody)
+2. **Analysis Results** → Song Map generation
+3. **Song Map** → Living Chart visualization
+4. **Live Performance** → Real-time tracking and accompaniment
 
-- [Agent Roadmap](./AGENT_ROADMAP.md) - Agent development plan
-- [Agent Status](./AGENT_STATUS.md) - Current agent status
-- [Project Context](./.claude/CLAUDE.md) - Project context for agents
-- [Architecture](./docs/ARCHITECTURE.md) - System architecture
+## Documentation
 
-## 🔄 Development Status
+- [Quick Start Guide](./docs/QUICKSTART.md) - Get started with development
+- [Project Context](./.claude/CLAUDE.md) - Claude Agent SDK configuration
+- [Architecture](./docs/architecture/) - System architecture details
+- [API Documentation](./docs/api/) - API reference
+- [Archived Docs](./docs/archive/) - Historical documentation and roadmaps
 
-✅ **Phase 1 & 2**: Infrastructure & Migration - Complete
-✅ **Codebase Cleanup**: Unified structure established (Sep 30, 2024)
-🎯 **Phase 3**: Core Development Agents - **IN PROGRESS**
+## Development
 
-### Next Steps
-1. Create Frontend Development Agent
-2. Build Audio Pipeline Agent
-3. Integrate Voice Control (Whisper API)
+### Running Tests
+```bash
+# Frontend tests
+cd frontend
+npm test
 
-See [AGENT_ROADMAP.md](./AGENT_ROADMAP.md) for detailed agent development plan.
+# Backend tests
+cd backend
+pytest
+```
 
-## 🤝 Contributing
+### Agent-Driven Development
+This project uses the Claude Agent SDK for autonomous development:
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
+```bash
+# Start Claude Code
+claude
 
-## 📄 License
+# Example agent invocation
+"Act as the frontend-dev agent and optimize Living Chart performance"
+```
+
+See `.claude/agents/` for available agents.
+
+## Performance Targets
+
+- **Audio Latency**: < 10ms for live performance
+- **Animation**: 60fps in Living Chart
+- **Song Map Generation**: < 30 seconds per song
+- **Real-time Tracking**: Syllable-level precision
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
 
 MIT License - see [LICENSE](./LICENSE) for details.
 
-## 🔗 Links
+## Links
 
 - [GitHub Repository](https://github.com/PerformanceSuite/Performia)
-- [Documentation](./docs/)
 - [Issue Tracker](https://github.com/PerformanceSuite/Performia/issues)
 
 ---
 
-*Built with 🤖 Agentic Engineering - "What if your codebase could ship itself?"*
+*Built with AI-assisted development using Claude Agent SDK*

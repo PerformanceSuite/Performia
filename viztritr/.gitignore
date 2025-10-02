@@ -1,6 +1,0 @@
-node_modules/
-dist/
-.env
-viztritr-output/
-*.log
-.DS_Store

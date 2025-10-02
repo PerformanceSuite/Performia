@@ -1,33 +1,45 @@
-export interface Syllable {
-    text: string;
-    startTime: number;
-    duration: number;
-    chord?: string;
-}
+/**
+ * Frontend Types - Now powered by Song Map Adapter
+ *
+ * This file re-exports types from the adapter to maintain backward compatibility
+ * while making the adapter types the single source of truth.
+ */
 
-export interface Line {
-    syllables: Syllable[];
-}
+// Re-export core Song Map types from adapter
+export type {
+    FrontendSongMap,
+    Section,
+    Line,
+    Syllable,
+    SongMap,
+    BackendSongMap,
+    AdapterOptions
+} from './src/adapters';
 
-export interface Section {
-    name: string;
-    lines: Line[];
-}
+// Re-export adapter functions for convenience
+export {
+    adaptBackendToFrontend,
+    adaptBackendToFrontendSafe,
+    adaptMultipleSongMaps,
+    getEmptySongMap,
+    validateFrontendSongMap,
+    isValidBackendSongMap,
+    isValidFrontendSongMap,
+    AdapterError,
+    AdapterErrorCode
+} from './src/adapters';
 
-export interface SongMap {
-    title: string;
-    artist: string;
-    key: string;
-    bpm: number;
-    sections: Section[];
-}
-
+// UI-specific types (not part of adapter)
 export type ChordDisplayMode = 'off' | 'names' | 'diagrams';
+
+// Import SongMap type for use in interfaces below
+import type { SongMap } from './src/adapters';
 
 // Library Management Types
 export interface LibrarySong {
     id: string;
     songMap: SongMap;
+    jobId?: string;  // Optional job ID for audio playback
     createdAt: Date;
     updatedAt: Date;
     tags?: string[];

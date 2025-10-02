@@ -4,7 +4,7 @@ import { useLibrary } from '../hooks/useLibrary';
 
 interface LibraryViewProps {
     currentSong?: SongMap;
-    onSongSelect: (songMap: SongMap) => void;
+    onSongSelect: (songMap: SongMap, jobId?: string) => void;
     onClose: () => void;
 }
 
@@ -227,7 +227,7 @@ const LibraryView: React.FC<LibraryViewProps> = ({ currentSong, onSongSelect, on
                         {songs.map((song) => (
                             <div
                                 key={song.id}
-                                onClick={() => onSongSelect(song.songMap)}
+                                onClick={() => onSongSelect(song.songMap, song.jobId)}
                                 className="p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors"
                             >
                                 <div className="flex items-start justify-between">

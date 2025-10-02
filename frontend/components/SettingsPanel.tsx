@@ -15,7 +15,7 @@ interface SettingsPanelProps {
     capo: number;
     onCapoChange: (value: number) => void;
     currentSong?: SongMap;
-    onSongSelect: (songMap: SongMap) => void;
+    onSongSelect: (songMap: SongMap, jobId?: string) => void;
 }
 
 const SettingsPanel: React.FC<SettingsPanelProps> = ({

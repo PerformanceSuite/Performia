@@ -1,0 +1,20 @@
+{
+  "id": "ecbe9f5a",
+  "service": "separation",
+  "model": "htdemucs",
+  "status": "success",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/ecbe9f5a.mp3",
+  "device": "mps",
+  "load_time_seconds": 0.1652,
+  "separation_time_seconds": 15.7272,
+  "save_time_seconds": 0.4183,
+  "stems": {
+    "mix": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/ecbe9f5a/mix.wav",
+    "drums": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/ecbe9f5a/drums.wav",
+    "bass": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/ecbe9f5a/bass.wav",
+    "other": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/ecbe9f5a/other.wav",
+    "vocals": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/ecbe9f5a/vocals.wav"
+  },
+  "sample_rate": 44100,
+  "processing_time_seconds": 16.3267
+}

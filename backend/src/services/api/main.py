@@ -13,7 +13,7 @@ import sys
 import json
 
 from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import aiofiles
 
@@ -23,7 +23,7 @@ sys.path.insert(0, str(backend_root / 'src'))
 
 from services.api.job_manager import JobManager, JobStatus
 from services.orchestrator.async_pipeline import AsyncPipeline
-from services.api import performance
+# from services.api import performance  # Temporarily disabled - import issue
 
 # Configure logging
 logging.basicConfig(
@@ -49,7 +49,7 @@ app.add_middleware(
 )
 
 # Include performance router
-app.include_router(performance.router)
+# app.include_router(performance.router)  # Temporarily disabled
 
 # Configure directories
 BASE_DIR = Path(__file__).parent.parent.parent.parent
@@ -314,6 +314,91 @@ async def cleanup_old_jobs(days: int = 7) -> Dict:
         "deleted_count": count,
         "retention_days": days
     }
+
+
+@app.get("/api/audio/{job_id}/original")
+async def get_original_audio(job_id: str):
+    """
+    Serve original uploaded audio file.
+
+    Args:
+        job_id: Job identifier
+
+    Returns:
+        Audio file response with proper media type and range support
+    """
+    # Try common audio extensions
+    audio_path = None
+    for ext in ['.mp3', '.wav', '.m4a', '.flac', '.ogg']:
+        candidate_path = UPLOAD_DIR / f"{job_id}{ext}"
+        if candidate_path.exists():
+            audio_path = candidate_path
+            break
+
+    if not audio_path or not audio_path.exists():
+        raise HTTPException(status_code=404, detail="Audio file not found")
+
+    # Determine media type based on extension
+    media_types = {
+        '.mp3': 'audio/mpeg',
+        '.wav': 'audio/wav',
+        '.m4a': 'audio/mp4',
+        '.flac': 'audio/flac',
+        '.ogg': 'audio/ogg'
+    }
+    media_type = media_types.get(audio_path.suffix, 'audio/mpeg')
+
+    logger.info(f"Serving audio file: {audio_path}")
+
+    return FileResponse(
+        str(audio_path),
+        media_type=media_type,
+        headers={"Accept-Ranges": "bytes"}
+    )
+
+
+@app.get("/api/audio/{job_id}/stem/{stem_name}")
+async def get_stem_audio(job_id: str, stem_name: str):
+    """
+    Serve separated stem audio (vocals, bass, drums, other).
+
+    Args:
+        job_id: Job identifier
+        stem_name: Name of the stem (vocals, bass, drums, other)
+
+    Returns:
+        Stem audio file response
+    """
+    # Validate stem name
+    valid_stems = ['vocals', 'bass', 'drums', 'other']
+    if stem_name not in valid_stems:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid stem name. Must be one of: {', '.join(valid_stems)}"
+        )
+
+    # Look for stem file in output directory
+    # Stems are typically saved as {job_id}.{stem_name}.wav
+    stem_path = OUTPUT_DIR / job_id / f"{job_id}.{stem_name}.wav"
+
+    if not stem_path.exists():
+        # Try alternative naming convention
+        alt_stem_path = OUTPUT_DIR / job_id / f"{stem_name}.wav"
+        if alt_stem_path.exists():
+            stem_path = alt_stem_path
+        else:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Stem '{stem_name}' not found for job {job_id}"
+            )
+
+    logger.info(f"Serving stem file: {stem_path}")
+
+    return FileResponse(
+        str(stem_path),
+        media_type="audio/wav",
+        headers={"Accept-Ranges": "bytes"}
+    )
 
 
 # Exception handlers
