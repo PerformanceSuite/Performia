@@ -187,12 +187,17 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
                                             className={`syllable-container ${isActive ? 'active-word' : ''} ${diagramVisibility[key] ? 'show-diagram' : ''}`}
                                             onClick={() => syllable.chord && onToggleDiagram(key)}
                                         >
-                                            {syllable.chord && displayedChord && (
+                                            {/* Always render chord container for consistent layout */}
+                                            {syllable.chord && displayedChord ? (
                                                 <div className="chord">
                                                     <span className="chord-name">{displayedChord}</span>
                                                     <div className="chord-diagram-wrapper">
                                                        <ChordDiagram chordName={displayedChord} />
                                                     </div>
+                                                </div>
+                                            ) : (
+                                                <div className="chord chord-spacer" aria-hidden="true">
+                                                    {/* Empty spacer to maintain alignment */}
                                                 </div>
                                             )}
                                             <span className={`syllable ${isSung ? 'sung' : ''}`}>

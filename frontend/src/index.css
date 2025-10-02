@@ -28,47 +28,63 @@ main {
     align-items: center;
     justify-content: center;
     transition: opacity 0.5s ease-in-out;
-    padding: 0 5rem; 
-    min-height: 180px;
+    padding: 0 5rem;
+    /* Dynamic min-height based on font size - ensures space for chords */
+    min-height: calc(var(--base-font-size) * 4);
 }
 
 .syllables-wrapper {
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;  /* Changed from flex-end to baseline for better alignment */
 }
 
 .syllable-container {
     position: relative;
-    display: inline-block;
+    display: inline-flex;  /* Changed from inline-block to inline-flex */
+    flex-direction: column;  /* Stack chord above lyric */
+    align-items: center;  /* Center chord above syllable */
+    justify-content: flex-end;  /* Align syllables to bottom */
     margin-right: 0.5ch;
-    padding-bottom: 0.75rem; 
     cursor: pointer;
+    /* Reserve vertical space for chord */
+    min-height: calc(var(--base-font-size) * 2);
 }
 
 .chord {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    /* Changed from absolute to static positioning */
+    position: static;
+    transform: none;
     white-space: nowrap;
     transition: color 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #f59e0b; /* amber-500 */
+    /* Fixed height to prevent layout shifts */
+    min-height: calc(var(--base-font-size) * 0.75 + 1rem);
+    margin-bottom: 0.5rem;
+}
+
+/* Invisible spacer to maintain alignment when no chord present */
+.chord-spacer {
+    visibility: hidden;
+    /* Still takes up space but invisible */
 }
 
 .chord-name {
     font-weight: 700;
     font-size: calc(var(--base-font-size) * 0.75);
-    margin-bottom: 0.5rem;
+    line-height: 1.2;
 }
 
 .chord-diagram-wrapper {
     display: none;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    /* Scale with base font size */
+    width: calc(var(--base-font-size) * 1.5);
+    height: calc(var(--base-font-size) * 1.8);
 }
 
 .chord-diagram-label {
@@ -76,10 +92,16 @@ main {
     font-size: calc(var(--base-font-size) * 0.5);
 }
 
+/* Chord display mode toggles */
 .app-container.show-diagrams .chord-name { display: none; }
 .app-container.show-diagrams .chord-diagram-wrapper { display: flex; }
 .syllable-container.show-diagram .chord-name { display: none; }
 .syllable-container.show-diagram .chord-diagram-wrapper { display: flex; }
+
+/* Ensure diagram spacing doesn't break when shown */
+.syllable-container.show-diagram .chord {
+    min-height: calc(var(--base-font-size) * 2.5);
+}
 
 .app-container.hide-chords .chord { display: none; }
 
@@ -399,4 +421,27 @@ input[type=range]::-webkit-slider-runnable-track {
     background: #374151;
     border-radius: 4px;
     border: 1px solid #4b5563;
+}
+
+/* Responsive adjustments for smaller viewports */
+@media (max-width: 768px) {
+    .lyric-line {
+        padding: 0 2rem;
+        min-height: calc(var(--base-font-size) * 3.5);
+    }
+
+    .chord-name {
+        font-size: calc(var(--base-font-size) * 0.7);
+    }
+}
+
+@media (max-width: 480px) {
+    .lyric-line {
+        padding: 0 1rem;
+        min-height: calc(var(--base-font-size) * 3);
+    }
+
+    .syllable-container {
+        margin-right: 0.3ch;
+    }
 }
