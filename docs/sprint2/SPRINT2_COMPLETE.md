@@ -355,7 +355,7 @@ npm run dev
 2. **Advanced Features**
    - Voice control (Whisper API)
    - AI accompaniment preview
-   - Enhanced Blueprint editor
+   - Enhanced Full Chart editor
 
 ---
 

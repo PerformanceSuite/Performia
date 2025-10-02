@@ -17,7 +17,7 @@
 - ✅ Audio playback with progress bar and volume controls
 - ✅ Stem selection (vocals, drums, bass, other)
 - ✅ Library management with search and filtering
-- ✅ Blueprint editor for song structure
+- ✅ Full Chart editor for song structure
 - ✅ Settings panel with font size, transpose, capo controls
 
 **Performance Metrics:**
@@ -83,7 +83,7 @@
 **Frontend:**
 - React 19 + TypeScript 5 + Vite 6
 - Tailwind CSS 4
-- Components: TeleprompterView, AudioPlayer, StemSelector, BlueprintView, LibraryView
+- Components: TeleprompterView, AudioPlayer, StemSelector, Full Chart, LibraryView
 
 **Data Flow:**
 ```

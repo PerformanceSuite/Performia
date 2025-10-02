@@ -2186,8 +2186,8 @@ Model: Pre-trained audio embedding model (VGGish, etc.)
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                       │
 │  ┌────────────────┐  ┌────────────────┐  ┌────────────────┐        │
-│  │  Living Chart  │  │  Blueprint     │  │  Library UI    │        │
-│  │  (React/Vite)  │  │  View          │  │  (Song Search) │        │
+│  │  Living Chart  │  │  Full Chart    │  │  Library UI    │        │
+│  │  (React/Vite)  │  │  (Editor)      │  │  (Song Search) │        │
 │  └───────┬────────┘  └───────┬────────┘  └───────┬────────┘        │
 │          │                   │                    │                  │
 │          └───────────────────┴────────────────────┘                  │

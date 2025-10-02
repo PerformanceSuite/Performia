@@ -465,7 +465,7 @@ const frontendMap = adaptBackendToFrontend(backendMap, {
 
    // Reuse in multiple components
    <TeleprompterView songMap={frontendMap} />
-   <BlueprintView songMap={frontendMap} />
+   <FullChart songMap={frontendMap} />
    ```
 
 2. **Use safe version for batch processing**

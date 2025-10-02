@@ -348,7 +348,7 @@ type StemType = 'original' | 'vocals' | 'bass' | 'drums' | 'other';
 
 ---
 
-#### 4. BlueprintView (Song Editor)
+#### 4. Full Chart (Song Editor)
 **File:** `frontend/components/BlueprintView.tsx`
 
 **Purpose:** Document-style editor for song structure and chords
@@ -454,7 +454,7 @@ App (State Manager)
 │   │   │   └── AudioPlayer ✨ NEW
 │   │   └── Lyrics Display (Living Chart)
 │   │
-│   ├── BlueprintView (Edit Mode)
+│   ├── Full Chart (Edit Mode)
 │   └── SongMapDemo
 │
 ├── Footer
@@ -482,7 +482,7 @@ App (State Manager)
 | **Song Map generation** | Backend | ✅ Complete |
 | **Library management** | LibraryView | ✅ Complete |
 | **Settings panel** | SettingsPanel | ✅ Complete |
-| **Blueprint editor** | BlueprintView | ✅ Complete |
+| **Full Chart editor** | BlueprintView | ✅ Complete |
 
 ### 🔨 In Progress
 
@@ -764,7 +764,7 @@ A: WAV, MP3, M4A, FLAC
 A: ~30 seconds per song (varies by length)
 
 **Q: Can I edit the auto-generated chords?**
-A: Yes, use Blueprint View to edit chords inline
+A: Yes, use Full Chart to edit chords inline
 
 **Q: Does it work offline?**
 A: Not yet (planned for Phase 3)

@@ -27,7 +27,7 @@
 - ❌ **No visual section boundaries** (verses/choruses blend together)
 - ❌ **No section navigation** (can't jump to "Chorus 2")
 
-**2. BlueprintView (Editor)**
+**2. Full Chart (Editor)**
 - ✅ **Already section-aware**: Shows `[ Verse 1 ]`, `[ Chorus ]` headers
 - ✅ Editable section names
 - ✅ Per-section editing
@@ -44,7 +44,7 @@
 | Component | Current Behavior | SongPrep Impact |
 |-----------|------------------|-----------------|
 | **TeleprompterView** | Displays sections sequentially | ✅ No breaking changes - better data |
-| **BlueprintView** | Shows section headers | ✅ Better auto-detection |
+| **Full Chart** | Shows section headers | ✅ Better auto-detection |
 | **Song Map Adapter** | Groups lyrics into sections | ✅ Use SongPrep output directly |
 | **Settings Panel** | No section-related settings | 🟡 Could add section navigation |
 | **Library View** | No section metadata | 🟡 Could show section count |
