@@ -2,12 +2,12 @@ import React from 'react';
 import { produce } from 'immer';
 import { SongMap } from '../types';
 
-interface BlueprintViewProps {
+interface FullChartProps {
     songMap: SongMap;
     onSongMapChange: (newSongMap: SongMap) => void;
 }
 
-const BlueprintView: React.FC<BlueprintViewProps> = ({ songMap, onSongMapChange }) => {
+const FullChart: React.FC<FullChartProps> = ({ songMap, onSongMapChange }) => {
 
     const handleBlur = (e: React.FocusEvent<HTMLElement>, updateFn: (draft: SongMap) => void) => {
         const newSongMap = produce(songMap, updateFn);
@@ -15,9 +15,9 @@ const BlueprintView: React.FC<BlueprintViewProps> = ({ songMap, onSongMapChange 
     };
 
     return (
-        <div className="blueprint-view flex-grow overflow-y-auto">
+        <div className="full-chart-view flex-grow overflow-y-auto">
             <div className="max-w-4xl mx-auto">
-                <div className="blueprint-header">
+                <div className="full-chart-header">
                     <h1 
                         contentEditable 
                         suppressContentEditableWarning 
@@ -36,20 +36,20 @@ const BlueprintView: React.FC<BlueprintViewProps> = ({ songMap, onSongMapChange 
 
                 {songMap.sections.map((section, sectionIndex) => (
                     <div key={sectionIndex}>
-                        <h3 
-                            className="blueprint-section-header"
+                        <h3
+                            className="full-chart-section-header"
                             contentEditable
                             suppressContentEditableWarning
-                            onBlur={(e) => handleBlur(e, draft => { 
-                                draft.sections[sectionIndex].name = (e.currentTarget.textContent || '').replace(/[\[\]\s]/g, ''); 
+                            onBlur={(e) => handleBlur(e, draft => {
+                                draft.sections[sectionIndex].name = (e.currentTarget.textContent || '').replace(/[\[\]\s]/g, '');
                             })}
                         >
                             [ {section.name} ]
                         </h3>
                         {section.lines.map((line, lineIndex) => (
-                            <div key={lineIndex} className="blueprint-line">
+                            <div key={lineIndex} className="full-chart-line">
                                 {line.syllables.map((syllable, syllableIndex) => (
-                                    <div key={syllableIndex} className="blueprint-syllable">
+                                    <div key={syllableIndex} className="full-chart-syllable">
                                         <span 
                                             className="chord"
                                             contentEditable
@@ -81,4 +81,4 @@ const BlueprintView: React.FC<BlueprintViewProps> = ({ songMap, onSongMapChange 
     );
 };
 
-export default BlueprintView;
+export default FullChart;

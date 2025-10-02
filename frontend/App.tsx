@@ -4,7 +4,7 @@ import { SongMap, ChordDisplayMode } from './types';
 import { initialSongMap } from './data/mockSong';
 import Header from './components/Header';
 import TeleprompterView from './components/TeleprompterView';
-import BlueprintView from './components/BlueprintView';
+import FullChart from './components/FullChart';
 import SettingsPanel from './components/SettingsPanel';
 import SongMapDemo from './components/SongMapDemo';
 import { SoundwaveIcon } from './components/icons/Icons';
@@ -14,7 +14,7 @@ import { useSongMapUpload } from './hooks/useSongMapUpload';
 const App: React.FC = () => {
     const [songMap, setSongMap] = useState<SongMap>(initialSongMap);
     const [currentJobId, setCurrentJobId] = useState<string | undefined>(undefined);
-    const [view, setView] = useState<'teleprompter' | 'blueprint' | 'demo'>('teleprompter');
+    const [view, setView] = useState<'teleprompter' | 'fullchart' | 'demo'>('teleprompter');
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [isLibraryInitialized, setIsLibraryInitialized] = useState(false);
     const [showUploadUI, setShowUploadUI] = useState(false);
@@ -110,7 +110,7 @@ const App: React.FC = () => {
                 songTitle={songMap.title}
                 artistName={songMap.artist}
                 onSettingsClick={() => setIsSettingsOpen(true)}
-                onTitleClick={() => setView('blueprint')}
+                onTitleClick={() => setView('fullchart')}
                 onPlayClick={() => setView('teleprompter')}
                 onUploadClick={handleUploadClick}
                 onDemoClick={() => setView('demo')}
@@ -233,7 +233,7 @@ const App: React.FC = () => {
             ) : view === 'demo' ? (
                 <SongMapDemo />
             ) : (
-                <BlueprintView
+                <FullChart
                     songMap={songMap}
                     onSongMapChange={handleSongMapChange}
                 />

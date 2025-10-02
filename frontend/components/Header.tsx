@@ -9,7 +9,7 @@ interface HeaderProps {
     onPlayClick: () => void;
     onUploadClick?: () => void;
     onDemoClick?: () => void;
-    currentView: 'teleprompter' | 'blueprint' | 'demo';
+    currentView: 'teleprompter' | 'fullchart' | 'demo';
 }
 
 const Header: React.FC<HeaderProps> = ({ songTitle, artistName, onSettingsClick, onTitleClick, onPlayClick, onUploadClick, onDemoClick, currentView }) => {
@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ songTitle, artistName, onSettingsClick,
                     </button>
                     <p className="text-sm text-gray-400">{artistName}</p>
                 </div>
-                {currentView === 'blueprint' && (
+                {currentView === 'fullchart' && (
                     <button onClick={onPlayClick} className="ml-4 text-cyan-400 hover:text-white">
                         <PlayIcon />
                     </button>

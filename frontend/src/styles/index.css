@@ -305,30 +305,30 @@ main {
     font-weight: 700;
 }
 
-/* Blueprint View Styles */
-.blueprint-view {
+/* Full Chart View Styles */
+.full-chart-view {
     padding: 2rem;
     font-size: 1.1rem;
     line-height: 1.6;
     color: #9ca3af;
 }
 
-.blueprint-header {
+.full-chart-header {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-.blueprint-header h1 {
+.full-chart-header h1 {
     font-size: 2rem;
     font-weight: bold;
     color: #f3f4f6;
 }
 
-.blueprint-header h2 {
+.full-chart-header h2 {
     font-size: 1.2rem;
 }
 
-.blueprint-section-header {
+.full-chart-section-header {
     font-size: 1.25rem;
     font-weight: bold;
     color: #00FFFF;
@@ -336,14 +336,14 @@ main {
     margin-bottom: 1rem;
 }
 
-.blueprint-line {
+.full-chart-line {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 1rem;
     align-items: flex-end;
 }
 
-.blueprint-syllable {
+.full-chart-syllable {
    display: inline-flex;
    flex-direction: column;
    margin-right: 0.5ch;
@@ -351,7 +351,7 @@ main {
    text-align: center;
 }
 
-.blueprint-syllable .chord {
+.full-chart-syllable .chord {
     font-weight: bold;
     color: #f59e0b;
     margin-bottom: 0.25rem;
@@ -360,7 +360,7 @@ main {
     transform: none;
 }
 
-.blueprint-syllable .lyric {
+.full-chart-syllable .lyric {
     color: #d1d5db;
 }
 
