@@ -48,49 +48,36 @@ Performia/
 ### Prerequisites
 
 - Node.js 20+
-- Python 3.12+
+- Python 3.11+
 - Git
 
-### Installation
+### Running Performia
 
-1. **Clone the repository:**
+**Backend:**
 ```bash
-git clone https://github.com/PerformanceSuite/Performia.git
-cd Performia
-```
-
-2. **Install dependencies:**
-```bash
-# Frontend
-cd frontend
-npm install
-
-# Backend
-cd ../backend
+cd backend
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
+python src/main.py
 ```
+Backend runs on: `http://localhost:8000`
 
-3. **Set up environment variables:**
-```bash
-cp .env.template .env
-# Edit .env with your API keys
-```
-
-4. **Start development servers:**
-
-Frontend:
+**Frontend:**
 ```bash
 cd frontend
+npm install
 npm run dev
 ```
+Frontend runs on: `http://localhost:5001`
 
-Backend:
-```bash
-cd backend
-python -m uvicorn main:app --reload
-```
+### First-Time User Flow
+
+1. Open `http://localhost:5001`
+2. Demo song "Yesterday" loads automatically
+3. Click Settings (gear icon) → Adjust font size, transpose
+4. Click Play → Watch syllables highlight in real-time
+5. Upload your own song → Wait ~30s for analysis → Perform!
 
 ## Technology Stack
 
@@ -150,10 +137,14 @@ The Song Map is the central data structure that represents a song with precise t
 
 ## Documentation
 
-- [Quick Start Guide](./docs/QUICKSTART.md) - Get started with development
+### Primary Documentation
+- **[Complete Documentation](./PERFORMIA_MASTER_DOCS.md)** - Single source of truth for all Performia documentation
+- **[Current Status](./docs/STATUS.md)** - Current sprint status, roadmap, and known issues
+
+### Supplemental Docs
 - [Project Context](./.claude/CLAUDE.md) - Claude Agent SDK configuration
-- [Architecture](./docs/architecture/) - System architecture details
-- [API Documentation](./docs/api/) - API reference
+- [Sprint 2 Report](./docs/sprint2/SPRINT2_COMPLETE.md) - Sprint 2 completion summary
+- [AI Research](./docs/research/AI_MUSIC_AGENT_RESEARCH.md) - AI accompaniment research
 - [Archived Docs](./docs/archive/) - Historical documentation and roadmaps
 
 ## Development

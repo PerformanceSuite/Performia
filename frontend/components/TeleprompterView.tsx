@@ -33,6 +33,7 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
             setAudioUrl(`http://localhost:8000/api/audio/${jobId}/original`);
             setShowAudioControls(true);
         } else {
+            // For demo mode, still show controls but without audio URL
             setShowAudioControls(false);
         }
     }, [jobId]);
@@ -129,7 +130,7 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
     return (
         <div className="flex flex-col h-full">
             {/* Audio Controls - Fixed at top when available */}
-            {showAudioControls && jobId && audioUrl && (
+            {jobId && audioUrl ? (
                 <div className="p-4 bg-gray-900 border-b border-gray-700">
                     <div className="mb-3">
                         <StemSelector
@@ -142,6 +143,13 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
                         onTimeUpdate={handleAudioTimeUpdate}
                         onPlayStateChange={setIsAudioPlaying}
                     />
+                </div>
+            ) : (
+                <div className="p-4 bg-gray-900 border-b border-gray-700">
+                    <div className="text-center text-gray-400 py-2">
+                        <p className="text-sm">Audio playback available for uploaded songs</p>
+                        <p className="text-xs mt-1">Upload a song to enable real-time audio synchronization</p>
+                    </div>
                 </div>
             )}
 

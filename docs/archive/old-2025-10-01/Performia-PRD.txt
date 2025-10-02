@@ -1,0 +1,433 @@
+# PERFORMIA - PRODUCT REQUIREMENTS DOCUMENT (PRD)
+
+Version: 1.0
+Date: October 1, 2025
+Status: Draft
+Owner: Performia Product Team
+
+================================================================================
+EXECUTIVE SUMMARY
+================================================================================
+
+Performia is a revolutionary music performance system that transforms how
+musicians perform live. By combining real-time audio analysis, AI-powered
+accompaniment, and an intelligent "Living Chart" teleprompter, Performia
+enables musicians to focus on their artistry while the system handles timing,
+chords, and accompaniment.
+
+TARGET USERS:
+1. Live performers (vocalists, guitarists, bands)
+2. Rehearsal musicians (learning new material)
+3. Casual hobbyists (home practice)
+
+CORE VALUE PROPOSITION:
+"Never forget lyrics or chords again. Performia follows YOU in real-time."
+
+================================================================================
+PROBLEM STATEMENT
+================================================================================
+
+CURRENT PAIN POINTS:
+1. Static chord sheets don't follow live performance timing
+2. Musicians forget lyrics or lose their place mid-song
+3. Small fonts on music stands are hard to read on stage
+4. Transposing songs on-the-fly is difficult
+5. Learning new songs requires extensive memorization
+
+PERFORMIA SOLUTION:
+- Real-time syllable highlighting that follows your voice
+- Auto-scrolling teleprompter centered on active lyrics
+- Instant transpose/capo adjustments
+- AI-generated Song Maps with perfect timing
+- Stage-optimized font sizes (readable from 6ft away)
+
+================================================================================
+CORE FEATURES (MVP - Sprint 1-5)
+================================================================================
+
+FEATURE 1: Living Chart Teleprompter
+PRIORITY: P0 (Must Have)
+DESCRIPTION:
+  - Fullscreen lyrics display with chords
+  - Real-time syllable highlighting (follows audio or live input)
+  - Auto-scroll keeps active line centered
+  - Font size control (50%-150%, optimized for stage)
+  - Transpose/capo controls
+  - Chord display modes: Off, Names, Diagrams
+
+SUCCESS METRICS:
+  - Time to first performance: <30 seconds
+  - Frame rate: 60fps sustained
+  - Reading clarity: 95% positive feedback
+
+---
+
+FEATURE 2: Song Map Upload & Analysis
+PRIORITY: P0 (Must Have)
+DESCRIPTION:
+  - Upload audio files (WAV, MP3, M4A, FLAC)
+  - Automatic analysis pipeline:
+    * ASR (speech recognition for lyrics)
+    * Beat detection
+    * Chord analysis
+    * Melody/bass extraction
+  - Generate precise Song Map (JSON format)
+  - Syllable-level timing (accurate to 0.1s)
+
+SUCCESS METRICS:
+  - Analysis time: <30 seconds per song
+  - Accuracy: 90%+ chord accuracy, 95%+ lyric accuracy
+  - Supported formats: 4 (WAV, MP3, M4A, FLAC)
+
+---
+
+FEATURE 3: Audio Playback & Stem Control ( NEW (Sprint 2)
+PRIORITY: P0 (Must Have)
+DESCRIPTION:
+  - Play uploaded songs with real-time sync
+  - Audio player with:
+    * Play/pause controls
+    * Progress bar (draggable seek)
+    * Volume control
+    * Time display (current/total)
+  - Stem selector (5 stems):
+    * Full Mix (original)
+    * Vocals only
+    * Bass only
+    * Drums only
+    * Other instruments
+  - Sync audio time with syllable highlighting
+
+SUCCESS METRICS:
+  - Audio latency: <50ms (perceptible sync)
+  - Stem switching: <1s load time
+  - Playback reliability: 99%+ uptime
+
+---
+
+FEATURE 4: Blueprint Editor
+PRIORITY: P1 (Should Have)
+DESCRIPTION:
+  - Document-style song editor
+  - Inline editing for:
+    * Song title/artist
+    * Lyrics
+    * Chords
+    * Section headers (Verse, Chorus, etc.)
+  - Chord autocomplete (upcoming)
+  - Drag-to-reorder sections (upcoming)
+  - Export Song Map as JSON
+
+SUCCESS METRICS:
+  - Edit speed: <2 minutes to fix common errors
+  - User satisfaction: 4+ stars for editing experience
+
+---
+
+FEATURE 5: Library Management
+PRIORITY: P1 (Should Have)
+DESCRIPTION:
+  - Search songs by title, artist, lyrics, tags
+  - Filter by genre, key, BPM, difficulty
+  - Sort by title, date added, last played
+  - Quick actions: Play, Edit, Delete
+  - Metadata: Tags, genre, difficulty, jobId (for audio)
+
+SUCCESS METRICS:
+  - Search speed: <5 seconds to find song
+  - Library size: Support 1000+ songs
+
+---
+
+FEATURE 6: Settings & Customization
+PRIORITY: P1 (Should Have)
+DESCRIPTION:
+  - Chord display mode (Off, Names, Diagrams)
+  - Font size slider (50%-150%)
+  - Transpose (-12 to +12 semitones)
+  - Capo (0-12 frets)
+  - High contrast mode (accessibility)
+  - Reduced motion mode (accessibility)
+
+SUCCESS METRICS:
+  - Settings access: <2 seconds
+  - Changes apply instantly (no save button)
+
+================================================================================
+NON-GOALS (Out of Scope for MVP)
+================================================================================
+
+1. Mobile app (native iOS/Android)
+   - RATIONALE: Focus on desktop/tablet for stage use first
+   - FUTURE: Phase 2 (Q1 2026)
+
+2. Collaborative editing (real-time multi-user)
+   - RATIONALE: Complexity vs value for MVP
+   - FUTURE: Phase 3 (Q2 2026)
+
+3. AI accompaniment (live backing tracks)
+   - RATIONALE: Backend not ready
+   - FUTURE: Phase 4 (Q3 2026)
+
+4. Social features (sharing songs, community)
+   - RATIONALE: Focus on core performance experience
+   - FUTURE: Phase 5 (Q4 2026)
+
+5. MIDI integration
+   - RATIONALE: Niche use case
+   - FUTURE: Evaluate based on user feedback
+
+================================================================================
+USER PERSONAS
+================================================================================
+
+PERSONA 1: Sarah, Live Performer
+- AGE: 32
+- ROLE: Professional vocalist
+- CONTEXT: Performs 3-4 gigs per week at venues
+- NEEDS:
+  * Quick song selection (<30s)
+  * Large fonts (readable from 6ft)
+  * Zero distractions during performance
+  * Transpose on-the-fly (different keys for different venues)
+- FRUSTRATIONS:
+  * Forgets lyrics mid-song
+  * Chord sheets blow away on stage
+  * Can't see small text in stage lighting
+
+WORKFLOW:
+  1. Opens Performia 30 seconds before song
+  2. Searches for song (types 3 letters, autocomplete)
+  3. Adjusts font size and transpose
+  4. Clicks play
+  5. Sings while Performia follows in real-time
+
+---
+
+PERSONA 2: Marcus, Rehearsal Guitarist
+- AGE: 28
+- ROLE: Band guitarist, learning new songs
+- CONTEXT: Rehearsal studio, has time to edit
+- NEEDS:
+  * Edit wrong chords after upload
+  * Rearrange song structure (verse/chorus)
+  * Practice with isolated stems (bass, drums)
+- FRUSTRATIONS:
+  * Auto-generated chords sometimes wrong
+  * Can't easily move sections around
+  * Wants to practice with just rhythm section
+
+WORKFLOW:
+  1. Uploads song audio
+  2. Waits for analysis (~30s)
+  3. Reviews chords, fixes errors
+  4. Saves to library with tags
+  5. Practices with stems (drums + bass only)
+
+---
+
+PERSONA 3: Alex, Hobbyist
+- AGE: 45
+- ROLE: Casual singer, home practice
+- CONTEXT: Living room, relaxed pace
+- NEEDS:
+  * Easy to understand interface
+  * Demo songs to try out
+  * Help/tutorial for new features
+- FRUSTRATIONS:
+  * Too many options are overwhelming
+  * Doesn't understand music theory (transpose, capo)
+
+WORKFLOW:
+  1. Opens Performia, sees demo song
+  2. Clicks play, sings along
+  3. Explores library, finds favorite artists
+  4. Uploads personal song
+  5. Uses simple controls (font size only)
+
+================================================================================
+TECHNICAL CONSTRAINTS
+================================================================================
+
+FRONTEND:
+- Technology: React 19, TypeScript 5, Vite 6, Tailwind CSS 4
+- Performance: 60fps rendering, <100ms interaction latency
+- Browser: Chrome/Edge (primary), Safari/Firefox (secondary)
+- Accessibility: WCAG 2.1 AA minimum, AAA for critical elements
+
+BACKEND:
+- Technology: Python 3.11, FastAPI, JUCE (C++ audio engine)
+- Audio Processing: Librosa, Demucs (stem separation), Whisper (ASR)
+- Performance: <30s per song analysis, <10ms audio latency
+- Storage: Local file system (JSON for Song Maps)
+
+DATA FORMAT:
+- Song Map: JSON schema with syllable-level timing
+- Audio: WAV (original), WAV (stems), MP3 (compressed)
+- Metadata: Tags, genre, difficulty, BPM, key
+
+INTEGRATION:
+- API: RESTful API on localhost:8000
+- WebSocket: Real-time progress updates (future)
+- Authentication: None (local app, MVP)
+
+================================================================================
+SUCCESS CRITERIA
+================================================================================
+
+QUANTITATIVE METRICS:
+1. Performance Speed:
+   - Time to first performance: <30 seconds 
+   - Song search: <5 seconds 
+   - Settings adjust: <2 seconds =( (currently 4s)
+
+2. Technical Performance:
+   - Frame rate: 60fps sustained =( (currently 50fps)
+   - Audio latency: <50ms 
+   - Analysis speed: <30s per song 
+
+3. Accuracy:
+   - Chord detection: 90%+ accuracy 
+   - Lyric transcription: 95%+ accuracy 
+   - Syllable timing: ±0.1s accuracy 
+
+QUALITATIVE METRICS:
+1. User Satisfaction:
+   - Ease of use: 4.5+ stars (out of 5)
+   - Feature discovery: 80%+ without tutorial
+   - Visual clarity: 95%+ "easy to read"
+
+2. Engagement:
+   - Daily active users: Track in analytics
+   - Songs uploaded per user: >5 per month
+   - Return rate: >60% weekly active
+
+BUSINESS METRICS (Future):
+- Conversion rate (free ’ paid): Not applicable for MVP
+- Retention rate: 70%+ after 30 days
+- NPS (Net Promoter Score): 50+ (excellent)
+
+================================================================================
+RELEASE PLAN
+================================================================================
+
+SPRINT 1-2 (COMPLETE): Backend + Audio Playback
+-  Audio analysis pipeline
+-  Song Map generation
+-  Audio playback with stems
+-  AudioPlayer component
+-  StemSelector component
+
+SPRINT 3 (Oct 8-21, 2025): Performance & Accessibility
+- 60fps rendering optimization
+- Keyboard navigation
+- ARIA labels and semantic HTML
+- High contrast mode
+
+SPRINT 4 (Oct 22 - Nov 4, 2025): Enhanced Editing
+- Chord autocomplete
+- Drag-to-reorder sections
+- Emergency font adjust gesture
+- Library search improvements
+
+SPRINT 5 (Nov 5-18, 2025): Polish & Testing
+- Micro-interactions and animations
+- Loading states
+- User testing
+- Bug fixes
+
+MVP LAUNCH: November 22, 2025
+- Feature complete
+- Performance targets met
+- Accessibility compliant
+- Zero critical bugs
+
+================================================================================
+RISKS & MITIGATION
+================================================================================
+
+RISK 1: 60fps Performance Not Achievable with DOM
+LIKELIHOOD: Medium
+IMPACT: High
+MITIGATION:
+  - Implement virtual scrolling (only render visible lines)
+  - Use CSS transforms (GPU-accelerated)
+  - If still slow, evaluate Canvas rendering (accessibility trade-off)
+
+RISK 2: Audio Analysis Accuracy Below 90%
+LIKELIHOOD: Low
+IMPACT: High
+MITIGATION:
+  - Manual editing in Blueprint View
+  - Community-contributed corrections (future)
+  - Improved ML models over time
+
+RISK 3: User Adoption (Musicians Don't Trust AI)
+LIKELIHOOD: Medium
+IMPACT: High
+MITIGATION:
+  - Emphasize manual editing capability
+  - Show "verified by musician" badges
+  - Transparent about AI limitations
+
+RISK 4: Browser Compatibility Issues
+LIKELIHOOD: Low
+IMPACT: Medium
+MITIGATION:
+  - Test on Chrome, Edge, Safari, Firefox
+  - Polyfills for older browsers
+  - Progressive enhancement (works without JS for basic features)
+
+================================================================================
+OPEN QUESTIONS
+================================================================================
+
+1. Should demo song have audio playback?
+   - DECISION NEEDED: Add static demo.mp3 or keep placeholder message?
+   - RECOMMENDATION: Add demo.mp3 for better UX
+
+2. Canvas vs DOM for Teleprompter?
+   - DECISION NEEDED: Optimize DOM or switch to Canvas?
+   - RECOMMENDATION: Optimize DOM first, Canvas only if necessary
+
+3. Double-tap gesture for emergency font adjust?
+   - DECISION NEEDED: Does it conflict with other gestures?
+   - RECOMMENDATION: Use double-tap on background, not on interactive elements
+
+4. Pricing model for future?
+   - DECISION NEEDED: Free tier + premium features?
+   - RECOMMENDATION: Evaluate after MVP launch based on usage
+
+================================================================================
+APPENDIX
+================================================================================
+
+A. Related Documents:
+   - FRONTEND_UX_DESIGN_SPEC.md (UX workflows and design)
+   - UI-COMPONENT-SPEC.md (Component-level specs)
+   - UI-UX-ALIGNMENT-AND-PLAN.md (Implementation roadmap)
+   - Song Map Schema (backend/schemas/song_map.schema.json)
+
+B. References:
+   - WCAG 2.1 Guidelines: https://www.w3.org/WAI/WCAG21/quickref/
+   - React Performance Best Practices: https://react.dev/learn/render-and-commit
+
+C. Glossary:
+   - Song Map: JSON data structure with lyrics, chords, timing
+   - Stem: Isolated audio track (vocals, bass, drums, etc.)
+   - Living Chart: Real-time teleprompter that follows performance
+   - jobId: Unique identifier for uploaded songs (links to audio files)
+   - ASR: Automatic Speech Recognition (lyrics transcription)
+
+================================================================================
+DOCUMENT HISTORY
+================================================================================
+
+Version 1.0 (Oct 1, 2025):
+- Initial PRD created
+- Defined MVP features (Sprints 1-5)
+- Established success criteria
+- Identified risks and mitigation
+
+Next Review: End of Sprint 3 (Oct 21, 2025)
+Owner: Daniel Connolly + Product Team
