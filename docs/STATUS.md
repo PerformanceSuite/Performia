@@ -37,15 +37,30 @@
 - [ ] High contrast mode
 - [ ] Reduced motion mode
 
+### 🔬 Research Complete
+
+**SongPrep Integration (Oct 2, 2025):**
+- ✅ Comprehensive analysis complete ([see docs/research/SONGPREP_ANALYSIS.md](research/SONGPREP_ANALYSIS.md))
+- ✅ Repository cloned to `/Users/danielconnolly/Projects/SongPrep`
+- ✅ Integration plan added to Sprint 4-5 roadmap
+- **Next:** Experimentation in Sprint 4 (Oct 22 - Nov 4)
+
 ### 📋 Next Up
 
-**Sprint 4 (Oct 22 - Nov 4): Enhanced Editing**
+**Sprint 4 (Oct 22 - Nov 4): Enhanced Editing + SongPrep Research**
 - [ ] Chord autocomplete popup
 - [ ] Drag-to-reorder sections
 - [ ] Real-time chord validation
 - [ ] Emergency font adjust gesture
 - [ ] Library autocomplete search
 - [ ] Settings presets
+- [ ] **SongPrep Experimentation** (NEW)
+  - [ ] Set up environment (Python 3.11, CUDA, PyTorch)
+  - [ ] Download 7B model weights (HuggingFace)
+  - [ ] Test on 10 sample songs
+  - [ ] Benchmark inference speed and GPU requirements
+  - [ ] Compare section accuracy vs current heuristics
+  - [ ] Document integration recommendations
 
 **Sprint 5 (Nov 5-18): Polish & Testing**
 - [ ] Micro-interactions and animations
@@ -172,6 +187,7 @@ Runs on: http://localhost:5001
 - Desktop only (mobile support Phase 2)
 - Local storage only (cloud sync Phase 3)
 - English lyrics only (multi-language future)
+- **Section detection:** Currently using heuristics (SongPrep integration planned Sprint 4-5)
 
 ---
 

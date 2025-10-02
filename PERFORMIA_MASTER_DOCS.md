@@ -111,7 +111,8 @@ Frontend runs on: `http://localhost:5001`
 - JUCE (C++ audio engine)
 - Librosa (audio analysis)
 - Demucs (stem separation)
-- Whisper (speech recognition)
+- Whisper (speech recognition / ASR)
+- **SongPrep** (planned - song structure parsing)
 
 ### Data Flow
 
@@ -501,26 +502,41 @@ App (State Manager)
 - [ ] Focus indicators
 - [ ] Reduced motion mode
 
-#### Sprint 4 (Oct 22 - Nov 4): Enhanced Editing
+#### Sprint 4 (Oct 22 - Nov 4): Enhanced Editing + SongPrep Experimentation
 - [ ] Chord autocomplete popup
 - [ ] Drag-to-reorder sections
 - [ ] Real-time chord validation
 - [ ] Emergency font adjust (double-tap)
 - [ ] Library autocomplete search
 - [ ] Settings presets
+- [ ] **SongPrep Integration Research** (NEW)
+  - [ ] Clone SongPrep repository and set up environment
+  - [ ] Download 7B model weights from HuggingFace
+  - [ ] Test on 10 sample songs
+  - [ ] Benchmark inference speed and accuracy
+  - [ ] Compare section detection vs current heuristics
+  - [ ] Assess GPU requirements and resource impact
+  - [ ] Document findings and integration recommendations
 
-#### Sprint 5 (Nov 5-18): Polish & Testing
+#### Sprint 5 (Nov 5-18): Polish & Testing + SongPrep Integration
 - [ ] Micro-interactions and animations
 - [ ] Loading states (skeleton screens)
 - [ ] User testing
 - [ ] Bug fixes and polish
+- [ ] **SongPrep Integration** (if Sprint 4 experiments successful)
+  - [ ] Create `backend/src/services/songprep/` module
+  - [ ] Implement parser for SongPrep output → Song Map format
+  - [ ] Update orchestrator for parallel processing
+  - [ ] Add confidence scoring to sections
+  - [ ] E2E testing: Audio → SongPrep → Living Chart
+  - [ ] Performance optimization (GPU, caching)
 
 ### 🔮 Future (Post-MVP)
 
-- **Phase 2 (Q1 2026):** Setlist management, mobile support
-- **Phase 3 (Q2 2026):** Collaborative editing, cloud sync
-- **Phase 4 (Q3 2026):** AI accompaniment
-- **Phase 5 (Q4 2026):** Voice commands
+- **Phase 2 (Q1 2026):** Setlist management, mobile support, SongPrep fine-tuning
+- **Phase 3 (Q2 2026):** Collaborative editing, cloud sync, genre-specific structure models
+- **Phase 4 (Q3 2026):** AI accompaniment (drums, bass, keys)
+- **Phase 5 (Q4 2026):** Voice commands, custom training datasets
 
 ---
 
@@ -830,12 +846,15 @@ test: Add unit tests for chord validation
 - [React Performance](https://react.dev/learn/render-and-commit)
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
 - [FastAPI Docs](https://fastapi.tiangolo.com/)
+- **[SongPrep Repository](https://github.com/tencent-ailab/SongPrep)** - Song structure parsing
+- **[SongPrep Paper](https://arxiv.org/abs/2509.17404)** - Technical details
 
 ### Internal Files
 
 - `backend/schemas/song_map.schema.json` - Song Map structure
 - `frontend/types.ts` - TypeScript definitions
 - `.claude/CLAUDE.md` - Agent SDK instructions
+- **`docs/research/SONGPREP_ANALYSIS.md`** - SongPrep integration research
 
 ---
 
