@@ -17,7 +17,8 @@ interface TeleprompterViewProps {
 }
 
 const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap, transpose, capo, diagramVisibility, onToggleDiagram, jobId }) => {
-    const { activeLineIndex, activeSyllableIndex, elapsed, isPlaying } = useSongPlayer(songMap);
+    // Only use demo mode (useSongPlayer) when there's no jobId
+    const demoPlayer = useSongPlayer(songMap);
     const lyricsContainerRef = useRef<HTMLDivElement>(null);
     const lineRefs = useRef<(HTMLDivElement | null)[]>([]);
     const viewportRef = useRef<HTMLDivElement>(null);
@@ -28,6 +29,12 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
     const [isAudioPlaying, setIsAudioPlaying] = useState(false);
     const [showAudioControls, setShowAudioControls] = useState(false);
 
+    // Use demo player values only when no audio is available
+    const activeLineIndex = jobId ? -1 : demoPlayer.activeLineIndex;
+    const activeSyllableIndex = jobId ? -1 : demoPlayer.activeSyllableIndex;
+    const elapsed = jobId ? audioCurrentTime : demoPlayer.elapsed;
+    const isPlaying = jobId ? isAudioPlaying : demoPlayer.isPlaying;
+
     // Virtual scrolling state
     const [visibleRange, setVisibleRange] = useState({ start: 0, end: 50 });
     const BUFFER_SIZE = 10; // Lines to render above/below viewport
@@ -35,7 +42,7 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
     // Initialize audio URL when jobId is available
     useEffect(() => {
         if (jobId) {
-            setAudioUrl(`http://localhost:8000/api/audio/${jobId}/original`);
+            setAudioUrl(`http://localhost:3002/api/audio/${jobId}/original`);
             setShowAudioControls(true);
         } else {
             // For demo mode, still show controls but without audio URL
@@ -133,15 +140,15 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
 
     // Calculate active syllable from audio time
     const activeSyllableFromAudio = useMemo(() => {
-        if (isAudioPlaying && audioCurrentTime > 0) {
+        if (jobId && audioCurrentTime > 0) {
             return findActiveSyllable(audioCurrentTime);
         }
         return null;
-    }, [isAudioPlaying, audioCurrentTime, findActiveSyllable]);
+    }, [jobId, audioCurrentTime, findActiveSyllable]);
 
-    // Use audio time for highlighting when audio is playing, otherwise use simulated time
-    const currentTime = isAudioPlaying ? audioCurrentTime : elapsed;
-    const currentActiveLineIndex = isAudioPlaying && activeSyllableFromAudio
+    // Use audio time for highlighting when we have a jobId, otherwise use simulated demo time
+    const currentTime = jobId ? audioCurrentTime : elapsed;
+    const currentActiveLineIndex = jobId && activeSyllableFromAudio
         ? activeSyllableFromAudio.lineIdx
         : activeLineIndex;
 
@@ -220,7 +227,7 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
                                         const key = `${songMap.sections.findIndex(s => s.lines.includes(line))}-${lineIndex}-${syllableIndex}`;
 
                                         // Determine if this syllable is active based on audio or simulated time
-                                        const isActive = isAudioPlaying && activeSyllableFromAudio
+                                        const isActive = jobId && activeSyllableFromAudio
                                             ? activeSyllableFromAudio.lineIdx === lineIndex && activeSyllableFromAudio.syllableIdx === syllableIndex
                                             : activeLineIndex === lineIndex && activeSyllableIndex === syllableIndex;
 
