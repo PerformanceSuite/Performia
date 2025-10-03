@@ -1,0 +1,862 @@
+{
+  "id": "2ae3dc28",
+  "service": "asr",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/2ae3dc28.mp3",
+  "lyrics": [
+    {
+      "text": "The",
+      "start": 10.780000000000001,
+      "end": 11.8
+    },
+    {
+      "text": "last",
+      "start": 11.8,
+      "end": 12.14
+    },
+    {
+      "text": "few",
+      "start": 12.14,
+      "end": 12.66
+    },
+    {
+      "text": "years",
+      "start": 12.66,
+      "end": 13.16
+    },
+    {
+      "text": "have",
+      "start": 13.16,
+      "end": 13.4
+    },
+    {
+      "text": "been",
+      "start": 13.4,
+      "end": 13.72
+    },
+    {
+      "text": "the",
+      "start": 13.72,
+      "end": 14.22
+    },
+    {
+      "text": "best",
+      "start": 14.22,
+      "end": 14.78
+    },
+    {
+      "text": "of",
+      "start": 14.78,
+      "end": 15.06
+    },
+    {
+      "text": "my",
+      "start": 15.06,
+      "end": 15.4
+    },
+    {
+      "text": "whole",
+      "start": 15.4,
+      "end": 15.88
+    },
+    {
+      "text": "life.",
+      "start": 15.88,
+      "end": 16.72
+    },
+    {
+      "text": "And",
+      "start": 18.38,
+      "end": 19.4
+    },
+    {
+      "text": "it's",
+      "start": 19.4,
+      "end": 19.72
+    },
+    {
+      "text": "all",
+      "start": 19.72,
+      "end": 20.06
+    },
+    {
+      "text": "because",
+      "start": 20.06,
+      "end": 20.82
+    },
+    {
+      "text": "of",
+      "start": 20.82,
+      "end": 21.38
+    },
+    {
+      "text": "you.",
+      "start": 21.38,
+      "end": 21.98
+    },
+    {
+      "text": "You",
+      "start": 24.700000000000003,
+      "end": 26.1
+    },
+    {
+      "text": "have",
+      "start": 26.1,
+      "end": 26.48
+    },
+    {
+      "text": "no",
+      "start": 26.48,
+      "end": 26.96
+    },
+    {
+      "text": "idea",
+      "start": 26.96,
+      "end": 27.76
+    },
+    {
+      "text": "how",
+      "start": 27.76,
+      "end": 28.74
+    },
+    {
+      "text": "much",
+      "start": 28.74,
+      "end": 29.2
+    },
+    {
+      "text": "you've",
+      "start": 29.2,
+      "end": 30.18
+    },
+    {
+      "text": "affected",
+      "start": 30.18,
+      "end": 30.7
+    },
+    {
+      "text": "me.",
+      "start": 30.7,
+      "end": 31.32
+    },
+    {
+      "text": "And",
+      "start": 32.72,
+      "end": 33.92
+    },
+    {
+      "text": "now",
+      "start": 33.92,
+      "end": 34.32
+    },
+    {
+      "text": "I'm",
+      "start": 34.32,
+      "end": 35.0
+    },
+    {
+      "text": "asking",
+      "start": 35.0,
+      "end": 35.56
+    },
+    {
+      "text": "you,",
+      "start": 35.56,
+      "end": 36.24
+    },
+    {
+      "text": "tell",
+      "start": 37.02,
+      "end": 38.46
+    },
+    {
+      "text": "me",
+      "start": 38.46,
+      "end": 38.8
+    },
+    {
+      "text": "how",
+      "start": 38.8,
+      "end": 39.54
+    },
+    {
+      "text": "can",
+      "start": 39.54,
+      "end": 39.88
+    },
+    {
+      "text": "I",
+      "start": 39.88,
+      "end": 40.28
+    },
+    {
+      "text": "stop",
+      "start": 40.28,
+      "end": 41.06
+    },
+    {
+      "text": "loving",
+      "start": 41.06,
+      "end": 42.38
+    },
+    {
+      "text": "you?",
+      "start": 42.38,
+      "end": 43.14
+    },
+    {
+      "text": "How",
+      "start": 45.14,
+      "end": 46.54
+    },
+    {
+      "text": "can",
+      "start": 46.54,
+      "end": 46.9
+    },
+    {
+      "text": "I",
+      "start": 46.9,
+      "end": 47.3
+    },
+    {
+      "text": "stop",
+      "start": 47.3,
+      "end": 48.12
+    },
+    {
+      "text": "loving",
+      "start": 48.12,
+      "end": 49.46
+    },
+    {
+      "text": "you?",
+      "start": 49.46,
+      "end": 51.38
+    },
+    {
+      "text": "I",
+      "start": 58.36,
+      "end": 59.76
+    },
+    {
+      "text": "remember",
+      "start": 59.76,
+      "end": 60.3
+    },
+    {
+      "text": "when",
+      "start": 60.3,
+      "end": 61.24
+    },
+    {
+      "text": "first",
+      "start": 61.24,
+      "end": 62.12
+    },
+    {
+      "text": "I",
+      "start": 62.12,
+      "end": 62.64
+    },
+    {
+      "text": "caught",
+      "start": 62.64,
+      "end": 63.48
+    },
+    {
+      "text": "a",
+      "start": 63.48,
+      "end": 63.82
+    },
+    {
+      "text": "glimpse",
+      "start": 63.82,
+      "end": 64.28
+    },
+    {
+      "text": "of",
+      "start": 64.28,
+      "end": 64.62
+    },
+    {
+      "text": "you.",
+      "start": 64.62,
+      "end": 65.88
+    },
+    {
+      "text": "Across",
+      "start": 67.06,
+      "end": 67.76
+    },
+    {
+      "text": "a",
+      "start": 67.76,
+      "end": 68.28
+    },
+    {
+      "text": "crowded",
+      "start": 68.28,
+      "end": 68.84
+    },
+    {
+      "text": "room.",
+      "start": 68.84,
+      "end": 70.04
+    },
+    {
+      "text": "Now",
+      "start": 72.47999999999999,
+      "end": 73.8
+    },
+    {
+      "text": "these",
+      "start": 73.8,
+      "end": 74.16
+    },
+    {
+      "text": "years",
+      "start": 74.16,
+      "end": 74.88
+    },
+    {
+      "text": "have",
+      "start": 74.88,
+      "end": 75.08
+    },
+    {
+      "text": "passed",
+      "start": 75.08,
+      "end": 75.74
+    },
+    {
+      "text": "and",
+      "start": 75.74,
+      "end": 75.96
+    },
+    {
+      "text": "nothing",
+      "start": 75.96,
+      "end": 76.54
+    },
+    {
+      "text": "has",
+      "start": 76.54,
+      "end": 77.0
+    },
+    {
+      "text": "guaranteed",
+      "start": 77.0,
+      "end": 77.86
+    },
+    {
+      "text": "to",
+      "start": 77.86,
+      "end": 78.5
+    },
+    {
+      "text": "last.",
+      "start": 78.5,
+      "end": 79.3
+    },
+    {
+      "text": "You",
+      "start": 80.52,
+      "end": 81.84
+    },
+    {
+      "text": "want",
+      "start": 81.84,
+      "end": 82.3
+    },
+    {
+      "text": "something",
+      "start": 82.3,
+      "end": 82.98
+    },
+    {
+      "text": "new.",
+      "start": 82.98,
+      "end": 83.66
+    },
+    {
+      "text": "Tell",
+      "start": 83.66,
+      "end": 86.12
+    },
+    {
+      "text": "me",
+      "start": 86.12,
+      "end": 86.42
+    },
+    {
+      "text": "how",
+      "start": 86.42,
+      "end": 87.1
+    },
+    {
+      "text": "can",
+      "start": 87.1,
+      "end": 87.46
+    },
+    {
+      "text": "I",
+      "start": 87.46,
+      "end": 87.8
+    },
+    {
+      "text": "stop",
+      "start": 87.8,
+      "end": 88.28
+    },
+    {
+      "text": "loving",
+      "start": 88.28,
+      "end": 89.94
+    },
+    {
+      "text": "you?",
+      "start": 89.94,
+      "end": 90.58
+    },
+    {
+      "text": "How",
+      "start": 93.24,
+      "end": 94.16
+    },
+    {
+      "text": "can",
+      "start": 94.16,
+      "end": 94.54
+    },
+    {
+      "text": "I",
+      "start": 94.54,
+      "end": 94.92
+    },
+    {
+      "text": "stop",
+      "start": 94.92,
+      "end": 95.38
+    },
+    {
+      "text": "loving",
+      "start": 95.38,
+      "end": 97.12
+    },
+    {
+      "text": "you?",
+      "start": 97.12,
+      "end": 98.1
+    },
+    {
+      "text": "How",
+      "start": 99.83999999999999,
+      "end": 101.24
+    },
+    {
+      "text": "can",
+      "start": 101.24,
+      "end": 101.58
+    },
+    {
+      "text": "I",
+      "start": 101.58,
+      "end": 101.98
+    },
+    {
+      "text": "stop",
+      "start": 101.98,
+      "end": 103.22
+    },
+    {
+      "text": "loving",
+      "start": 103.22,
+      "end": 104.16
+    },
+    {
+      "text": "you?",
+      "start": 104.16,
+      "end": 107.88
+    },
+    {
+      "text": "I",
+      "start": 114.74000000000001,
+      "end": 115.78
+    },
+    {
+      "text": "say",
+      "start": 115.78,
+      "end": 116.1
+    },
+    {
+      "text": "I",
+      "start": 116.1,
+      "end": 116.36
+    },
+    {
+      "text": "don't",
+      "start": 116.36,
+      "end": 116.56
+    },
+    {
+      "text": "mind",
+      "start": 116.56,
+      "end": 117.06
+    },
+    {
+      "text": "but",
+      "start": 117.06,
+      "end": 117.68
+    },
+    {
+      "text": "inside",
+      "start": 117.68,
+      "end": 118.2
+    },
+    {
+      "text": "of",
+      "start": 118.2,
+      "end": 118.6
+    },
+    {
+      "text": "crying",
+      "start": 118.6,
+      "end": 119.3
+    },
+    {
+      "text": "and",
+      "start": 119.3,
+      "end": 120.1
+    },
+    {
+      "text": "I'm",
+      "start": 120.1,
+      "end": 120.8
+    },
+    {
+      "text": "just",
+      "start": 120.8,
+      "end": 120.98
+    },
+    {
+      "text": "baking",
+      "start": 120.98,
+      "end": 121.7
+    },
+    {
+      "text": "it.",
+      "start": 121.7,
+      "end": 122.6
+    },
+    {
+      "text": "I",
+      "start": 122.6,
+      "end": 123.34
+    },
+    {
+      "text": "want",
+      "start": 123.34,
+      "end": 123.34
+    },
+    {
+      "text": "to",
+      "start": 123.34,
+      "end": 123.54
+    },
+    {
+      "text": "know",
+      "start": 123.54,
+      "end": 124.34
+    },
+    {
+      "text": "I'm",
+      "start": 124.34,
+      "end": 130.0
+    },
+    {
+      "text": "just",
+      "start": 130.0,
+      "end": 130.14
+    },
+    {
+      "text": "one",
+      "start": 130.14,
+      "end": 130.48
+    },
+    {
+      "text": "high",
+      "start": 130.48,
+      "end": 131.32
+    },
+    {
+      "text": "burning",
+      "start": 131.32,
+      "end": 132.26
+    },
+    {
+      "text": "inside",
+      "start": 132.26,
+      "end": 133.08
+    },
+    {
+      "text": "and",
+      "start": 133.08,
+      "end": 134.04
+    },
+    {
+      "text": "I'm",
+      "start": 134.04,
+      "end": 134.28
+    },
+    {
+      "text": "crying",
+      "start": 134.28,
+      "end": 134.76
+    },
+    {
+      "text": "more",
+      "start": 134.76,
+      "end": 135.34
+    },
+    {
+      "text": "hours.",
+      "start": 135.34,
+      "end": 136.28
+    },
+    {
+      "text": "So",
+      "start": 136.94,
+      "end": 137.04
+    },
+    {
+      "text": "far",
+      "start": 137.04,
+      "end": 137.34
+    },
+    {
+      "text": "it's",
+      "start": 137.34,
+      "end": 137.56
+    },
+    {
+      "text": "worth",
+      "start": 137.56,
+      "end": 137.66
+    },
+    {
+      "text": "it.",
+      "start": 137.66,
+      "end": 137.9
+    },
+    {
+      "text": "How",
+      "start": 141.07999999999998,
+      "end": 142.48
+    },
+    {
+      "text": "can",
+      "start": 142.48,
+      "end": 143.88
+    },
+    {
+      "text": "I",
+      "start": 143.88,
+      "end": 144.22
+    },
+    {
+      "text": "stop",
+      "start": 144.22,
+      "end": 144.78
+    },
+    {
+      "text": "loving",
+      "start": 144.78,
+      "end": 146.46
+    },
+    {
+      "text": "you?",
+      "start": 146.46,
+      "end": 149.7
+    },
+    {
+      "text": "How",
+      "start": 149.7,
+      "end": 150.62
+    },
+    {
+      "text": "can",
+      "start": 150.62,
+      "end": 150.96
+    },
+    {
+      "text": "I",
+      "start": 150.96,
+      "end": 151.3
+    },
+    {
+      "text": "stop",
+      "start": 151.3,
+      "end": 151.86
+    },
+    {
+      "text": "loving",
+      "start": 151.86,
+      "end": 153.52
+    },
+    {
+      "text": "you?",
+      "start": 153.52,
+      "end": 156.52
+    },
+    {
+      "text": "I",
+      "start": 156.52,
+      "end": 157.64
+    },
+    {
+      "text": "don't",
+      "start": 157.64,
+      "end": 157.84
+    },
+    {
+      "text": "mind",
+      "start": 157.84,
+      "end": 158.12
+    },
+    {
+      "text": "but",
+      "start": 158.12,
+      "end": 158.84
+    },
+    {
+      "text": "inside",
+      "start": 158.84,
+      "end": 159.22
+    },
+    {
+      "text": "of",
+      "start": 159.22,
+      "end": 160.26
+    },
+    {
+      "text": "crying",
+      "start": 160.26,
+      "end": 160.34
+    },
+    {
+      "text": "and",
+      "start": 160.34,
+      "end": 161.18
+    },
+    {
+      "text": "I'm",
+      "start": 161.18,
+      "end": 162.4
+    },
+    {
+      "text": "crying",
+      "start": 162.4,
+      "end": 162.46
+    },
+    {
+      "text": "more",
+      "start": 162.46,
+      "end": 166.58
+    },
+    {
+      "text": "hours.",
+      "start": 166.58,
+      "end": 169.7
+    },
+    {
+      "text": "Now",
+      "start": 172.96,
+      "end": 174.3
+    },
+    {
+      "text": "I'm",
+      "start": 174.3,
+      "end": 174.68
+    },
+    {
+      "text": "asking",
+      "start": 174.68,
+      "end": 177.64
+    },
+    {
+      "text": "you,",
+      "start": 177.64,
+      "end": 177.98
+    },
+    {
+      "text": "tell",
+      "start": 178.04,
+      "end": 178.82
+    },
+    {
+      "text": "me",
+      "start": 178.82,
+      "end": 179.12
+    },
+    {
+      "text": "how",
+      "start": 179.12,
+      "end": 180.52
+    },
+    {
+      "text": "can",
+      "start": 180.52,
+      "end": 186.2
+    },
+    {
+      "text": "I",
+      "start": 186.2,
+      "end": 186.58
+    },
+    {
+      "text": "stop",
+      "start": 186.58,
+      "end": 187.14
+    },
+    {
+      "text": "loving",
+      "start": 187.14,
+      "end": 188.84
+    },
+    {
+      "text": "you?",
+      "start": 188.84,
+      "end": 190.0
+    },
+    {
+      "text": "How",
+      "start": 191.54,
+      "end": 192.94
+    },
+    {
+      "text": "can",
+      "start": 192.94,
+      "end": 193.3
+    },
+    {
+      "text": "I",
+      "start": 193.3,
+      "end": 193.72
+    },
+    {
+      "text": "stop",
+      "start": 193.72,
+      "end": 194.86
+    },
+    {
+      "text": "loving",
+      "start": 194.86,
+      "end": 195.78
+    },
+    {
+      "text": "you?",
+      "start": 195.78,
+      "end": 196.58
+    }
+  ]
+}

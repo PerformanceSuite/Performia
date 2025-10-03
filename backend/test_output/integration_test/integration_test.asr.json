@@ -1,0 +1,6 @@
+{
+  "id": "integration_test",
+  "service": "asr",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_3min.wav",
+  "lyrics": []
+}

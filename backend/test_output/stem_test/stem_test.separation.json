@@ -1,0 +1,7 @@
+{
+  "status": "success",
+  "stems": {
+    "vocals": "test_output/stems/test_mono/vocals.wav",
+    "bass": "test_output/stems/test_mono/bass.wav"
+  }
+}

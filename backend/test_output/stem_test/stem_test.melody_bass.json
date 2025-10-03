@@ -1,0 +1,18 @@
+{
+  "id": "stem_test",
+  "service": "melody_bass",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_3min.wav",
+  "performance": {
+    "melody": [
+      {
+        "time": 0.0,
+        "midi": 69,
+        "velocity": 109,
+        "duration": 29.984,
+        "confidence": 0.982
+      }
+    ],
+    "bass": []
+  },
+  "duration_sec": 180.0
+}

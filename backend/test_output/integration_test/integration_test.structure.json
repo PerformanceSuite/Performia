@@ -1,0 +1,49 @@
+{
+  "id": "integration_test",
+  "service": "structure",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_3min.wav",
+  "sections": [
+    {
+      "start": 0.0,
+      "end": 18.576,
+      "label": "verse",
+      "confidence": 0.75
+    },
+    {
+      "start": 18.576,
+      "end": 44.211,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 44.211,
+      "end": 55.914,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 55.914,
+      "end": 68.917,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 68.917,
+      "end": 89.722,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 89.722,
+      "end": 90.465,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 90.465,
+      "end": 136.348,
+      "label": "chorus",
+      "confidence": 0.9
+    }
+  ]
+}

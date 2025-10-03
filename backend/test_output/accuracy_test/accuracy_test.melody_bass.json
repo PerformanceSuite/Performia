@@ -1,0 +1,10 @@
+{
+  "id": "accuracy_test",
+  "service": "melody_bass",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_3min.wav",
+  "performance": {
+    "melody": [],
+    "bass": []
+  },
+  "duration_sec": 180.0
+}

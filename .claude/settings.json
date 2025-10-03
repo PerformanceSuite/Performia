@@ -1,0 +1,61 @@
+{
+  "hooks": {
+    "preFileWrite": [],
+    "postFileWrite": [
+      {
+        "name": "lint-on-write",
+        "description": "Run linter after file modifications",
+        "pattern": "**/*.{ts,tsx,js,jsx}",
+        "command": "npm run lint -- ${filePath}",
+        "enabled": false
+      }
+    ],
+    "preCommit": [
+      {
+        "name": "run-tests",
+        "description": "Run tests before committing",
+        "command": "npm test",
+        "enabled": false
+      }
+    ],
+    "postCommit": [
+      {
+        "name": "log-commit",
+        "description": "Log commit to memory",
+        "command": "echo 'Committed: ${commitMessage}' >> .claude/memory.log",
+        "enabled": true
+      }
+    ]
+  },
+  "permissions": {
+    "allowedTools": [
+      "read_file",
+      "write_file",
+      "list_directory",
+      "search_files",
+      "execute_command",
+      "git_status",
+      "git_commit",
+      "git_diff"
+    ],
+    "disallowedTools": [
+      "delete_directory"
+    ],
+    "permissionMode": "acceptEdits"
+  },
+  "context": {
+    "alwaysInclude": [
+      ".claude/CLAUDE.md",
+      "MIGRATION_PLAN.md",
+      "CODEBASE_COMPARISON.md"
+    ],
+    "excludePatterns": [
+      "node_modules/**",
+      "build/**",
+      "dist/**",
+      ".git/**",
+      "**/*.log",
+      "__pycache__/**"
+    ]
+  }
+}

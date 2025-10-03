@@ -1,0 +1,14 @@
+{
+  "id": "35492f72",
+  "service": "separation",
+  "note": "Using full mix - separation not implemented. All stems point to original audio.",
+  "stems": {
+    "mix": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/35492f72/mix.wav",
+    "vocals": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/35492f72/mix.wav",
+    "drums": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/35492f72/mix.wav",
+    "bass": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/35492f72/mix.wav",
+    "other": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/35492f72/mix.wav"
+  },
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/35492f72.wav",
+  "processing_time_seconds": 0.001
+}

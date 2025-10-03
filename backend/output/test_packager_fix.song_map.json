@@ -1,0 +1,35 @@
+{
+  "id": "test_packager_fix",
+  "duration_sec": 5.0,
+  "meter": {
+    "numerator": 4,
+    "denominator": 4
+  },
+  "tempo": {
+    "bpm_global": 120.0,
+    "curve": [
+      [
+        0.0,
+        120.0
+      ]
+    ],
+    "confidence": 0.5
+  },
+  "beats": [],
+  "downbeats": [],
+  "key": [],
+  "chords": [],
+  "sections": [],
+  "lyrics": [],
+  "performance": {
+    "melody": [],
+    "bass": []
+  },
+  "provenance": {
+    "separation": "pending",
+    "asr": "pending",
+    "harmony": "pending",
+    "git_sha": "dev",
+    "created_at": "2025-10-01T00:00:35Z"
+  }
+}

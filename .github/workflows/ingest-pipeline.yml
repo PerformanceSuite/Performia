@@ -1,0 +1,41 @@
+name: ingest-analyze-pipe CI
+
+on:
+  push:
+    paths:
+      - 'ingest-analyze-pipe/**'
+      - 'tests/unit/services/**'
+      - '.github/workflows/ingest-pipeline.yml'
+  pull_request:
+    paths:
+      - 'ingest-analyze-pipe/**'
+      - 'tests/unit/services/**'
+      - '.github/workflows/ingest-pipeline.yml'
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ingest-analyze-pipe
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r services/packager/requirements.txt
+
+      - name: Run unit tests
+        env:
+          PYTHONPATH: .
+        run: pytest -q ../tests/unit/services
+
+      - name: Build packager image (smoke)
+        run: docker build --file services/packager/Dockerfile --tag smoke/packager:ci .

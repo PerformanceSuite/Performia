@@ -1,0 +1,1754 @@
+{
+  "id": "fa91a6e1",
+  "service": "chords",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/fa91a6e1.mp3",
+  "analysis_source": "/Users/danielconnolly/Projects/Performia/backend/tmp/stems/fa91a6e1/bass.wav",
+  "chords": [
+    {
+      "start": 0.0,
+      "end": 0.5,
+      "label": "A:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 0.5,
+      "end": 2.0,
+      "label": "E:maj",
+      "conf": 0.72
+    },
+    {
+      "start": 2.0,
+      "end": 2.5,
+      "label": "G#:maj",
+      "conf": 0.7
+    },
+    {
+      "start": 2.5,
+      "end": 3.5,
+      "label": "B:maj",
+      "conf": 0.7
+    },
+    {
+      "start": 3.5,
+      "end": 4.0,
+      "label": "D:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 4.0,
+      "end": 5.0,
+      "label": "F:maj",
+      "conf": 0.69
+    },
+    {
+      "start": 5.0,
+      "end": 5.5,
+      "label": "G#:maj",
+      "conf": 0.7
+    },
+    {
+      "start": 5.5,
+      "end": 6.0,
+      "label": "A#:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 6.0,
+      "end": 6.5,
+      "label": "D:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 6.5,
+      "end": 9.0,
+      "label": "A#:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 9.0,
+      "end": 9.5,
+      "label": "G#:maj",
+      "conf": 0.59
+    },
+    {
+      "start": 9.5,
+      "end": 11.0,
+      "label": "A#:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 11.0,
+      "end": 11.5,
+      "label": "A:maj",
+      "conf": 0.57
+    },
+    {
+      "start": 11.5,
+      "end": 12.0,
+      "label": "E:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 12.0,
+      "end": 12.5,
+      "label": "E:min",
+      "conf": 0.62
+    },
+    {
+      "start": 12.5,
+      "end": 13.0,
+      "label": "E:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 13.0,
+      "end": 13.5,
+      "label": "D:min",
+      "conf": 0.69
+    },
+    {
+      "start": 13.5,
+      "end": 14.5,
+      "label": "B:maj",
+      "conf": 0.69
+    },
+    {
+      "start": 14.5,
+      "end": 15.0,
+      "label": "E:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 15.0,
+      "end": 15.5,
+      "label": "B:maj",
+      "conf": 0.57
+    },
+    {
+      "start": 15.5,
+      "end": 16.0,
+      "label": "A:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 16.0,
+      "end": 17.0,
+      "label": "E:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 17.0,
+      "end": 17.5,
+      "label": "E:min",
+      "conf": 0.63
+    },
+    {
+      "start": 17.5,
+      "end": 18.0,
+      "label": "B:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 18.0,
+      "end": 18.5,
+      "label": "E:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 18.5,
+      "end": 19.5,
+      "label": "E:min",
+      "conf": 0.7
+    },
+    {
+      "start": 19.5,
+      "end": 21.0,
+      "label": "E:maj",
+      "conf": 0.69
+    },
+    {
+      "start": 21.0,
+      "end": 22.0,
+      "label": "A#:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 22.0,
+      "end": 23.5,
+      "label": "E:min",
+      "conf": 0.69
+    },
+    {
+      "start": 23.5,
+      "end": 24.0,
+      "label": "B:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 24.0,
+      "end": 24.5,
+      "label": "E:min",
+      "conf": 0.64
+    },
+    {
+      "start": 24.5,
+      "end": 25.0,
+      "label": "G:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 25.0,
+      "end": 26.0,
+      "label": "E:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 26.0,
+      "end": 26.5,
+      "label": "E:min",
+      "conf": 0.67
+    },
+    {
+      "start": 26.5,
+      "end": 27.0,
+      "label": "E:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 27.0,
+      "end": 28.0,
+      "label": "F:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 28.0,
+      "end": 29.0,
+      "label": "E:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 29.0,
+      "end": 32.0,
+      "label": "A#:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 32.0,
+      "end": 34.0,
+      "label": "D:maj",
+      "conf": 0.69
+    },
+    {
+      "start": 34.0,
+      "end": 34.5,
+      "label": "E:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 34.5,
+      "end": 35.0,
+      "label": "E:min",
+      "conf": 0.73
+    },
+    {
+      "start": 35.0,
+      "end": 36.0,
+      "label": "E:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 36.0,
+      "end": 36.5,
+      "label": "A#:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 36.5,
+      "end": 37.0,
+      "label": "E:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 37.0,
+      "end": 37.5,
+      "label": "E:min",
+      "conf": 0.66
+    },
+    {
+      "start": 37.5,
+      "end": 38.0,
+      "label": "A:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 38.0,
+      "end": 38.5,
+      "label": "G:maj",
+      "conf": 0.7
+    },
+    {
+      "start": 38.5,
+      "end": 39.0,
+      "label": "E:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 39.0,
+      "end": 39.5,
+      "label": "G#:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 39.5,
+      "end": 40.5,
+      "label": "B:maj",
+      "conf": 0.74
+    },
+    {
+      "start": 40.5,
+      "end": 41.0,
+      "label": "E:min",
+      "conf": 0.68
+    },
+    {
+      "start": 41.0,
+      "end": 42.0,
+      "label": "D:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 42.0,
+      "end": 42.5,
+      "label": "B:maj",
+      "conf": 0.69
+    },
+    {
+      "start": 42.5,
+      "end": 43.0,
+      "label": "A#:maj",
+      "conf": 0.59
+    },
+    {
+      "start": 43.0,
+      "end": 44.0,
+      "label": "F:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 44.0,
+      "end": 44.5,
+      "label": "A:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 44.5,
+      "end": 45.0,
+      "label": "E:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 45.0,
+      "end": 45.5,
+      "label": "G:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 45.5,
+      "end": 46.0,
+      "label": "A#:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 46.0,
+      "end": 46.5,
+      "label": "G#:maj",
+      "conf": 0.7
+    },
+    {
+      "start": 46.5,
+      "end": 47.0,
+      "label": "D:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 47.0,
+      "end": 47.5,
+      "label": "D#:min",
+      "conf": 0.6
+    },
+    {
+      "start": 47.5,
+      "end": 48.0,
+      "label": "D:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 48.0,
+      "end": 48.5,
+      "label": "D#:min",
+      "conf": 0.59
+    },
+    {
+      "start": 48.5,
+      "end": 49.0,
+      "label": "D:maj",
+      "conf": 0.7
+    },
+    {
+      "start": 49.0,
+      "end": 49.5,
+      "label": "B:maj",
+      "conf": 0.67
+    },
+    {
+      "start": 49.5,
+      "end": 50.0,
+      "label": "E:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 50.0,
+      "end": 50.5,
+      "label": "F:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 50.5,
+      "end": 51.0,
+      "label": "E:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 51.0,
+      "end": 51.5,
+      "label": "A:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 51.5,
+      "end": 52.0,
+      "label": "E:maj",
+      "conf": 0.67
+    },
+    {
+      "start": 52.0,
+      "end": 52.5,
+      "label": "A#:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 52.5,
+      "end": 53.0,
+      "label": "E:min",
+      "conf": 0.62
+    },
+    {
+      "start": 53.0,
+      "end": 53.5,
+      "label": "B:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 53.5,
+      "end": 54.0,
+      "label": "E:min",
+      "conf": 0.6
+    },
+    {
+      "start": 54.0,
+      "end": 55.5,
+      "label": "E:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 55.5,
+      "end": 56.0,
+      "label": "A#:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 56.0,
+      "end": 56.5,
+      "label": "E:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 56.5,
+      "end": 57.0,
+      "label": "B:maj",
+      "conf": 0.58
+    },
+    {
+      "start": 57.0,
+      "end": 57.5,
+      "label": "A#:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 57.5,
+      "end": 58.0,
+      "label": "A:maj",
+      "conf": 0.59
+    },
+    {
+      "start": 58.0,
+      "end": 60.5,
+      "label": "E:maj",
+      "conf": 0.77
+    },
+    {
+      "start": 60.5,
+      "end": 62.0,
+      "label": "F:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 62.0,
+      "end": 62.5,
+      "label": "G#:maj",
+      "conf": 0.59
+    },
+    {
+      "start": 62.5,
+      "end": 63.0,
+      "label": "D#:min",
+      "conf": 0.63
+    },
+    {
+      "start": 63.0,
+      "end": 63.5,
+      "label": "F#:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 63.5,
+      "end": 64.0,
+      "label": "D#:min",
+      "conf": 0.64
+    },
+    {
+      "start": 64.0,
+      "end": 64.5,
+      "label": "E:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 64.5,
+      "end": 66.0,
+      "label": "E:min",
+      "conf": 0.66
+    },
+    {
+      "start": 66.0,
+      "end": 66.5,
+      "label": "E:maj",
+      "conf": 0.8
+    },
+    {
+      "start": 66.5,
+      "end": 67.5,
+      "label": "G#:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 67.5,
+      "end": 69.0,
+      "label": "F:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 69.0,
+      "end": 69.5,
+      "label": "E:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 69.5,
+      "end": 70.0,
+      "label": "G:maj",
+      "conf": 0.55
+    },
+    {
+      "start": 70.0,
+      "end": 71.0,
+      "label": "E:min",
+      "conf": 0.66
+    },
+    {
+      "start": 71.0,
+      "end": 72.0,
+      "label": "G:maj",
+      "conf": 0.55
+    },
+    {
+      "start": 72.0,
+      "end": 72.5,
+      "label": "E:min",
+      "conf": 0.54
+    },
+    {
+      "start": 72.5,
+      "end": 73.5,
+      "label": "E:maj",
+      "conf": 0.75
+    },
+    {
+      "start": 73.5,
+      "end": 74.5,
+      "label": "G#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 74.5,
+      "end": 75.0,
+      "label": "E:maj",
+      "conf": 0.55
+    },
+    {
+      "start": 75.0,
+      "end": 76.0,
+      "label": "F:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 76.0,
+      "end": 76.5,
+      "label": "D:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 76.5,
+      "end": 77.0,
+      "label": "A#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 77.0,
+      "end": 77.5,
+      "label": "F#:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 77.5,
+      "end": 78.0,
+      "label": "D#:min",
+      "conf": 0.61
+    },
+    {
+      "start": 78.0,
+      "end": 79.0,
+      "label": "E:maj",
+      "conf": 0.72
+    },
+    {
+      "start": 79.0,
+      "end": 80.0,
+      "label": "G:maj",
+      "conf": 0.53
+    },
+    {
+      "start": 80.0,
+      "end": 80.5,
+      "label": "E:maj",
+      "conf": 0.75
+    },
+    {
+      "start": 80.5,
+      "end": 82.0,
+      "label": "G#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 82.0,
+      "end": 83.0,
+      "label": "F:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 83.0,
+      "end": 83.5,
+      "label": "A:maj",
+      "conf": 0.57
+    },
+    {
+      "start": 83.5,
+      "end": 84.0,
+      "label": "G:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 84.0,
+      "end": 84.5,
+      "label": "E:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 84.5,
+      "end": 85.0,
+      "label": "E:min",
+      "conf": 0.66
+    },
+    {
+      "start": 85.0,
+      "end": 86.0,
+      "label": "G:maj",
+      "conf": 0.53
+    },
+    {
+      "start": 86.0,
+      "end": 86.5,
+      "label": "E:min",
+      "conf": 0.65
+    },
+    {
+      "start": 86.5,
+      "end": 87.0,
+      "label": "D:min",
+      "conf": 0.67
+    },
+    {
+      "start": 87.0,
+      "end": 87.5,
+      "label": "B:maj",
+      "conf": 0.76
+    },
+    {
+      "start": 87.5,
+      "end": 88.0,
+      "label": "E:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 88.0,
+      "end": 88.5,
+      "label": "G#:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 88.5,
+      "end": 89.0,
+      "label": "B:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 89.0,
+      "end": 90.0,
+      "label": "D:maj",
+      "conf": 0.67
+    },
+    {
+      "start": 90.0,
+      "end": 90.5,
+      "label": "G#:maj",
+      "conf": 0.58
+    },
+    {
+      "start": 90.5,
+      "end": 91.0,
+      "label": "E:maj",
+      "conf": 0.53
+    },
+    {
+      "start": 91.0,
+      "end": 92.0,
+      "label": "F:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 92.0,
+      "end": 92.5,
+      "label": "D:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 92.5,
+      "end": 93.0,
+      "label": "E:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 93.0,
+      "end": 93.5,
+      "label": "A#:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 93.5,
+      "end": 94.0,
+      "label": "F#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 94.0,
+      "end": 95.0,
+      "label": "E:maj",
+      "conf": 0.76
+    },
+    {
+      "start": 95.0,
+      "end": 96.0,
+      "label": "G#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 96.0,
+      "end": 97.0,
+      "label": "D:min",
+      "conf": 0.7
+    },
+    {
+      "start": 97.0,
+      "end": 97.5,
+      "label": "A:maj",
+      "conf": 0.53
+    },
+    {
+      "start": 97.5,
+      "end": 98.0,
+      "label": "F:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 98.0,
+      "end": 98.5,
+      "label": "D:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 98.5,
+      "end": 99.5,
+      "label": "F:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 99.5,
+      "end": 100.0,
+      "label": "B:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 100.0,
+      "end": 100.5,
+      "label": "A#:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 100.5,
+      "end": 101.0,
+      "label": "F#:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 101.0,
+      "end": 102.0,
+      "label": "E:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 102.0,
+      "end": 103.0,
+      "label": "G#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 103.0,
+      "end": 104.0,
+      "label": "D:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 104.0,
+      "end": 104.5,
+      "label": "A:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 104.5,
+      "end": 105.0,
+      "label": "D:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 105.0,
+      "end": 105.5,
+      "label": "F:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 105.5,
+      "end": 106.0,
+      "label": "D:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 106.0,
+      "end": 106.5,
+      "label": "F:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 106.5,
+      "end": 107.0,
+      "label": "B:maj",
+      "conf": 0.69
+    },
+    {
+      "start": 107.0,
+      "end": 108.0,
+      "label": "A#:maj",
+      "conf": 0.67
+    },
+    {
+      "start": 108.0,
+      "end": 109.5,
+      "label": "E:maj",
+      "conf": 0.73
+    },
+    {
+      "start": 109.5,
+      "end": 110.0,
+      "label": "D:min",
+      "conf": 0.69
+    },
+    {
+      "start": 110.0,
+      "end": 111.0,
+      "label": "D:maj",
+      "conf": 0.69
+    },
+    {
+      "start": 111.0,
+      "end": 111.5,
+      "label": "G:maj",
+      "conf": 0.52
+    },
+    {
+      "start": 111.5,
+      "end": 112.0,
+      "label": "D:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 112.0,
+      "end": 113.5,
+      "label": "F:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 113.5,
+      "end": 114.0,
+      "label": "A#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 114.0,
+      "end": 115.0,
+      "label": "F#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 115.0,
+      "end": 115.5,
+      "label": "G#:maj",
+      "conf": 0.57
+    },
+    {
+      "start": 115.5,
+      "end": 116.0,
+      "label": "F:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 116.0,
+      "end": 116.5,
+      "label": "D:min",
+      "conf": 0.6
+    },
+    {
+      "start": 116.5,
+      "end": 117.0,
+      "label": "F:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 117.0,
+      "end": 117.5,
+      "label": "C#:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 117.5,
+      "end": 118.0,
+      "label": "G#:maj",
+      "conf": 0.59
+    },
+    {
+      "start": 118.0,
+      "end": 118.5,
+      "label": "C#:maj",
+      "conf": 0.59
+    },
+    {
+      "start": 118.5,
+      "end": 119.0,
+      "label": "E:maj",
+      "conf": 0.72
+    },
+    {
+      "start": 119.0,
+      "end": 119.5,
+      "label": "D:maj",
+      "conf": 0.74
+    },
+    {
+      "start": 119.5,
+      "end": 120.0,
+      "label": "A:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 120.0,
+      "end": 120.5,
+      "label": "D:min",
+      "conf": 0.63
+    },
+    {
+      "start": 120.5,
+      "end": 121.0,
+      "label": "E:maj",
+      "conf": 0.83
+    },
+    {
+      "start": 121.0,
+      "end": 121.5,
+      "label": "G#:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 121.5,
+      "end": 122.0,
+      "label": "A#:maj",
+      "conf": 0.7
+    },
+    {
+      "start": 122.0,
+      "end": 122.5,
+      "label": "C#:maj",
+      "conf": 0.55
+    },
+    {
+      "start": 122.5,
+      "end": 123.0,
+      "label": "F:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 123.0,
+      "end": 123.5,
+      "label": "D:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 123.5,
+      "end": 124.0,
+      "label": "F:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 124.0,
+      "end": 125.0,
+      "label": "G#:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 125.0,
+      "end": 125.5,
+      "label": "C#:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 125.5,
+      "end": 126.0,
+      "label": "G#:maj",
+      "conf": 0.7
+    },
+    {
+      "start": 126.0,
+      "end": 127.5,
+      "label": "D:maj",
+      "conf": 0.72
+    },
+    {
+      "start": 127.5,
+      "end": 128.5,
+      "label": "A#:maj",
+      "conf": 0.73
+    },
+    {
+      "start": 128.5,
+      "end": 129.0,
+      "label": "F#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 129.0,
+      "end": 129.5,
+      "label": "D:maj",
+      "conf": 0.52
+    },
+    {
+      "start": 129.5,
+      "end": 131.0,
+      "label": "F:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 131.0,
+      "end": 131.5,
+      "label": "E:maj",
+      "conf": 0.74
+    },
+    {
+      "start": 131.5,
+      "end": 132.0,
+      "label": "G#:maj",
+      "conf": 0.59
+    },
+    {
+      "start": 132.0,
+      "end": 132.5,
+      "label": "C#:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 132.5,
+      "end": 133.0,
+      "label": "G#:maj",
+      "conf": 0.59
+    },
+    {
+      "start": 133.0,
+      "end": 133.5,
+      "label": "D:min",
+      "conf": 0.77
+    },
+    {
+      "start": 133.5,
+      "end": 134.5,
+      "label": "D:maj",
+      "conf": 0.72
+    },
+    {
+      "start": 134.5,
+      "end": 136.5,
+      "label": "A#:maj",
+      "conf": 0.77
+    },
+    {
+      "start": 136.5,
+      "end": 138.0,
+      "label": "F:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 138.0,
+      "end": 138.5,
+      "label": "E:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 138.5,
+      "end": 140.0,
+      "label": "G#:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 140.0,
+      "end": 141.5,
+      "label": "B:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 141.5,
+      "end": 142.0,
+      "label": "D#:maj",
+      "conf": 0.51
+    },
+    {
+      "start": 142.0,
+      "end": 142.5,
+      "label": "E:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 142.5,
+      "end": 143.0,
+      "label": "E:min",
+      "conf": 0.54
+    },
+    {
+      "start": 143.0,
+      "end": 145.0,
+      "label": "E:maj",
+      "conf": 0.81
+    },
+    {
+      "start": 145.0,
+      "end": 145.5,
+      "label": "A#:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 145.5,
+      "end": 146.0,
+      "label": "G:maj",
+      "conf": 0.55
+    },
+    {
+      "start": 146.0,
+      "end": 147.0,
+      "label": "E:maj",
+      "conf": 0.59
+    },
+    {
+      "start": 147.0,
+      "end": 148.5,
+      "label": "F:maj",
+      "conf": 0.72
+    },
+    {
+      "start": 148.5,
+      "end": 149.0,
+      "label": "A#:maj",
+      "conf": 0.72
+    },
+    {
+      "start": 149.0,
+      "end": 149.5,
+      "label": "D:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 149.5,
+      "end": 150.0,
+      "label": "F#:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 150.0,
+      "end": 150.5,
+      "label": "A#:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 150.5,
+      "end": 152.0,
+      "label": "E:maj",
+      "conf": 0.79
+    },
+    {
+      "start": 152.0,
+      "end": 152.5,
+      "label": "A#:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 152.5,
+      "end": 153.0,
+      "label": "G:maj",
+      "conf": 0.54
+    },
+    {
+      "start": 153.0,
+      "end": 153.5,
+      "label": "E:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 153.5,
+      "end": 154.0,
+      "label": "G:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 154.0,
+      "end": 155.5,
+      "label": "F:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 155.5,
+      "end": 156.0,
+      "label": "D:maj",
+      "conf": 0.69
+    },
+    {
+      "start": 156.0,
+      "end": 156.5,
+      "label": "A#:maj",
+      "conf": 0.58
+    },
+    {
+      "start": 156.5,
+      "end": 157.0,
+      "label": "F#:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 157.0,
+      "end": 157.5,
+      "label": "D#:min",
+      "conf": 0.59
+    },
+    {
+      "start": 157.5,
+      "end": 158.5,
+      "label": "E:maj",
+      "conf": 0.78
+    },
+    {
+      "start": 158.5,
+      "end": 159.5,
+      "label": "G#:maj",
+      "conf": 0.67
+    },
+    {
+      "start": 159.5,
+      "end": 160.0,
+      "label": "G:maj",
+      "conf": 0.54
+    },
+    {
+      "start": 160.0,
+      "end": 161.0,
+      "label": "E:maj",
+      "conf": 0.67
+    },
+    {
+      "start": 161.0,
+      "end": 162.5,
+      "label": "F:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 162.5,
+      "end": 163.0,
+      "label": "D:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 163.0,
+      "end": 163.5,
+      "label": "E:maj",
+      "conf": 0.74
+    },
+    {
+      "start": 163.5,
+      "end": 164.0,
+      "label": "A#:maj",
+      "conf": 0.67
+    },
+    {
+      "start": 164.0,
+      "end": 164.5,
+      "label": "F#:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 164.5,
+      "end": 166.0,
+      "label": "E:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 166.0,
+      "end": 166.5,
+      "label": "B:maj",
+      "conf": 0.69
+    },
+    {
+      "start": 166.5,
+      "end": 167.0,
+      "label": "G:maj",
+      "conf": 0.56
+    },
+    {
+      "start": 167.0,
+      "end": 168.0,
+      "label": "E:min",
+      "conf": 0.69
+    },
+    {
+      "start": 168.0,
+      "end": 168.5,
+      "label": "G#:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 168.5,
+      "end": 169.0,
+      "label": "F:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 169.0,
+      "end": 170.0,
+      "label": "D:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 170.0,
+      "end": 171.0,
+      "label": "A#:maj",
+      "conf": 0.75
+    },
+    {
+      "start": 171.0,
+      "end": 171.5,
+      "label": "C#:maj",
+      "conf": 0.76
+    },
+    {
+      "start": 171.5,
+      "end": 172.0,
+      "label": "A#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 172.0,
+      "end": 173.0,
+      "label": "E:maj",
+      "conf": 0.77
+    },
+    {
+      "start": 173.0,
+      "end": 173.5,
+      "label": "B:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 173.5,
+      "end": 174.5,
+      "label": "G:maj",
+      "conf": 0.6
+    },
+    {
+      "start": 174.5,
+      "end": 175.0,
+      "label": "E:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 175.0,
+      "end": 176.0,
+      "label": "F:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 176.0,
+      "end": 177.0,
+      "label": "D:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 177.0,
+      "end": 178.0,
+      "label": "A#:maj",
+      "conf": 0.73
+    },
+    {
+      "start": 178.0,
+      "end": 178.5,
+      "label": "D#:min",
+      "conf": 0.66
+    },
+    {
+      "start": 178.5,
+      "end": 180.5,
+      "label": "E:maj",
+      "conf": 0.74
+    },
+    {
+      "start": 180.5,
+      "end": 181.0,
+      "label": "E:min",
+      "conf": 0.59
+    },
+    {
+      "start": 181.0,
+      "end": 182.0,
+      "label": "G:maj",
+      "conf": 0.57
+    },
+    {
+      "start": 182.0,
+      "end": 182.5,
+      "label": "E:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 182.5,
+      "end": 184.0,
+      "label": "F:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 184.0,
+      "end": 184.5,
+      "label": "D:maj",
+      "conf": 0.73
+    },
+    {
+      "start": 184.5,
+      "end": 185.5,
+      "label": "A#:maj",
+      "conf": 0.74
+    },
+    {
+      "start": 185.5,
+      "end": 186.0,
+      "label": "D:maj",
+      "conf": 0.54
+    },
+    {
+      "start": 186.0,
+      "end": 187.5,
+      "label": "E:maj",
+      "conf": 0.78
+    },
+    {
+      "start": 187.5,
+      "end": 188.0,
+      "label": "E:min",
+      "conf": 0.58
+    },
+    {
+      "start": 188.0,
+      "end": 188.5,
+      "label": "G:maj",
+      "conf": 0.53
+    },
+    {
+      "start": 188.5,
+      "end": 189.0,
+      "label": "E:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 189.0,
+      "end": 189.5,
+      "label": "G:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 189.5,
+      "end": 190.0,
+      "label": "F:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 190.0,
+      "end": 190.5,
+      "label": "D:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 190.5,
+      "end": 191.0,
+      "label": "F:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 191.0,
+      "end": 192.0,
+      "label": "A#:maj",
+      "conf": 0.71
+    },
+    {
+      "start": 192.0,
+      "end": 192.5,
+      "label": "F#:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 192.5,
+      "end": 193.0,
+      "label": "D:maj",
+      "conf": 0.56
+    },
+    {
+      "start": 193.0,
+      "end": 194.5,
+      "label": "E:maj",
+      "conf": 0.76
+    },
+    {
+      "start": 194.5,
+      "end": 195.0,
+      "label": "A#:maj",
+      "conf": 0.61
+    },
+    {
+      "start": 195.0,
+      "end": 195.5,
+      "label": "E:min",
+      "conf": 0.56
+    },
+    {
+      "start": 195.5,
+      "end": 196.0,
+      "label": "E:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 196.0,
+      "end": 196.5,
+      "label": "G:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 196.5,
+      "end": 198.0,
+      "label": "F:maj",
+      "conf": 0.64
+    },
+    {
+      "start": 198.0,
+      "end": 199.0,
+      "label": "A#:maj",
+      "conf": 0.7
+    },
+    {
+      "start": 199.0,
+      "end": 199.5,
+      "label": "F#:maj",
+      "conf": 0.63
+    },
+    {
+      "start": 199.5,
+      "end": 200.0,
+      "label": "A#:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 200.0,
+      "end": 201.5,
+      "label": "E:maj",
+      "conf": 0.76
+    },
+    {
+      "start": 201.5,
+      "end": 202.0,
+      "label": "A#:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 202.0,
+      "end": 202.5,
+      "label": "B:maj",
+      "conf": 0.53
+    },
+    {
+      "start": 202.5,
+      "end": 203.0,
+      "label": "E:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 203.0,
+      "end": 203.5,
+      "label": "G:maj",
+      "conf": 0.62
+    },
+    {
+      "start": 203.5,
+      "end": 205.0,
+      "label": "F:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 205.0,
+      "end": 205.5,
+      "label": "A#:maj",
+      "conf": 0.65
+    },
+    {
+      "start": 205.5,
+      "end": 206.0,
+      "label": "E:maj",
+      "conf": 0.73
+    },
+    {
+      "start": 206.0,
+      "end": 207.0,
+      "label": "F#:maj",
+      "conf": 0.66
+    },
+    {
+      "start": 207.0,
+      "end": 207.5,
+      "label": "E:maj",
+      "conf": 0.78
+    },
+    {
+      "start": 207.5,
+      "end": 208.0,
+      "label": "G#:maj",
+      "conf": 0.68
+    },
+    {
+      "start": 208.0,
+      "end": 208.5,
+      "label": "E:maj",
+      "conf": 0.75
+    },
+    {
+      "start": 208.5,
+      "end": 209.5,
+      "label": "G:maj",
+      "conf": 0.53
+    },
+    {
+      "start": 209.5,
+      "end": 210.0,
+      "label": "B:maj",
+      "conf": 0.5
+    },
+    {
+      "start": 210.0,
+      "end": 217.0,
+      "label": "G:maj",
+      "conf": 0.51
+    },
+    {
+      "start": 217.0,
+      "end": 217.5,
+      "label": "E:maj",
+      "conf": 0.51
+    },
+    {
+      "start": 217.5,
+      "end": 218.0,
+      "label": "E:min",
+      "conf": 0.51
+    },
+    {
+      "start": 218.0,
+      "end": 218.5,
+      "label": "E:maj",
+      "conf": 0.53
+    },
+    {
+      "start": 218.5,
+      "end": 219.5,
+      "label": "F#:maj",
+      "conf": 0.5
+    },
+    {
+      "start": 219.5,
+      "end": 219.706,
+      "label": "A:maj",
+      "conf": 0.61
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "b72e82dc",
+  "service": "melody_bass",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/b72e82dc.wav",
+  "performance": {
+    "melody": [
+      {
+        "time": 0.0,
+        "midi": 69,
+        "velocity": 109,
+        "duration": 5.024,
+        "confidence": 0.984
+      }
+    ],
+    "bass": [
+      {
+        "time": 0.0,
+        "midi": 50,
+        "velocity": 108,
+        "duration": 5.024,
+        "confidence": 0.939
+      }
+    ]
+  },
+  "duration_sec": 5.0
+}

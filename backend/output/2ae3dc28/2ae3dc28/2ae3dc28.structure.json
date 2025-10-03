@@ -1,0 +1,49 @@
+{
+  "id": "2ae3dc28",
+  "service": "structure",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/2ae3dc28.mp3",
+  "sections": [
+    {
+      "start": 0.0,
+      "end": 21.92,
+      "label": "verse",
+      "confidence": 0.75
+    },
+    {
+      "start": 21.92,
+      "end": 24.706,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 24.706,
+      "end": 143.592,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 143.592,
+      "end": 144.707,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 144.707,
+      "end": 157.71,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 157.71,
+      "end": 208.608,
+      "label": "chorus",
+      "confidence": 0.9
+    },
+    {
+      "start": 208.608,
+      "end": 218.453,
+      "label": "chorus",
+      "confidence": 0.9
+    }
+  ]
+}

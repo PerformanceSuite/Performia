@@ -1,0 +1,20 @@
+{
+  "id": "test_demucs_001",
+  "service": "separation",
+  "model": "htdemucs",
+  "status": "success",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_audio.wav",
+  "device": "mps",
+  "load_time_seconds": 0.0057,
+  "separation_time_seconds": 0.9814,
+  "save_time_seconds": 0.0078,
+  "stems": {
+    "mix": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_demucs_001/mix.wav",
+    "drums": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_demucs_001/drums.wav",
+    "bass": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_demucs_001/bass.wav",
+    "other": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_demucs_001/other.wav",
+    "vocals": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/test_demucs_001/vocals.wav"
+  },
+  "sample_rate": 22050,
+  "processing_time_seconds": 1.0048
+}

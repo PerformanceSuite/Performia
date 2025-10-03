@@ -1,0 +1,45 @@
+openapi: 3.0.3
+info:
+  title: Music-AI Song Map API
+  version: 0.1.0
+paths:
+  /jobs:
+    post:
+      summary: Submit a new job
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                source_url:
+                  type: string
+                id:
+                  type: string
+              required: [source_url]
+      responses:
+        '202':
+          description: Job accepted
+  /jobs/{id}:
+    get:
+      summary: Get job status and artifacts
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Job status
+  /maps/{id}:
+    get:
+      summary: Fetch final Song Map JSON
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Song Map JSON

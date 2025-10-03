@@ -1,0 +1,13 @@
+{
+  "id": "3a9da0db",
+  "service": "structure",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/uploads/3a9da0db.wav",
+  "sections": [
+    {
+      "start": 0.534,
+      "end": 6.548,
+      "label": "intro",
+      "confidence": 0.85
+    }
+  ]
+}

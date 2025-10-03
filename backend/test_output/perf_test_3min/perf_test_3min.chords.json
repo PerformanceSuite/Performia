@@ -1,0 +1,14 @@
+{
+  "id": "perf_test_3min",
+  "service": "chords",
+  "source_path": "/Users/danielconnolly/Projects/Performia/backend/test_3min.wav",
+  "analysis_source": "/Users/danielconnolly/Projects/Performia/backend/test_output/stems/perf_test_3min/bass.wav",
+  "chords": [
+    {
+      "start": 0.0,
+      "end": 180.0,
+      "label": "B:maj",
+      "conf": 0.72
+    }
+  ]
+}
