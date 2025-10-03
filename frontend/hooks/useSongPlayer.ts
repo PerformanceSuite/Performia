@@ -1,7 +1,14 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { SongMap } from '../types';
 
-export const useSongPlayer = (songMap: SongMap) => {
+/**
+ * Hook for demo mode auto-playback simulation
+ *
+ * @param songMap - The song map to play
+ * @param enabled - Whether the demo player should run (default: true)
+ * @returns Player state including active line/syllable and elapsed time
+ */
+export const useSongPlayer = (songMap: SongMap, enabled: boolean = true) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [elapsed, setElapsed] = useState(0);
     const [activeLineIndex, setActiveLineIndex] = useState(-1);
@@ -10,9 +17,9 @@ export const useSongPlayer = (songMap: SongMap) => {
     const animationFrameId = useRef<number>();
     const startTimeRef = useRef<number>(0);
 
-    const allSyllables = useMemo(() => 
-        songMap.sections.flatMap((section, sectionIndex) => 
-            section.lines.flatMap((line, lineIndex) => 
+    const allSyllables = useMemo(() =>
+        songMap.sections.flatMap((section, sectionIndex) =>
+            section.lines.flatMap((line, lineIndex) =>
                 line.syllables.map((syllable, syllableIndex) => ({
                     ...syllable,
                     sectionIndex,
@@ -21,10 +28,18 @@ export const useSongPlayer = (songMap: SongMap) => {
                 }))
             )
         ), [songMap]);
-    
+
     const lastSyllable = allSyllables[allSyllables.length - 1];
 
     useEffect(() => {
+        // Exit early if disabled
+        if (!enabled) {
+            setIsPlaying(false);
+            setElapsed(0);
+            setActiveLineIndex(-1);
+            setActiveSyllableIndex(-1);
+            return;
+        }
         const startPerformance = () => {
             startTimeRef.current = performance.now();
             setIsPlaying(true);
@@ -68,7 +83,7 @@ export const useSongPlayer = (songMap: SongMap) => {
             }
             setIsPlaying(false);
         };
-    }, [songMap, allSyllables, lastSyllable]);
+    }, [songMap, allSyllables, lastSyllable, enabled]);
 
     return { isPlaying, elapsed, activeLineIndex, activeSyllableIndex };
 };
