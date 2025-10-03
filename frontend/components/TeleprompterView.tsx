@@ -18,7 +18,8 @@ interface TeleprompterViewProps {
 
 const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap, transpose, capo, diagramVisibility, onToggleDiagram, jobId }) => {
     // Only use demo mode (useSongPlayer) when there's no jobId
-    const demoPlayer = useSongPlayer(songMap);
+    // Pass enabled=false when jobId is present to stop unnecessary animation frames
+    const demoPlayer = useSongPlayer(songMap, !jobId);
     const lyricsContainerRef = useRef<HTMLDivElement>(null);
     const lineRefs = useRef<(HTMLDivElement | null)[]>([]);
     const viewportRef = useRef<HTMLDivElement>(null);
