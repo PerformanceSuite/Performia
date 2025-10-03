@@ -64,11 +64,22 @@ dist/
 .env
 .env.local
 .env.*.local
+.env.development
+.env.production
+
+# Vite
+.vite/
+dist/
+
+# Backend outputs
+backend/output/*/
+backend/output/*.db
 
 # Misc
 *.bak
 *.tmp
 .state/
+viztrtr-config.json
 
 # DevAssist Session Management
 .sessions/*.log
