@@ -10,6 +10,7 @@ import SongMapDemo from './components/SongMapDemo';
 import { SoundwaveIcon } from './components/icons/Icons';
 import { libraryService } from './services/libraryService';
 import { useSongMapUpload } from './hooks/useSongMapUpload';
+import { useKeyboardShortcuts, createDefaultShortcuts } from './hooks/useKeyboardShortcuts';
 
 const App: React.FC = () => {
     const [songMap, setSongMap] = useState<SongMap>(initialSongMap);
@@ -29,9 +30,43 @@ const App: React.FC = () => {
     const [capo, setCapo] = useState(0);
     const [diagramVisibility, setDiagramVisibility] = useState<{ [key: string]: boolean }>({});
 
+    // Accessibility settings
+    const [highContrastMode, setHighContrastMode] = useState(false);
+    const [reducedMotion, setReducedMotion] = useState(false);
+
     useEffect(() => {
         document.documentElement.style.setProperty('--base-font-size', `${3.0 * (fontSize / 100)}rem`);
     }, [fontSize]);
+
+    // Apply accessibility modes to document
+    useEffect(() => {
+        if (highContrastMode) {
+            document.documentElement.classList.add('high-contrast');
+        } else {
+            document.documentElement.classList.remove('high-contrast');
+        }
+    }, [highContrastMode]);
+
+    useEffect(() => {
+        if (reducedMotion) {
+            document.documentElement.classList.add('reduced-motion');
+        } else {
+            document.documentElement.classList.remove('reduced-motion');
+        }
+    }, [reducedMotion]);
+
+    // Detect system preference for reduced motion
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        setReducedMotion(mediaQuery.matches);
+
+        const handleChange = (e: MediaQueryListEvent) => {
+            setReducedMotion(e.matches);
+        };
+
+        mediaQuery.addEventListener('change', handleChange);
+        return () => mediaQuery.removeEventListener('change', handleChange);
+    }, []);
 
     // Initialize library with demo song on first load
     useEffect(() => {
@@ -103,6 +138,56 @@ const App: React.FC = () => {
         if (chordDisplay === 'off') classes += ' hide-chords';
         return classes;
     }, [chordDisplay]);
+
+    // Keyboard shortcuts handlers
+    const handleFontIncrease = useCallback(() => {
+        setFontSize(prev => Math.min(prev + 10, 200));
+    }, []);
+
+    const handleFontDecrease = useCallback(() => {
+        setFontSize(prev => Math.max(prev - 10, 50));
+    }, []);
+
+    const handleTransposeUp = useCallback(() => {
+        setTranspose(prev => Math.min(prev + 1, 11));
+    }, []);
+
+    const handleTransposeDown = useCallback(() => {
+        setTranspose(prev => Math.max(prev - 1, -11));
+    }, []);
+
+    const handleToggleFullscreen = useCallback(() => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }, []);
+
+    const handleOpenSettings = useCallback(() => {
+        setIsSettingsOpen(true);
+    }, []);
+
+    const handleEscape = useCallback(() => {
+        if (isSettingsOpen) {
+            setIsSettingsOpen(false);
+        } else if (showUploadUI) {
+            setShowUploadUI(false);
+        }
+    }, [isSettingsOpen, showUploadUI]);
+
+    // Set up keyboard shortcuts
+    const shortcuts = useMemo(() => createDefaultShortcuts({
+        onFontIncrease: handleFontIncrease,
+        onFontDecrease: handleFontDecrease,
+        onTransposeUp: handleTransposeUp,
+        onTransposeDown: handleTransposeDown,
+        onToggleFullscreen: handleToggleFullscreen,
+        onOpenSettings: handleOpenSettings,
+        onEscape: handleEscape,
+    }), [handleFontIncrease, handleFontDecrease, handleTransposeUp, handleTransposeDown, handleToggleFullscreen, handleOpenSettings, handleEscape]);
+
+    useKeyboardShortcuts(shortcuts, true);
 
     return (
         <div className={appContainerClasses}>
@@ -245,7 +330,7 @@ const App: React.FC = () => {
                 </div>
             </footer>
 
-            <SettingsPanel 
+            <SettingsPanel
                 isOpen={isSettingsOpen}
                 onClose={() => setIsSettingsOpen(false)}
                 chordDisplay={chordDisplay}
@@ -258,6 +343,10 @@ const App: React.FC = () => {
                 onCapoChange={setCapo}
                 currentSong={songMap}
                 onSongSelect={handleSongSelect}
+                highContrastMode={highContrastMode}
+                onHighContrastModeChange={setHighContrastMode}
+                reducedMotion={reducedMotion}
+                onReducedMotionChange={setReducedMotion}
             />
         </div>
     );

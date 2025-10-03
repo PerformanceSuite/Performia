@@ -16,12 +16,18 @@ interface SettingsPanelProps {
     onCapoChange: (value: number) => void;
     currentSong?: SongMap;
     onSongSelect: (songMap: SongMap, jobId?: string) => void;
+    highContrastMode: boolean;
+    onHighContrastModeChange: (enabled: boolean) => void;
+    reducedMotion: boolean;
+    onReducedMotionChange: (enabled: boolean) => void;
 }
 
 const SettingsPanel: React.FC<SettingsPanelProps> = ({
     isOpen, onClose, chordDisplay, onChordDisplayChange,
     fontSize, onFontSizeChange, transpose, onTransposeChange,
-    capo, onCapoChange, currentSong, onSongSelect
+    capo, onCapoChange, currentSong, onSongSelect,
+    highContrastMode, onHighContrastModeChange,
+    reducedMotion, onReducedMotionChange
 }) => {
     const [activeTab, setActiveTab] = useState<'now-playing' | 'library' | 'ai-band'>('now-playing');
     if (!isOpen) {
@@ -154,9 +160,45 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
                                     </div>
                                 </div>
                             </div>
+
+                            {/* ACCESSIBILITY CONTROLS */}
+                            <div className="settings-section">
+                                <h3 className="settings-section-title">♿ Accessibility</h3>
+
+                                <div className="settings-row">
+                                    <span className="settings-label">High Contrast Mode</span>
+                                    <label className="toggle-switch">
+                                        <input
+                                            type="checkbox"
+                                            checked={highContrastMode}
+                                            onChange={(e) => onHighContrastModeChange(e.target.checked)}
+                                            aria-label="Toggle high contrast mode"
+                                        />
+                                        <span className="toggle-slider"></span>
+                                    </label>
+                                </div>
+
+                                <div className="settings-row">
+                                    <span className="settings-label">Reduced Motion</span>
+                                    <label className="toggle-switch">
+                                        <input
+                                            type="checkbox"
+                                            checked={reducedMotion}
+                                            onChange={(e) => onReducedMotionChange(e.target.checked)}
+                                            aria-label="Toggle reduced motion mode"
+                                        />
+                                        <span className="toggle-slider"></span>
+                                    </label>
+                                </div>
+
+                                <div className="mt-2 text-xs text-gray-400">
+                                    <p>High contrast improves readability in bright conditions.</p>
+                                    <p className="mt-1">Reduced motion minimizes animations for comfort.</p>
+                                </div>
+                            </div>
                         </div>
                     )}
-                    
+
                     {activeTab === 'library' && (
                         <LibraryView 
                             currentSong={currentSong}

@@ -445,3 +445,156 @@ input[type=range]::-webkit-slider-runnable-track {
         margin-right: 0.3ch;
     }
 }
+
+/* ===================================
+   ACCESSIBILITY MODES
+   =================================== */
+
+/* High Contrast Mode */
+.high-contrast {
+    --text-primary: #FFFFFF;
+    --text-secondary: #000000;
+    --background-primary: #000000;
+    --background-secondary: #FFFFFF;
+    --accent-color: #FFFF00;
+}
+
+.high-contrast body {
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+}
+
+.high-contrast .syllable {
+    color: var(--text-secondary) !important;
+}
+
+.high-contrast .syllable.sung {
+    color: var(--text-primary) !important;
+}
+
+.high-contrast .active-word .syllable {
+    color: var(--text-primary) !important;
+}
+
+.high-contrast .syllable-wipe {
+    color: var(--accent-color) !important;
+}
+
+.high-contrast .chord {
+    color: var(--accent-color) !important;
+}
+
+.high-contrast .active-line .chord {
+    color: var(--text-primary) !important;
+}
+
+.high-contrast .active-word .chord {
+    color: var(--accent-color) !important;
+}
+
+.high-contrast .lyric-line {
+    border: 2px solid transparent;
+}
+
+.high-contrast .active-line {
+    border-color: var(--accent-color) !important;
+    background-color: rgba(255, 255, 0, 0.1);
+}
+
+.high-contrast .bg-gray-900 {
+    background-color: #000000 !important;
+}
+
+.high-contrast .text-gray-400,
+.high-contrast .text-gray-300 {
+    color: #FFFFFF !important;
+}
+
+.high-contrast .border-gray-700,
+.high-contrast .border-gray-500 {
+    border-color: #FFFFFF !important;
+}
+
+/* Reduced Motion Mode */
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+.reduced-motion .syllable-wipe {
+    transition: none !important;
+}
+
+.reduced-motion .syllable-progress-fill {
+    transition: none !important;
+}
+
+.reduced-motion .lyric-line {
+    transition: none !important;
+}
+
+.reduced-motion [ref="lyricsContainerRef"] {
+    transition: none !important;
+}
+
+/* Toggle Switch Styles for Settings */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #374151;
+    transition: 0.3s;
+    border-radius: 34px;
+    border: 2px solid #4b5563;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: #00FFFF;
+    border-color: #00FFFF;
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
+.toggle-switch input:focus + .toggle-slider {
+    box-shadow: 0 0 1px #00FFFF;
+}
+
+/* Reduced motion for toggle */
+.reduced-motion .toggle-slider,
+.reduced-motion .toggle-slider:before {
+    transition: none !important;
+}
