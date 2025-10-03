@@ -116,7 +116,7 @@ export class SongMapApiError extends Error {
 export class SongMapApiClient {
     private baseUrl: string;
 
-    constructor(baseUrl: string = 'http://localhost:3002') {
+    constructor(baseUrl: string = import.meta.env.VITE_API_URL || 'http://localhost:3002') {
         this.baseUrl = baseUrl;
     }
 

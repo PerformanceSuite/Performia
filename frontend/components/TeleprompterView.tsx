@@ -42,7 +42,15 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
     // Initialize audio URL when jobId is available
     useEffect(() => {
         if (jobId) {
-            setAudioUrl(`http://localhost:3002/api/audio/${jobId}/original`);
+            // Validate jobId format (alphanumeric and hyphens only)
+            if (!/^[a-zA-Z0-9-]+$/.test(jobId)) {
+                console.error('Invalid jobId format:', jobId);
+                setShowAudioControls(false);
+                return;
+            }
+
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3002';
+            setAudioUrl(`${apiUrl}/api/audio/${jobId}/original`);
             setShowAudioControls(true);
         } else {
             // For demo mode, still show controls but without audio URL
