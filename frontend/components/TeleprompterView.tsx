@@ -28,6 +28,7 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
     const [audioUrl, setAudioUrl] = useState<string>('');
     const [isAudioPlaying, setIsAudioPlaying] = useState(false);
     const [showAudioControls, setShowAudioControls] = useState(false);
+    const [audioError, setAudioError] = useState<string | null>(null);
 
     // Use demo player values only when no audio is available
     const activeLineIndex = jobId ? -1 : demoPlayer.activeLineIndex;
@@ -88,6 +89,12 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
 
     const handleStemChange = useCallback((url: string, stemType: StemType) => {
         setAudioUrl(url);
+        setAudioError(null);
+    }, []);
+
+    const handleAudioError = useCallback((error: string) => {
+        setAudioError(error);
+        console.error('Audio playback error:', error);
     }, []);
 
     // Auto-center active line using requestAnimationFrame for smooth 60fps
@@ -190,6 +197,7 @@ const TeleprompterView: React.FC<TeleprompterViewProps> = React.memo(({ songMap,
                         audioUrl={audioUrl}
                         onTimeUpdate={handleAudioTimeUpdate}
                         onPlayStateChange={setIsAudioPlaying}
+                        onError={handleAudioError}
                     />
                 </div>
             ) : (
