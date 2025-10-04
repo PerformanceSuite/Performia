@@ -21,22 +21,47 @@ class KnowledgeBase:
         """
         Ingest all markdown files from knowledge base.
         Uses cached index if available and up-to-date.
+        Auto-rebuilds if any source files are newer than cache.
         """
         cache_path = Path(cache_file)
 
         # Check if cache exists and is valid
         if cache_path.exists():
             try:
+                # Get cache modification time
+                cache_mtime = cache_path.stat().st_mtime
+
+                # Check if any knowledge base files are newer than cache
+                md_files = list(self.knowledge_dir.rglob("*.md"))
+                md_files = [f for f in md_files if not f.is_symlink()]
+
+                cache_is_stale = False
+                for md_file in md_files:
+                    if md_file.stat().st_mtime > cache_mtime:
+                        print(f"🔄 Cache is stale (newer file: {md_file.name})")
+                        cache_is_stale = True
+                        break
+
+                # Also check if number of files changed
                 with open(cache_path, 'rb') as f:
                     cached_data = pickle.load(f)
+                    if len(cached_data['documents']) != len(md_files):
+                        print(f"🔄 Cache is stale (file count changed: {len(cached_data['documents'])} → {len(md_files)})")
+                        cache_is_stale = True
+
+                if not cache_is_stale:
+                    # Cache is valid, use it
                     self.documents = cached_data['documents']
                     self.index = cached_data['index']
-                print("📚 Loaded knowledge base from cache")
-                print(f"   - {len(self.documents)} documents indexed")
-                print(f"   - {len(self.index)} unique terms\n")
-                return
+                    print("📚 Loaded knowledge base from cache (up-to-date)")
+                    print(f"   - {len(self.documents)} documents indexed")
+                    print(f"   - {len(self.index)} unique terms\n")
+                    return
+                else:
+                    print("   Rebuilding index...\n")
+
             except Exception as e:
-                print(f"⚠️  Cache load failed: {e}, re-ingesting...")
+                print(f"⚠️  Cache validation failed: {e}, re-ingesting...")
 
         print("📚 Ingesting knowledge base...")
 
