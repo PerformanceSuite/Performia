@@ -32,9 +32,27 @@ def test_audio_file() -> Path:
 @pytest.fixture
 def cleanup_test_outputs():
     """Cleanup test outputs after tests."""
-    yield
-    # Cleanup uploaded files and outputs after test
-    # Note: In production, you might want to keep these for debugging
+    test_job_ids = []
+
+    def register_job(job_id: str):
+        """Register a job ID for cleanup after test."""
+        test_job_ids.append(job_id)
+        return job_id
+
+    yield register_job
+
+    # Cleanup after test completes
+    for job_id in test_job_ids:
+        # Remove job output directory
+        job_dir = OUTPUT_DIR / job_id
+        if job_dir.exists():
+            shutil.rmtree(job_dir, ignore_errors=True)
+
+        # Remove uploaded audio files
+        for ext in ['.wav', '.mp3', '.m4a', '.flac']:
+            upload_file = UPLOAD_DIR / f"{job_id}{ext}"
+            if upload_file.exists():
+                upload_file.unlink()
 
 
 @pytest.mark.asyncio
@@ -61,6 +79,7 @@ async def test_upload_audio_creates_job(test_audio_file: Path, cleanup_test_outp
 
         # Verify job_id format (8 character UUID)
         job_id = data["job_id"]
+        cleanup_test_outputs(job_id)  # Register for cleanup
         assert len(job_id) == 8
         assert job_id.replace("-", "").isalnum()
 
@@ -143,6 +162,7 @@ async def test_job_status_endpoint(test_audio_file: Path, cleanup_test_outputs):
             )
 
         job_id = upload_response.json()["job_id"]
+        cleanup_test_outputs(job_id)  # Register for cleanup
 
         # Check status
         status_response = await client.get(f"/api/status/{job_id}")
@@ -175,6 +195,41 @@ async def test_upload_without_file_returns_400():
     ) as client:
         response = await client.post("/api/analyze")
         assert response.status_code == 422  # FastAPI validation error
+
+
+@pytest.mark.asyncio
+async def test_songmap_retrieval_for_nonexistent_job():
+    """Test that retrieving Song Map for non-existent job returns 404."""
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url="http://test"
+    ) as client:
+        response = await client.get("/api/songmap/nonexist")
+        assert response.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_audio_retrieval_for_nonexistent_job():
+    """Test that retrieving audio for non-existent job returns 404."""
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url="http://test"
+    ) as client:
+        response = await client.get("/api/audio/nonexist/original")
+        assert response.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_invalid_stem_type_returns_error():
+    """Test that requesting invalid stem type returns 400 error."""
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url="http://test"
+    ) as client:
+        # Try to get invalid stem type
+        response = await client.get("/api/audio/somejob/invalid-stem")
+        # Should return 400 or 404 depending on implementation
+        assert response.status_code in [400, 404]
 
 
 @pytest.mark.asyncio
