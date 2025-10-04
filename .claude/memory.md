@@ -1,5 +1,28 @@
 # Performia Project Memory
 
+## 🚀 Session Quick Start
+
+**When starting a new Claude session, run:** `/start-session`
+
+**When ending a Claude session, run:** `/end-session`
+
+### ⚠️ CRITICAL: Custom Slash Commands Configuration
+- **Location**: `~/.claude/commands/` (NOT `~/.config/claude/commands/`)
+- **Format**: Markdown `.md` files
+- **Scope**: User-wide (works across all projects)
+
+---
+
+## 📝 Current Session Context
+<!-- Updated by /exit-and-clean - DO NOT EDIT MANUALLY -->
+
+**Last Session**: October 3, 2025
+**Work Completed**: Audio/Demo Mode Implementation - All tests passing
+**Current Branch**: main
+**Next Priority**: TBD - run /start to determine
+
+---
+
 ## Project Identity
 **Name**: Performia
 **Purpose**: Revolutionary music performance system with AI-powered accompaniment and real-time Living Chart teleprompter
@@ -315,5 +338,5 @@ cat .claude/SESSION_SUMMARY.md
 - Document all environment variables
 
 ---
-*Last Updated*: October 3, 2025 - Audio/Demo Mode Complete ✅
+*Last Updated*: October 03, 2025
 *Next Review*: Start of next development session
