@@ -89,3 +89,9 @@ viztrtr-config.json
 .sessions/*.log
 .sessions/*.tmp
 .sessions/terminal_sessions/
+
+# Session Management v4.0
+.claude/logs/sessions/
+/tmp/test-output.txt
+*.tmp
+*.log
