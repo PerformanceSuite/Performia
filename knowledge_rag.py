@@ -7,6 +7,8 @@ Ingests documentation and provides query interface
 from docling.document_converter import DocumentConverter
 from pathlib import Path
 import json
+import pickle
+import os
 
 class KnowledgeBase:
     def __init__(self, knowledge_dir="knowledge-base"):
@@ -15,11 +17,32 @@ class KnowledgeBase:
         self.documents = {}
         self.index = {}
 
-    def ingest_all(self):
-        """Ingest all markdown files from knowledge base."""
+    def ingest_all(self, cache_file=".knowledge_cache.pkl"):
+        """
+        Ingest all markdown files from knowledge base.
+        Uses cached index if available and up-to-date.
+        """
+        cache_path = Path(cache_file)
+
+        # Check if cache exists and is valid
+        if cache_path.exists():
+            try:
+                with open(cache_path, 'rb') as f:
+                    cached_data = pickle.load(f)
+                    self.documents = cached_data['documents']
+                    self.index = cached_data['index']
+                print("📚 Loaded knowledge base from cache")
+                print(f"   - {len(self.documents)} documents indexed")
+                print(f"   - {len(self.index)} unique terms\n")
+                return
+            except Exception as e:
+                print(f"⚠️  Cache load failed: {e}, re-ingesting...")
+
         print("📚 Ingesting knowledge base...")
 
         md_files = list(self.knowledge_dir.rglob("*.md"))
+        # Filter out symlinks to avoid duplicates
+        md_files = [f for f in md_files if not f.is_symlink()]
         print(f"   Found {len(md_files)} documents")
 
         for md_file in md_files:
@@ -49,6 +72,14 @@ class KnowledgeBase:
         print(f"\n✅ Ingestion complete!")
         print(f"   - {len(self.documents)} documents indexed")
         print(f"   - {len(self.index)} unique terms\n")
+
+        # Save cache for faster subsequent loads
+        try:
+            with open(cache_file, 'wb') as f:
+                pickle.dump({'documents': self.documents, 'index': self.index}, f)
+            print(f"💾 Cached knowledge base to {cache_file}\n")
+        except Exception as e:
+            print(f"⚠️  Failed to cache: {e}\n")
 
     def query(self, search_terms):
         """Query the knowledge base for relevant documents."""
