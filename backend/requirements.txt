@@ -21,6 +21,13 @@ python-multipart>=0.0.6
 aiofiles>=23.0.0
 demucs>=4.0.0
 jsonschema>=4.0.0
-pytest>=7.4.0
-pytest-asyncio>=0.21.0
-httpx>=0.25.0
+
+# RAG Knowledge Base System
+# Note: Adds ~2-3GB of dependencies (transformers, accelerate, huggingface_hub, torch models)
+# Used for AI agent knowledge retrieval to prevent recurring mistakes
+docling==2.55.1
+
+# Testing dependencies
+httpx>=0.29.0
+pytest>=8.0.0
+pytest-asyncio>=0.24.0

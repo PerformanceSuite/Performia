@@ -60,6 +60,10 @@ dist/
 .cache/
 *.cache
 
+# Knowledge base cache
+.knowledge_cache.pkl
+knowledge_cache.json
+
 # Environment
 .env
 .env.local

@@ -1,28 +1,5 @@
 # Performia Project Memory
 
-## 🚀 Session Quick Start
-
-**When starting a new Claude session, run:** `/start-session`
-
-**When ending a Claude session, run:** `/end-session`
-
-### ⚠️ CRITICAL: Custom Slash Commands Configuration
-- **Location**: `~/.claude/commands/` (NOT `~/.config/claude/commands/`)
-- **Format**: Markdown `.md` files
-- **Scope**: User-wide (works across all projects)
-
----
-
-## 📝 Current Session Context
-<!-- Updated by /exit-and-clean - DO NOT EDIT MANUALLY -->
-
-**Last Session**: October 3, 2025
-**Work Completed**: Audio/Demo Mode Implementation - All tests passing
-**Current Branch**: main
-**Next Priority**: TBD - run /start to determine
-
----
-
 ## Project Identity
 **Name**: Performia
 **Purpose**: Revolutionary music performance system with AI-powered accompaniment and real-time Living Chart teleprompter
@@ -69,30 +46,50 @@ Performia/
 └── tests/                 # All test suites
 ```
 
-## Current Status (October 3, 2025)
+## Current Status (October 4, 2025)
 
-### ✅ COMPLETED: Audio/Demo Mode Implementation
-**Sprint**: October 3, 2025
-**Status**: All PRs merged to main, tests passing, production-ready
+### ✅ COMPLETED: Session Management Fix & Knowledge Management Plan
+**Sprint**: October 4, 2025 (Session 2)
+**Status**: Fixed `/end-session` cleanup bug, documented knowledge management strategy
 
-**Implemented Features:**
-1. Backend API integration (FastAPI on port 3002)
-2. Dual-mode teleprompter (demo simulation + real audio playback)
-3. Demo player performance optimization (conditional animation frames)
-4. Comprehensive error handling with retry functionality
-5. Security (jobId validation prevents path traversal)
-6. 16 unit tests with 100% pass rate
+### ✅ COMPLETED: E2E Testing & AI Agent Music Knowledge Base
+**Sprint**: October 4, 2025 (Session 1)
+**Status**: Backend E2E tests complete, AI agents equipped with music domain expertise
+
+**Session Work Completed:**
+
+1. **Backend E2E Testing Infrastructure** (PR #12 - MERGED)
+   - Created comprehensive E2E test suite for FastAPI backend
+   - 7 passing tests covering upload, status, Song Map retrieval, error cases
+   - Implemented proper cleanup fixtures with job ID registration
+   - Added test dependencies: pytest, pytest-asyncio, httpx
+   - Updated pytest.ini with 'slow' marker for pipeline tests
+   - Code review score: 10/10 ✅
+
+2. **AI Agent Music Knowledge Base** (NEW)
+   - Created `.claude/MUSIC_AUDIO_KNOWLEDGE.md`
+   - Comprehensive music theory fundamentals for AI development agents
+   - Librosa best practices with optimized parameters
+   - Library selection guidelines (Librosa vs Essentia vs Music21 vs Madmom)
+   - Common pitfalls and solutions (CQT vs STFT, HPSS, etc.)
+   - Performance benchmarks and accuracy targets
+   - Agent guidelines and checklists for audio code development
+   - Purpose: Enable AI agents (frontend-dev, audio-pipeline-dev, voice-control) to make better technical decisions
 
 **Test Results:**
-```
-✓ tests/useSongPlayer.test.ts (8 tests) 11ms
-✓ tests/TeleprompterView.test.tsx (8 tests) 36ms
+```bash
+# Frontend tests (previous session)
+✓ tests/useSongPlayer.test.ts (8 tests)
+✓ tests/TeleprompterView.test.tsx (8 tests)
+Tests: 16 passed (16) ✅
 
-Test Files  2 passed (2)
-Tests  16 passed (16) ✅
+# Backend E2E tests (new)
+✓ backend/tests/e2e/test_api_upload.py
+Tests: 7 passed, 2 skipped ✅
 ```
 
 ### Recent Commits (Main Branch)
+- ✅ Squash merge PR #12: E2E tests for backend API (commit 404539a)
 - ✅ PR #11: Merge ui-clean into main (consolidated all improvements)
 - ✅ PR #10: Unit tests for mode switching
 - ✅ PR #9: Audio error handling
@@ -113,8 +110,10 @@ Tests  16 passed (16) ✅
 
 ### Configuration & Documentation
 - `.claude/CLAUDE.md` - Project context for agents
-- `.claude/SESSION_SUMMARY.md` - Latest session details (Oct 3, 2025)
+- `.claude/MUSIC_AUDIO_KNOWLEDGE.md` - **NEW**: Music & audio domain knowledge for AI agents
+- `.claude/SESSION_SUMMARY.md` - Latest session details
 - `.claude/memory.md` - This file
+- `.claude/cleanup.sh` - **NEW**: Session cleanup script
 - `.gitignore` - Updated with build artifacts
 
 ### Frontend Core
@@ -129,6 +128,8 @@ Tests  16 passed (16) ✅
 - `frontend/tests/TeleprompterView.test.tsx` - Component tests (8 tests)
 - `frontend/tests/useSongPlayer.test.ts` - Hook tests (8 tests)
 - `frontend/vitest.config.ts` - Test configuration
+- `backend/tests/e2e/test_api_upload.py` - **NEW**: Backend E2E tests (7 tests)
+- `backend/pytest.ini` - Pytest configuration with markers
 
 ### Backend Core
 - `backend/src/services/api/main.py` - FastAPI server
@@ -273,22 +274,28 @@ cat .claude/SESSION_SUMMARY.md
 
 ### Potential Next Steps
 
-#### Option 1: Integration Testing
-- Add end-to-end tests for full audio pipeline
-- Test actual Song Map generation from audio file
-- Verify stem separation quality
-
-#### Option 2: Performance Profiling
+#### Option 1: Performance Profiling (RECOMMENDED NEXT)
 - Profile TeleprompterView with large Song Maps (1000+ lines)
 - Optimize virtual scrolling if needed
 - Add performance monitoring/telemetry
 
-#### Option 3: Accessibility Enhancements
+#### Option 2: JUCE Audio Engine Integration
+- Begin Phase 1 implementation (Issue #2)
+- C++ audio engine for sub-10ms latency
+- Real-time audio processing for live performance
+
+#### Option 3: Audio Pipeline Optimization
+- Apply MUSIC_AUDIO_KNOWLEDGE.md best practices to existing services
+- Improve chord detection accuracy using CQT and HPSS
+- Optimize beat tracking with advanced librosa parameters
+- Benchmark accuracy improvements
+
+#### Option 4: Accessibility Enhancements
 - Screen reader support for karaoke mode
 - Keyboard navigation improvements
 - High contrast mode
 
-#### Option 4: Feature Enhancements
+#### Option 5: Feature Enhancements
 - Additional stem options (drums, bass)
 - Offline mode support
 - Collaborative editing features
@@ -303,12 +310,14 @@ cat .claude/SESSION_SUMMARY.md
 | Metric | Score | Status |
 |--------|-------|--------|
 | **Test Coverage** | 100% critical paths | ✅ |
-| **Tests Passing** | 16/16 (100%) | ✅ |
-| **Code Review Score** | 9.5/10 | ✅ |
-| **Security** | Path traversal prevention | ✅ |
+| **Frontend Tests** | 16/16 passing (100%) | ✅ |
+| **Backend E2E Tests** | 7/7 passing (100%) | ✅ |
+| **Code Review Score** | 10/10 (PR #12) | ✅ |
+| **Security** | Path traversal prevention + validation | ✅ |
 | **Performance** | Optimized (conditional frames) | ✅ |
 | **Error Handling** | Comprehensive with retry | ✅ |
-| **Documentation** | Complete | ✅ |
+| **Documentation** | Complete + AI agent knowledge base | ✅ |
+| **AI Agent Expertise** | Music/audio domain knowledge | ✅ NEW |
 
 ## Voice Integration (Planned)
 - OpenAI Whisper API for speech recognition
@@ -316,7 +325,74 @@ cat .claude/SESSION_SUMMARY.md
 - Voice control during live performance
 - Voice input for Song Map editing
 
+## Knowledge Management & Learning Systems (Oct 4, 2025)
+
+### Current Problem
+AI agents (Claude) make recurring mistakes despite documentation in memory.md:
+- **Example 1**: Looked in wrong directory (`~/.config/claude/commands/` instead of `~/.claude/commands/`)
+- **Example 2**: Created cleanup script but didn't execute it during `/end-session`
+- **Root cause**: Memory alone insufficient for preventing repeated errors
+
+### Proposed Solutions
+
+#### 1. Docling Integration (PRIMARY)
+- **Purpose**: RAG system for project knowledge and technical documentation
+- **What to ingest**:
+  - Official Claude Code documentation (paths, commands, workflows)
+  - Audio/music domain knowledge (Librosa, Essentia, Music21, audio DSP)
+  - Project-specific patterns and best practices
+  - Common mistakes and their solutions
+- **Benefits**:
+  - Authoritative source of truth
+  - Searchable knowledge base
+  - Prevents guessing at paths/configurations
+  - Enables AI agents to access deep technical knowledge
+
+#### 2. Multi-Source Learning Repository
+- **Reference**: https://github.com/Marktechpost/AI-Tutorial-Codes-Included
+- **Resources needed**:
+  - Librosa tutorials and best practices
+  - Audio signal processing fundamentals
+  - Music information retrieval (MIR) techniques
+  - Real-world code examples
+  - Common pitfalls and solutions
+
+#### 3. Documentation Structure
+- **Created files**:
+  - `~/.claude/COMMON_MISTAKES.md` - Recurring errors and prevention
+  - `.claude/MUSIC_AUDIO_KNOWLEDGE.md` - Audio domain expertise for agents
+  - `.claude/memory.md` - Project status and session history
+  - `.claude/SESSION_SUMMARY.md` - Per-session details
+- **Needed**:
+  - `.claude/CLAUDE_CODE_REFERENCE.md` - Authoritative paths/commands (from docling)
+  - `.claude/LEARNING_RESOURCES.md` - External tutorials and references
+  - Docling-powered RAG for searchable knowledge
+
+### Action Items
+1. ✅ Document session management bug in memory.md and COMMON_MISTAKES.md
+2. ✅ Update `/end-session` command with explicit execution requirement
+3. ⏳ Set up docling to ingest Claude Code official documentation
+4. ⏳ Ingest audio/music learning resources (Librosa, etc.)
+5. ⏳ Create comprehensive knowledge base accessible to all AI agents
+6. ⏳ Test that docling RAG prevents directory/path confusion
+7. ⏳ Review and finalize knowledge management strategy
+
+### Success Criteria
+- AI agents can query docling for correct Claude Code paths
+- Audio pipeline agents have access to best-practice Librosa parameters
+- No repeated mistakes from previous sessions
+- Knowledge persists across sessions and projects
+
 ## Important Reminders
+
+### Session Management
+- **START SESSION**: Run `/start-session` to get current status and next steps
+- **END SESSION**: Run `/end-session` which:
+  1. Updates `.claude/memory.md` with session work
+  2. Creates `.claude/cleanup.sh` if missing (auto-generated based on project type)
+  3. **MUST execute `bash .claude/cleanup.sh`** (removes cache, temp files, updates timestamps)
+  4. Confirms cleanup completion
+- **CRITICAL BUG FIX (Oct 4, 2025)**: `/end-session` was creating cleanup script but NOT running it - this is now fixed and documented in global command
 
 ### Code Standards
 - Always run tests after changes: `npm test`
@@ -338,5 +414,11 @@ cat .claude/SESSION_SUMMARY.md
 - Document all environment variables
 
 ---
-*Last Updated*: October 03, 2025
+*Last Updated*: October 04, 2025
 *Next Review*: Start of next development session
+*Session 1 Duration*: ~2 hours - Backend tests + music knowledge base
+*Session 2 Duration*: ~1 hour - Session management fix + knowledge plan
+*Major Achievements*:
+- Backend test infrastructure (10/10 quality) + AI agent music domain expertise
+- Fixed `/end-session` cleanup execution bug
+- Documented knowledge management strategy (docling RAG system)
