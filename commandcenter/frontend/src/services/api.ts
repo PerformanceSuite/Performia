@@ -46,86 +46,86 @@ class ApiClient {
 
   // Repositories
   async getRepositories(): Promise<Repository[]> {
-    const response: AxiosResponse<Repository[]> = await this.client.get('/api/repositories');
+    const response: AxiosResponse<Repository[]> = await this.client.get('/api/v1/repositories');
     return response.data;
   }
 
   async getRepository(id: string): Promise<Repository> {
-    const response: AxiosResponse<Repository> = await this.client.get(`/api/repositories/${id}`);
+    const response: AxiosResponse<Repository> = await this.client.get(`/api/v1/repositories/${id}`);
     return response.data;
   }
 
   async createRepository(data: Partial<Repository>): Promise<Repository> {
-    const response: AxiosResponse<Repository> = await this.client.post('/api/repositories', data);
+    const response: AxiosResponse<Repository> = await this.client.post('/api/v1/repositories', data);
     return response.data;
   }
 
   async updateRepository(id: string, data: Partial<Repository>): Promise<Repository> {
-    const response: AxiosResponse<Repository> = await this.client.put(`/api/repositories/${id}`, data);
+    const response: AxiosResponse<Repository> = await this.client.put(`/api/v1/repositories/${id}`, data);
     return response.data;
   }
 
   async deleteRepository(id: string): Promise<void> {
-    await this.client.delete(`/api/repositories/${id}`);
+    await this.client.delete(`/api/v1/repositories/${id}`);
   }
 
   async syncRepository(id: string): Promise<void> {
-    await this.client.post(`/api/repositories/${id}/sync`);
+    await this.client.post(`/api/v1/repositories/${id}/sync`);
   }
 
   // Technologies
   async getTechnologies(): Promise<Technology[]> {
-    const response: AxiosResponse<Technology[]> = await this.client.get('/api/technologies');
+    const response: AxiosResponse<Technology[]> = await this.client.get('/api/v1/technologies');
     return response.data;
   }
 
   async getTechnology(id: string): Promise<Technology> {
-    const response: AxiosResponse<Technology> = await this.client.get(`/api/technologies/${id}`);
+    const response: AxiosResponse<Technology> = await this.client.get(`/api/v1/technologies/${id}`);
     return response.data;
   }
 
   async createTechnology(data: Partial<Technology>): Promise<Technology> {
-    const response: AxiosResponse<Technology> = await this.client.post('/api/technologies', data);
+    const response: AxiosResponse<Technology> = await this.client.post('/api/v1/technologies', data);
     return response.data;
   }
 
   async updateTechnology(id: string, data: Partial<Technology>): Promise<Technology> {
-    const response: AxiosResponse<Technology> = await this.client.put(`/api/technologies/${id}`, data);
+    const response: AxiosResponse<Technology> = await this.client.put(`/api/v1/technologies/${id}`, data);
     return response.data;
   }
 
   async deleteTechnology(id: string): Promise<void> {
-    await this.client.delete(`/api/technologies/${id}`);
+    await this.client.delete(`/api/v1/technologies/${id}`);
   }
 
   // Research
   async getResearchEntries(): Promise<ResearchEntry[]> {
-    const response: AxiosResponse<ResearchEntry[]> = await this.client.get('/api/research');
+    const response: AxiosResponse<ResearchEntry[]> = await this.client.get('/api/v1/research');
     return response.data;
   }
 
   async getResearchEntry(id: string): Promise<ResearchEntry> {
-    const response: AxiosResponse<ResearchEntry> = await this.client.get(`/api/research/${id}`);
+    const response: AxiosResponse<ResearchEntry> = await this.client.get(`/api/v1/research/${id}`);
     return response.data;
   }
 
   async createResearchEntry(data: Partial<ResearchEntry>): Promise<ResearchEntry> {
-    const response: AxiosResponse<ResearchEntry> = await this.client.post('/api/research', data);
+    const response: AxiosResponse<ResearchEntry> = await this.client.post('/api/v1/research', data);
     return response.data;
   }
 
   async updateResearchEntry(id: string, data: Partial<ResearchEntry>): Promise<ResearchEntry> {
-    const response: AxiosResponse<ResearchEntry> = await this.client.put(`/api/research/${id}`, data);
+    const response: AxiosResponse<ResearchEntry> = await this.client.put(`/api/v1/research/${id}`, data);
     return response.data;
   }
 
   async deleteResearchEntry(id: string): Promise<void> {
-    await this.client.delete(`/api/research/${id}`);
+    await this.client.delete(`/api/v1/research/${id}`);
   }
 
   // Knowledge Base
   async queryKnowledge(query: string): Promise<any> {
-    const response = await this.client.post('/api/knowledge/query', { query });
+    const response = await this.client.post('/api/v1/knowledge/query', { query });
     return response.data;
   }
 }
