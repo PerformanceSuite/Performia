@@ -46,35 +46,142 @@ Performia/
 └── tests/                 # All test suites
 ```
 
-## Current Status (October 3, 2025)
+## Current Status (October 5, 2025)
 
-### ✅ COMPLETED: Audio/Demo Mode Implementation
-**Sprint**: October 3, 2025
-**Status**: All PRs merged to main, tests passing, production-ready
+### ✅ COMPLETED: Strategic Research & Implementation Planning
+**Sprint**: October 5, 2025 (Session 5)
+**Status**: Comprehensive research analysis, implementation planning, and agent orchestration design
 
-**Implemented Features:**
-1. Backend API integration (FastAPI on port 3002)
-2. Dual-mode teleprompter (demo simulation + real audio playback)
-3. Demo player performance optimization (conditional animation frames)
-4. Comprehensive error handling with retry functionality
-5. Security (jobId validation prevents path traversal)
-6. 16 unit tests with 100% pass rate
+**Session Work Completed:**
+
+1. **Part 2 Research Analysis** (Interactive/Visual/Social Technologies)
+   - Reviewed comprehensive 337-line strategic report on immersive experiences
+   - Analyzed 10 deep-dive technologies (NVIDIA Audio2Face, MetaHuman, JackTrip, WebTransport, etc.)
+   - Validated 18 production-ready technologies from October 2024-2025
+   - Identified gaps: social gamification, AI creativity tools, content export workflows
+
+2. **Multi-Model Research Agent Orchestration Design**
+   - Designed conservative 3-agent plan (social, AI creativity, content export)
+   - Designed maximum-scale 22-agent plan across 5 AI providers
+   - Model selection strategy: Opus 4.1 (deep analysis), Gemini Flash (breadth), GPT-4 (academic), Sonnet 4.5 (balanced)
+   - Cost analysis: $50 (conservative) vs $330 (comprehensive)
+   - Execution timeline: 3-day parallel research vs 2-3 week sequential
+
+3. **Implementation Plan Creation** (docs/IMPLEMENTATION_PLAN_2025-2026.md)
+   - 955-line comprehensive roadmap (Q4 2025 → 2027)
+   - 3 phases: Q4 2025 validation ($127k), Q1-Q2 2026 production ($785k), 2026+ R&D ($1.1M)
+   - 5 Q4 2025 projects: ASR benchmark, HS-TasNet prototype, Cmajor feasibility, Stable Audio, ByteDance partnership
+   - Team growth plan: 6 → 13 engineers
+   - Total budget: $2,012,200 over 18+ months
+
+4. **Research Prompt Part 2 Creation** (1,606 lines)
+   - Comprehensive research areas: avatars, visualization, multiplayer, VR/AR, social, accessibility
+   - 10 research domains with specific technologies to investigate
+   - Academic literature review strategy (NIME, CHI, SIGGRAPH)
+   - Hands-on testing methodology
+
+5. **Codebase Architecture Analysis**
+   - Keep vs scrap assessment: 65% preserved, 35% strategic deletion
+   - Frontend Living Chart: 90% keep (core IP)
+   - Backend offline analysis: 60% keep (complementary)
+   - Backend real-time foundation: 30% keep (port to C++/JUCE)
+   - Decision: In-place evolution, NOT new repo
+
+6. **Knowledge Base Expansion**
+   - Expanded from 7 docs (1,993 terms) to 11 docs (4,350 terms)
+   - Added JUCE framework (393 lines), music AI 2025 (396 lines), real-time DSP (411 lines), SuperCollider (383 lines)
+   - Auto-rebuild verification: cache invalidation working correctly
+
+**Key Findings:**
+- Part 1 research focused on audio AI (HS-TasNet, ByteDance, ONNX)
+- Part 2 research revealed production-ready avatars, ultra-low-latency networking, browser viability
+- Critical gap: social/community features, AI creativity tools, content export
+- Research validates technical feasibility of real-time AI accompaniment
+
+**Strategic Decisions:**
+- Hybrid research approach: 3 critical agents now, 22 agents if comprehensive scan needed
+- Keep existing codebase, evolve in-place (not new repo)
+- Implementation plan positions Performia as "AI music collaborator" not "karaoke app"
+
+### ✅ COMPLETED: Docling RAG Knowledge Base Implementation
+**Sprint**: October 4, 2025 (Session 3)
+**Status**: Implemented and merged docling RAG system to prevent recurring AI mistakes
+
+**Session Work Completed:**
+
+1. **Docling RAG System** (PR #13 - MERGED into ui-clean)
+   - Installed docling 2.55.1 (~2-3GB dependencies)
+   - Created knowledge-base structure with 7 documents
+   - Implemented `knowledge_rag.py` with caching (pickle-based)
+   - Built verification tests proving RAG prevents both recurring errors
+   - Code review score: 10/10 ✅
+
+2. **Knowledge Base Content**
+   - `knowledge-base/claude-code/` - Claude Code paths, commands, common mistakes
+   - `knowledge-base/audio-dsp/` - Librosa best practices, music theory, audio DSP
+   - `knowledge-base/project/` - Project context (symlinked memory.md)
+   - **Indexed**: 7 documents, 1,993 unique terms
+
+3. **Code Quality Improvements** (from review feedback)
+   - Pinned docling version with size warning in requirements.txt
+   - Replaced duplicate memory.md copy with symlink
+   - Added pickle caching for 10x faster subsequent loads
+   - Updated .gitignore with cache exclusions
 
 **Test Results:**
-```
-✓ tests/useSongPlayer.test.ts (8 tests) 11ms
-✓ tests/TeleprompterView.test.tsx (8 tests) 36ms
-
-Test Files  2 passed (2)
-Tests  16 passed (16) ✅
+```bash
+✓ test_directory_confusion_prevention() - PASSED ✅
+✓ test_end_session_execution() - PASSED ✅
+RAG successfully prevents both recurring mistakes
 ```
 
-### Recent Commits (Main Branch)
+### ✅ COMPLETED: Session Management Fix & Knowledge Management Plan
+**Sprint**: October 4, 2025 (Session 2)
+**Status**: Fixed `/end-session` cleanup bug, documented knowledge management strategy
+
+### ✅ COMPLETED: E2E Testing & AI Agent Music Knowledge Base
+**Sprint**: October 4, 2025 (Session 1)
+**Status**: Backend E2E tests complete, AI agents equipped with music domain expertise
+
+**Session Work Completed:**
+
+1. **Backend E2E Testing Infrastructure** (PR #12 - MERGED)
+   - Created comprehensive E2E test suite for FastAPI backend
+   - 7 passing tests covering upload, status, Song Map retrieval, error cases
+   - Implemented proper cleanup fixtures with job ID registration
+   - Added test dependencies: pytest, pytest-asyncio, httpx
+   - Updated pytest.ini with 'slow' marker for pipeline tests
+   - Code review score: 10/10 ✅
+
+2. **AI Agent Music Knowledge Base** (NEW)
+   - Created `.claude/MUSIC_AUDIO_KNOWLEDGE.md`
+   - Comprehensive music theory fundamentals for AI development agents
+   - Librosa best practices with optimized parameters
+   - Library selection guidelines (Librosa vs Essentia vs Music21 vs Madmom)
+   - Common pitfalls and solutions (CQT vs STFT, HPSS, etc.)
+   - Performance benchmarks and accuracy targets
+   - Agent guidelines and checklists for audio code development
+   - Purpose: Enable AI agents (frontend-dev, audio-pipeline-dev, voice-control) to make better technical decisions
+
+**Test Results:**
+```bash
+# Frontend tests (previous session)
+✓ tests/useSongPlayer.test.ts (8 tests)
+✓ tests/TeleprompterView.test.tsx (8 tests)
+Tests: 16 passed (16) ✅
+
+# Backend E2E tests (new)
+✓ backend/tests/e2e/test_api_upload.py
+Tests: 7 passed, 2 skipped ✅
+```
+
+### Recent Commits
+- ✅ Squash merge PR #13: Docling RAG Knowledge Base (merged to ui-clean branch)
+- ✅ Squash merge PR #12: E2E tests for backend API (commit 404539a, main)
 - ✅ PR #11: Merge ui-clean into main (consolidated all improvements)
 - ✅ PR #10: Unit tests for mode switching
 - ✅ PR #9: Audio error handling
 - ✅ PR #8: Demo player optimization
-- ✅ PR #4: Backend API integration
 
 ### Open Issues
 - Issue #2: Phase 1 JUCE Foundation (separate epic, future work)
@@ -90,8 +197,10 @@ Tests  16 passed (16) ✅
 
 ### Configuration & Documentation
 - `.claude/CLAUDE.md` - Project context for agents
-- `.claude/SESSION_SUMMARY.md` - Latest session details (Oct 3, 2025)
+- `.claude/MUSIC_AUDIO_KNOWLEDGE.md` - **NEW**: Music & audio domain knowledge for AI agents
+- `.claude/SESSION_SUMMARY.md` - Latest session details
 - `.claude/memory.md` - This file
+- `.claude/cleanup.sh` - **NEW**: Session cleanup script
 - `.gitignore` - Updated with build artifacts
 
 ### Frontend Core
@@ -106,6 +215,8 @@ Tests  16 passed (16) ✅
 - `frontend/tests/TeleprompterView.test.tsx` - Component tests (8 tests)
 - `frontend/tests/useSongPlayer.test.ts` - Hook tests (8 tests)
 - `frontend/vitest.config.ts` - Test configuration
+- `backend/tests/e2e/test_api_upload.py` - **NEW**: Backend E2E tests (7 tests)
+- `backend/pytest.ini` - Pytest configuration with markers
 
 ### Backend Core
 - `backend/src/services/api/main.py` - FastAPI server
@@ -240,35 +351,58 @@ VITE_API_URL=https://api.performia.com
 cd /Users/danielconnolly/Projects/Performia
 git status
 git log --oneline -10
-cd frontend && npm test tests/
-```
-
-**Reference Latest Work:**
-```bash
 cat .claude/SESSION_SUMMARY.md
 ```
 
-### Potential Next Steps
+**Review Strategic Documents:**
+```bash
+# Implementation plan
+cat docs/IMPLEMENTATION_PLAN_2025-2026.md
 
-#### Option 1: Integration Testing
-- Add end-to-end tests for full audio pipeline
-- Test actual Song Map generation from audio file
-- Verify stem separation quality
+# Research findings
+cat "docs/Performia's Immersive Experience_ A Strategic Report on Visual, Interactive, and Social Technologies (October 2025).md"
 
-#### Option 2: Performance Profiling
-- Profile TeleprompterView with large Song Maps (1000+ lines)
-- Optimize virtual scrolling if needed
-- Add performance monitoring/telemetry
+# Research prompts
+cat docs/research-prompt-oct-2025.md
+cat docs/research-prompt-part2-interactive-oct-2025.md
+```
 
-#### Option 3: Accessibility Enhancements
-- Screen reader support for karaoke mode
-- Keyboard navigation improvements
-- High contrast mode
+### Immediate Next Steps (RECOMMENDED)
 
-#### Option 4: Feature Enhancements
-- Additional stem options (drums, bass)
-- Offline mode support
-- Collaborative editing features
+#### Option 1: Execute Research Agent Strategy (HIGH PRIORITY)
+**Decision Point from Session 5:**
+- **Plan A (Conservative)**: Launch 3 critical agents ($50 budget)
+  - social-gamification-agent
+  - ai-creativity-agent
+  - content-export-agent
+- **Plan B (Comprehensive)**: Launch 22 agents across 5 providers ($330 budget)
+- **Plan C (Hybrid)**: Start with Plan A, escalate to Plan B if gaps remain
+
+**Action Items:**
+1. Get budget approval ($50 or $330)
+2. Finalize agent task specifications
+3. Launch agents in parallel (single message, multiple Task tools)
+4. Collect outputs over 48-72 hours
+5. Synthesize findings into final implementation plan
+
+#### Option 2: Begin Q4 2025 Projects (After Research Complete)
+Based on implementation plan, start:
+- **Project 1.1**: ASR Benchmark (dataset curation)
+- **Project 1.4**: Stable Audio integration (quick win)
+- **Project 1.5**: ByteDance partnership outreach
+
+#### Option 3: Add Documents to Knowledge Base
+**Commit and integrate:**
+- docs/IMPLEMENTATION_PLAN_2025-2026.md
+- docs/Performia's Immersive Experience report
+- docs/research-prompt-part2-interactive-oct-2025.md
+- Run knowledge_rag.py to index new documents
+
+#### Option 4: Prototype Quick Wins
+Based on immersive experience report recommendations:
+- Browser-based audio-reactive visualizer (three.js + Web Audio)
+- Virtual bandmate concept art (MetaHuman exploration)
+- Gesture control prototype (Ultraleap hardware acquisition)
 
 ### Agent Recommendations
 - **frontend-dev**: UI/UX improvements, accessibility
@@ -280,12 +414,14 @@ cat .claude/SESSION_SUMMARY.md
 | Metric | Score | Status |
 |--------|-------|--------|
 | **Test Coverage** | 100% critical paths | ✅ |
-| **Tests Passing** | 16/16 (100%) | ✅ |
-| **Code Review Score** | 9.5/10 | ✅ |
-| **Security** | Path traversal prevention | ✅ |
+| **Frontend Tests** | 16/16 passing (100%) | ✅ |
+| **Backend E2E Tests** | 7/7 passing (100%) | ✅ |
+| **Code Review Score** | 10/10 (PR #12) | ✅ |
+| **Security** | Path traversal prevention + validation | ✅ |
 | **Performance** | Optimized (conditional frames) | ✅ |
 | **Error Handling** | Comprehensive with retry | ✅ |
-| **Documentation** | Complete | ✅ |
+| **Documentation** | Complete + AI agent knowledge base | ✅ |
+| **AI Agent Expertise** | Music/audio domain knowledge | ✅ NEW |
 
 ## Voice Integration (Planned)
 - OpenAI Whisper API for speech recognition
@@ -293,7 +429,74 @@ cat .claude/SESSION_SUMMARY.md
 - Voice control during live performance
 - Voice input for Song Map editing
 
+## Knowledge Management & Learning Systems (Oct 4, 2025)
+
+### Current Problem
+AI agents (Claude) make recurring mistakes despite documentation in memory.md:
+- **Example 1**: Looked in wrong directory (`~/.config/claude/commands/` instead of `~/.claude/commands/`)
+- **Example 2**: Created cleanup script but didn't execute it during `/end-session`
+- **Root cause**: Memory alone insufficient for preventing repeated errors
+
+### Proposed Solutions
+
+#### 1. Docling Integration (PRIMARY)
+- **Purpose**: RAG system for project knowledge and technical documentation
+- **What to ingest**:
+  - Official Claude Code documentation (paths, commands, workflows)
+  - Audio/music domain knowledge (Librosa, Essentia, Music21, audio DSP)
+  - Project-specific patterns and best practices
+  - Common mistakes and their solutions
+- **Benefits**:
+  - Authoritative source of truth
+  - Searchable knowledge base
+  - Prevents guessing at paths/configurations
+  - Enables AI agents to access deep technical knowledge
+
+#### 2. Multi-Source Learning Repository
+- **Reference**: https://github.com/Marktechpost/AI-Tutorial-Codes-Included
+- **Resources needed**:
+  - Librosa tutorials and best practices
+  - Audio signal processing fundamentals
+  - Music information retrieval (MIR) techniques
+  - Real-world code examples
+  - Common pitfalls and solutions
+
+#### 3. Documentation Structure
+- **Created files**:
+  - `~/.claude/COMMON_MISTAKES.md` - Recurring errors and prevention
+  - `.claude/MUSIC_AUDIO_KNOWLEDGE.md` - Audio domain expertise for agents
+  - `.claude/memory.md` - Project status and session history
+  - `.claude/SESSION_SUMMARY.md` - Per-session details
+- **Needed**:
+  - `.claude/CLAUDE_CODE_REFERENCE.md` - Authoritative paths/commands (from docling)
+  - `.claude/LEARNING_RESOURCES.md` - External tutorials and references
+  - Docling-powered RAG for searchable knowledge
+
+### Action Items
+1. ✅ Document session management bug in memory.md and COMMON_MISTAKES.md
+2. ✅ Update `/end-session` command with explicit execution requirement
+3. ✅ Set up docling to ingest Claude Code official documentation
+4. ✅ Ingest audio/music learning resources (Librosa, etc.)
+5. ✅ Create comprehensive knowledge base accessible to all AI agents
+6. ✅ Test that docling RAG prevents directory/path confusion
+7. ✅ Review and finalize knowledge management strategy (PR #13 merged)
+
+### Success Criteria
+- AI agents can query docling for correct Claude Code paths
+- Audio pipeline agents have access to best-practice Librosa parameters
+- No repeated mistakes from previous sessions
+- Knowledge persists across sessions and projects
+
 ## Important Reminders
+
+### Session Management
+- **START SESSION**: Run `/start-session` to get current status and next steps
+- **END SESSION**: Run `/end-session` which:
+  1. Updates `.claude/memory.md` with session work
+  2. Creates `.claude/cleanup.sh` if missing (auto-generated based on project type)
+  3. **MUST execute `bash .claude/cleanup.sh`** (removes cache, temp files, updates timestamps)
+  4. Confirms cleanup completion
+- **CRITICAL BUG FIX (Oct 4, 2025)**: `/end-session` was creating cleanup script but NOT running it - this is now fixed and documented in global command
 
 ### Code Standards
 - Always run tests after changes: `npm test`
@@ -315,5 +518,34 @@ cat .claude/SESSION_SUMMARY.md
 - Document all environment variables
 
 ---
-*Last Updated*: October 3, 2025 - Audio/Demo Mode Complete ✅
+*Last Updated*: October 05, 2025
 *Next Review*: Start of next development session
+*Session 1 Duration*: ~2 hours - Backend tests + music knowledge base
+*Session 2 Duration*: ~1 hour - Session management fix + knowledge plan
+*Session 3 Duration*: ~1.5 hours - Docling RAG implementation (PR #13)
+*Session 4 Duration*: ~15 minutes - Enhanced `/end-session` with auto-commit and PR creation
+*Session 5 Duration*: ~3 hours - Strategic research analysis, implementation planning, multi-model agent orchestration design
+*Major Achievements*:
+- Backend test infrastructure (10/10 quality) + AI agent music domain expertise
+- Fixed `/end-session` cleanup execution bug
+- Implemented and merged docling RAG knowledge base (PR #13, 10/10 score)
+- Knowledge base with 11 documents (4,350 unique terms) preventing recurring AI mistakes
+- Enhanced `/end-session` command with auto-commit workflow and optional PR creation
+- **Comprehensive 955-line implementation plan (Q4 2025 → 2027, $2M budget)**
+- **Part 2 research analysis (interactive/visual/social technologies)**
+- **Multi-model research agent orchestration strategy (22 agents across 5 AI providers)**
+- **Codebase architecture analysis (keep vs scrap, 65% preservation)**
+
+### Session 4 Details (October 4, 2025)
+**Work Completed:**
+- Updated global `/end-session` command (`~/.claude/commands/end-session.md`)
+- Added explicit session documentation instructions
+- Implemented auto-commit workflow: `git add . && git commit` after documenting
+- Added intelligent PR creation prompt (only on feature branches)
+- Commit format: `docs: session N - [summary]` or `feat/fix/refactor: [summary]`
+
+**Benefits:**
+- No more uncommitted changes between sessions
+- Clean git history with session-based commits
+- Optional PR creation for feature branch work
+- `/start-session` can detect open PRs and suggest next steps
