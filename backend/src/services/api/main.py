@@ -51,6 +51,10 @@ app.add_middleware(
 # Include performance router
 # app.include_router(performance.router)  # Temporarily disabled
 
+# Include KB health router
+from services.api import kb_health
+app.include_router(kb_health.router)
+
 # Configure directories
 BASE_DIR = Path(__file__).parent.parent.parent.parent
 UPLOAD_DIR = BASE_DIR / "uploads"
