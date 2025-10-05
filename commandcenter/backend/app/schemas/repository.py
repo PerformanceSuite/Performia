@@ -4,7 +4,8 @@ Pydantic schemas for Repository endpoints
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, field_validator
+import re
 
 
 class RepositoryBase(BaseModel):
@@ -18,7 +19,22 @@ class RepositoryBase(BaseModel):
 
 class RepositoryCreate(RepositoryBase):
     """Schema for creating a repository"""
-    pass
+
+    @field_validator('owner', 'name')
+    @classmethod
+    def validate_github_name(cls, v: str) -> str:
+        """Validate GitHub owner/repo names"""
+        if not re.match(r'^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]$', v):
+            raise ValueError('Invalid GitHub name format')
+        return v
+
+    @field_validator('access_token')
+    @classmethod
+    def validate_token(cls, v: Optional[str]) -> Optional[str]:
+        """Validate GitHub token format"""
+        if v and not re.match(r'^(ghp|gho|ghu|ghs|ghr)_[a-zA-Z0-9]{36,255}$', v):
+            raise ValueError('Invalid GitHub token format')
+        return v
 
 
 class RepositoryUpdate(BaseModel):

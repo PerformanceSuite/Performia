@@ -16,10 +16,11 @@ python-dotenv==1.0.0
 # HTTP client
 httpx==0.26.0
 
-# Authentication
+# Authentication & Encryption
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 python-multipart==0.0.6
+cryptography==42.0.0
 
 # CORS
 python-cors==1.0.0

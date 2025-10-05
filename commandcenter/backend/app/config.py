@@ -41,12 +41,16 @@ class Settings(BaseSettings):
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
 
     # Security
-    secret_key: str = Field(
+    SECRET_KEY: str = Field(
         default="dev-secret-key-change-in-production",
-        description="Secret key for JWT tokens"
+        description="Secret key for JWT tokens and encryption"
     )
-    algorithm: str = "HS256"
-    access_token_expire_minutes: int = 30
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    ENCRYPT_TOKENS: bool = Field(
+        default=True,
+        description="Whether to encrypt GitHub tokens in database"
+    )
 
     # CORS
     cors_origins: list[str] = Field(
