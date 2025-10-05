@@ -7,19 +7,27 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Dict, Optional
 import sys
+import os
+import logging
 from pathlib import Path
+from threading import Lock
 
 # Add root to path for KB imports
-root_dir = Path(__file__).parent.parent.parent.parent.parent
+root_dir = Path(os.getenv('PERFORMIA_ROOT', Path(__file__).parent.parent.parent.parent.parent))
 sys.path.insert(0, str(root_dir))
 
 from knowledge_rag_v2 import KnowledgeBase, KnowledgeBaseHeartbeat
 
+# Configure logging
+logger = logging.getLogger(__name__)
+
 router = APIRouter(prefix="/api/kb", tags=["knowledge-base"])
 
-# Global KB instance (initialized on startup)
+# Global KB instance (initialized on startup) with thread safety
 _kb_instance: Optional[KnowledgeBase] = None
 _heartbeat_instance: Optional[KnowledgeBaseHeartbeat] = None
+_kb_lock = Lock()
+_heartbeat_lock = Lock()
 
 
 class KBHealthResponse(BaseModel):
@@ -59,10 +67,14 @@ class WarmResponse(BaseModel):
 
 
 def get_kb() -> KnowledgeBase:
-    """Get or initialize KB instance."""
+    """Get or initialize KB instance with thread safety (double-check locking)."""
     global _kb_instance
     if _kb_instance is None:
-        _kb_instance = KnowledgeBase(auto_warm=True)
+        with _kb_lock:
+            if _kb_instance is None:  # Double-check locking pattern
+                logger.info("Initializing Knowledge Base with auto-warming...")
+                _kb_instance = KnowledgeBase(auto_warm=True)
+                logger.info("Knowledge Base initialized successfully")
     return _kb_instance
 
 
@@ -97,7 +109,8 @@ async def kb_health():
             heartbeat_count=heartbeat.heartbeat_count if heartbeat else None
         )
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"KB health check failed: {str(e)}")
+        logger.error(f"KB health check failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Health check failed")
 
 
 @router.get("/stats", response_model=KBStatsResponse)
@@ -165,28 +178,43 @@ async def start_heartbeat(interval: int = 300):
     Start knowledge base heartbeat.
 
     Args:
-        interval: Heartbeat interval in seconds (default: 300)
+        interval: Heartbeat interval in seconds (default: 300, min: 10, max: 86400)
 
     Returns:
         Success message
     """
     global _heartbeat_instance
 
+    # Input validation
+    if interval < 10:
+        raise HTTPException(
+            status_code=400,
+            detail="Interval must be at least 10 seconds to avoid excessive CPU usage"
+        )
+    if interval > 86400:
+        raise HTTPException(
+            status_code=400,
+            detail="Interval must be at most 24 hours (86400 seconds)"
+        )
+
     try:
         kb = get_kb()
 
-        if _heartbeat_instance and _heartbeat_instance.running:
-            return {"status": "already_running", "message": "Heartbeat already active"}
+        with _heartbeat_lock:
+            if _heartbeat_instance and _heartbeat_instance.running:
+                return {"status": "already_running", "message": "Heartbeat already active"}
 
-        _heartbeat_instance = KnowledgeBaseHeartbeat(kb, interval=interval)
-        _heartbeat_instance.start()
+            _heartbeat_instance = KnowledgeBaseHeartbeat(kb, interval=interval)
+            _heartbeat_instance.start()
+            logger.info(f"Heartbeat started with {interval}s interval")
 
         return {
             "status": "success",
             "message": f"Heartbeat started with {interval}s interval"
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Heartbeat start failed: {str(e)}")
+        logger.error(f"Heartbeat start failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to start heartbeat")
 
 
 @router.post("/heartbeat/stop")
@@ -200,18 +228,21 @@ async def stop_heartbeat():
     global _heartbeat_instance
 
     try:
-        if not _heartbeat_instance or not _heartbeat_instance.running:
-            return {"status": "not_running", "message": "Heartbeat not active"}
+        with _heartbeat_lock:
+            if not _heartbeat_instance or not _heartbeat_instance.running:
+                return {"status": "not_running", "message": "Heartbeat not active"}
 
-        count = _heartbeat_instance.heartbeat_count
-        _heartbeat_instance.stop()
+            count = _heartbeat_instance.heartbeat_count
+            _heartbeat_instance.stop()
+            logger.info(f"Heartbeat stopped after {count} cycles")
 
         return {
             "status": "success",
             "message": f"Heartbeat stopped after {count} cycles"
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Heartbeat stop failed: {str(e)}")
+        logger.error(f"Heartbeat stop failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to stop heartbeat")
 
 
 @router.get("/query")

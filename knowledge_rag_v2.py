@@ -20,7 +20,21 @@ import time
 import threading
 import random
 import hashlib
+from collections import OrderedDict
 from typing import Dict, List, Tuple, Optional
+
+# Configuration constants
+MAX_CACHE_SIZE = 100  # Maximum number of cached queries
+DEFAULT_HEARTBEAT_INTERVAL = 300  # Default heartbeat interval in seconds (5 minutes)
+WARMING_QUERIES = [
+    "claude code slash commands path",
+    "librosa audio analysis parameters",
+    "juce processBlock real-time audio",
+    "supercollider synthdef patterns",
+    "end-session cleanup procedure",
+    "music theory chord progressions",
+    "audio dsp fft algorithms"
+]
 
 
 class KnowledgeBase:
@@ -47,7 +61,7 @@ class KnowledgeBase:
         self.converter = DocumentConverter()
         self.documents: Dict = {}
         self.index: Dict = {}
-        self.query_cache: Dict = {}
+        self.query_cache: OrderedDict = OrderedDict()  # LRU cache with ordered access
         self.last_access = time.time()
 
         # Performance metrics
@@ -74,17 +88,7 @@ class KnowledgeBase:
         self.ingest_all(self.cache_file)
 
         # Pre-execute common queries to warm cache
-        common_queries = [
-            "claude code slash commands path",
-            "librosa audio analysis parameters",
-            "juce processBlock real-time audio",
-            "supercollider synthdef patterns",
-            "end-session cleanup procedure",
-            "music theory chord progressions",
-            "audio dsp fft algorithms"
-        ]
-
-        for query in common_queries:
+        for query in WARMING_QUERIES:
             self.query(query, use_cache=False)  # Populate cache
             self.stats['warm_queries'] += 1
 
@@ -96,7 +100,7 @@ class KnowledgeBase:
         print(f"   - {len(self.index)} unique terms indexed")
         print(f"   - {self.stats['warm_queries']} warming queries executed\n")
 
-    def ingest_all(self, cache_file=".knowledge_cache.pkl"):
+    def ingest_all(self, cache_file: str = ".knowledge_cache.pkl") -> None:
         """
         Ingest all markdown files from knowledge base.
         Uses cached index if available and up-to-date.
@@ -205,9 +209,11 @@ class KnowledgeBase:
         # Generate cache key from query
         cache_key = self._generate_cache_key(search_terms)
 
-        # Check cache
+        # Check cache with LRU update
         if use_cache and cache_key in self.query_cache:
             self.stats['cache_hits'] += 1
+            # Move to end (mark as recently used)
+            self.query_cache.move_to_end(cache_key)
             return self.query_cache[cache_key]
 
         self.stats['cache_misses'] += 1
@@ -229,15 +235,15 @@ class KnowledgeBase:
         sorted_matches = sorted(matches.items(), key=lambda x: x[1], reverse=True)
         results = [(doc_id, self.documents[doc_id]) for doc_id, score in sorted_matches]
 
-        # Cache results with LRU eviction
+        # Cache results with true LRU eviction
         if use_cache:
             self.query_cache[cache_key] = results
+            self.query_cache.move_to_end(cache_key)  # Mark as most recently used
 
-            # Limit cache size (LRU - evict oldest)
-            if len(self.query_cache) > 100:
-                # Simple LRU: remove first inserted (oldest)
-                oldest_key = next(iter(self.query_cache))
-                del self.query_cache[oldest_key]
+            # Limit cache size (LRU - evict least recently used)
+            if len(self.query_cache) > MAX_CACHE_SIZE:
+                # Remove least recently used (first item in OrderedDict)
+                self.query_cache.popitem(last=False)
 
         return results
 
@@ -292,7 +298,7 @@ class KnowledgeBase:
             'last_access_age': f"{time.time() - self.last_access:.1f}s ago"
         }
 
-    def clear_cache(self):
+    def clear_cache(self) -> None:
         """Clear query cache (useful for testing or memory management)."""
         self.query_cache.clear()
         print("🧹 Query cache cleared")
@@ -311,13 +317,13 @@ class KnowledgeBaseHeartbeat:
         heartbeat.stop()
     """
 
-    def __init__(self, kb: KnowledgeBase, interval: int = 300):
+    def __init__(self, kb: KnowledgeBase, interval: int = DEFAULT_HEARTBEAT_INTERVAL):
         """
         Initialize heartbeat with knowledge base and interval.
 
         Args:
             kb: KnowledgeBase instance
-            interval: Heartbeat interval in seconds (default: 300 = 5 min)
+            interval: Heartbeat interval in seconds (default: DEFAULT_HEARTBEAT_INTERVAL = 5 min)
         """
         self.kb = kb
         self.interval = interval
