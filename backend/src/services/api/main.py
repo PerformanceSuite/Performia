@@ -11,6 +11,7 @@ from typing import Dict, Optional
 import os
 import sys
 import json
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks
 from fastapi.responses import JSONResponse, FileResponse
@@ -32,11 +33,36 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Initialize FastAPI app
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    FastAPI lifespan context manager for startup and shutdown events.
+    Handles graceful shutdown of background services like KB heartbeat.
+    """
+    # Startup
+    logger.info("Starting Performia Song Map API...")
+    yield
+    # Shutdown
+    logger.info("Shutting down Performia Song Map API...")
+
+    # Stop KB heartbeat if running
+    try:
+        from services.api import kb_health
+        if kb_health._heartbeat_instance and kb_health._heartbeat_instance.running:
+            logger.info("Stopping Knowledge Base heartbeat...")
+            kb_health._heartbeat_instance.stop()
+            logger.info("Knowledge Base heartbeat stopped successfully")
+    except Exception as e:
+        logger.error(f"Error stopping KB heartbeat during shutdown: {e}")
+
+
+# Initialize FastAPI app with lifespan
 app = FastAPI(
     title="Performia Song Map API",
     description="REST API for generating Song Maps from audio files",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
 
 # Add CORS middleware for frontend integration
@@ -50,6 +76,10 @@ app.add_middleware(
 
 # Include performance router
 # app.include_router(performance.router)  # Temporarily disabled
+
+# Include KB health router
+from services.api import kb_health
+app.include_router(kb_health.router)
 
 # Configure directories
 BASE_DIR = Path(__file__).parent.parent.parent.parent
